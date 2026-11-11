@@ -1,0 +1,307 @@
+{
+ "ensemble_rows_finite": {
+  "2.0": {
+   "mean_kW": 114.69283114609138,
+   "Vstd": 0.021013037612169598,
+   "median_V": 1.0374120141058807,
+   "p1_min_V": 0.8645388117925882,
+   "n_rows": 220,
+   "n_inputs": 110,
+   "n_outputs": 45,
+   "dev_kW_frac": 2.4685204389059573e-05,
+   "dev_Vstd_frac": 0.0001445793512421293
+  },
+  "1.0": {
+   "mean_kW": 57.491192393132714,
+   "Vstd": 0.009686115952393085,
+   "median_V": 1.0431475015078049,
+   "p1_min_V": 0.9667954126840534,
+   "n_rows": 220,
+   "n_inputs": 110,
+   "n_outputs": 45,
+   "dev_kW_frac": 2.0740878982636976e-05,
+   "dev_Vstd_frac": 0.00040083050638966053
+  }
+ },
+ "operator_vs_archived": {
+  "frob_ratio_vs_archived": 1.0,
+  "normalised_deviation_vs_archived": 6.62269168978001e-17,
+  "spectrum": {
+   "sv_normalised": [
+    1.0,
+    0.9434430110468642,
+    0.5036565912617175,
+    0.11570356127502747,
+    0.10238559861854363,
+    0.05929851292016588,
+    0.051516657299834595,
+    0.042521803395614816,
+    0.024166236451601385,
+    0.019347286158404205,
+    0.010393831740810456,
+    0.006639196922769731,
+    0.006489439858603962,
+    0.005331776355711591,
+    0.00509465948406106,
+    0.0029800940985060735,
+    0.002532433919045258,
+    0.002352540017674677,
+    0.001986387354653724,
+    0.0008861847464463967,
+    0.000660817345208917,
+    0.00046420814191119837,
+    0.00044839264686390455,
+    7.118982085801203e-05,
+    5.979809001738935e-05,
+    4.531191310206089e-05,
+    3.8362934187975535e-05,
+    6.990945096297534e-06,
+    7.495912351679453e-07,
+    1.0440567071169538e-16,
+    7.11186646692808e-17,
+    5.1291801402591627e-17,
+    3.80829860633821e-17,
+    3.618214969456759e-17,
+    1.762058666179818e-17,
+    1.2884013158795734e-17,
+    9.537251709753166e-18,
+    8.939129423856099e-18,
+    7.688638911868938e-18,
+    7.128031937976736e-18,
+    5.979589261073603e-18,
+    5.1126320584606195e-18,
+    2.904087752838036e-18,
+    8.216417602193328e-32,
+    6.041719121736645e-33
+   ],
+   "stable_rank": 2.1768365417805673,
+   "rank_1e2": 11,
+   "rank_1e3": 19,
+   "rank_1e4": 23,
+   "cond": 1.6551580433493535e+32,
+   "shape": [
+    45,
+    110
+   ]
+  },
+  "note": "a global scalar is absorbed by the train-only feature scaler; the scale-free check is the normalised deviation, which must be below 1e-8"
+ },
+ "laplacian_symmetry": {
+  "max_abs_L_minus_LT": 8.134767913360665e-12,
+  "max_abs_L_minus_LH": 114292.1190464186,
+  "scale_max_abs_L": 164353.43191560943,
+  "rel_transpose_defect": 4.9495576809966613e-17,
+  "rel_hermitian_defect": 0.6954045176562189,
+  "eigensolver_used": "scipy.linalg.eig on L and eigh on 0.5*(L+L^H); never eigh/eigsh on L"
+ },
+ "hop_distance_diagnostic": {
+  "n_negative_eigenvalues": 54,
+  "n_eigenvalues": 55,
+  "min_eigenvalue": -1677.3213693621828,
+  "max_eigenvalue": 4527.335371662266,
+  "why_not_used_as_a_metric": "a distance matrix is not a kernel: it has negative eigenvalues, so clipping them (the earlier construction) leaves an object that is worse than the mean predictor"
+ },
+ "graph_metric_spectra": {
+  "M_hop": {
+   "top1_share": 0.359400189213897,
+   "top3_share": 0.9624495490439438,
+   "participation_ratio": 3.19498692755727,
+   "n_eigenvalues": 55,
+   "top5_eigenvalues": [
+    32560270.75651348,
+    29919511.813662056,
+    24714433.92397474,
+    1190484.5350980274,
+    964187.1045462175
+   ]
+  },
+  "M_adm": {
+   "top1_share": 0.8182207753415159,
+   "top3_share": 0.964105103080847,
+   "participation_ratio": 1.4688917850291296,
+   "n_eigenvalues": 55,
+   "top5_eigenvalues": [
+    166.51892892717046,
+    16.220674743265093,
+    13.468747396223229,
+    4.673040612213924,
+    1.097840189778431
+   ]
+  },
+  "M_imp": {
+   "top1_share": 0.4908221616511625,
+   "top3_share": 0.9576419955356004,
+   "participation_ratio": 2.3516725865127555,
+   "n_eigenvalues": 55,
+   "top5_eigenvalues": [
+    2095144938562661.5,
+    1820919703445901.0,
+    171767849400921.0,
+    92781680136583.2,
+    68262137642469.86
+   ]
+  }
+ },
+ "noload_solve_seconds": 0.5684175491333008,
+ "ac_solves_charged_to_the_operator": 1,
+ "ac_solves_charged_to_labels": 220,
+ "reserved_evidence_untouched": true,
+ "denylist": [
+  "ens_s2.6",
+  "ens_perm",
+  "ens_near",
+  "phase_perm"
+ ],
+ "q_is_deterministic_2.0": {
+  "Q_over_P_exact": true,
+  "Q_over_P_ratio_median": 0.3286841051788632,
+  "nominal_ratio": 0.3286841051788632,
+  "effective_input_dim": 55
+ },
+ "q_is_deterministic_1.0": {
+  "Q_over_P_exact": true,
+  "Q_over_P_ratio_median": 0.3286841051788632,
+  "nominal_ratio": 0.3286841051788632,
+  "effective_input_dim": 55
+ },
+ "leakage_test": {
+  "10": {
+   "bit_identical": true,
+   "variance_bit_identical": true,
+   "max_abs_prediction_difference": 0.0,
+   "max_abs_variance_difference": 0.0,
+   "n_models_compared": 11
+  },
+  "20": {
+   "bit_identical": true,
+   "variance_bit_identical": true,
+   "max_abs_prediction_difference": 0.0,
+   "max_abs_variance_difference": 0.0,
+   "n_models_compared": 11
+  },
+  "40": {
+   "bit_identical": true,
+   "variance_bit_identical": true,
+   "max_abs_prediction_difference": 0.0,
+   "max_abs_variance_difference": 0.0,
+   "n_models_compared": 11
+  },
+  "80": {
+   "bit_identical": true,
+   "variance_bit_identical": true,
+   "max_abs_prediction_difference": 0.0,
+   "max_abs_variance_difference": 0.0,
+   "n_models_compared": 11
+  },
+  "160": {
+   "bit_identical": true,
+   "variance_bit_identical": true,
+   "max_abs_prediction_difference": 0.0,
+   "max_abs_variance_difference": 0.0,
+   "n_models_compared": 11
+  }
+ },
+ "determinism_test": {
+  "bit_identical": true,
+  "max_abs_prediction_difference": 0.0,
+  "fold": {
+   "n_train": 40,
+   "seed": 3,
+   "scheme": 1
+  }
+ },
+ "guard_g1_pass": {
+  "worst_rmse_over_mean_predictor": 0.9991124192966531,
+  "passes": true,
+  "per_cell": {
+   "10": {
+    "b1_rbf": 0.9991124192966531,
+    "b2_lap_hop": 0.3383720815638143,
+    "b3_lap_adm": 0.491639685859598,
+    "b4_ridge": 0.9767725430422903,
+    "b5_lindist": 0.1958942374525239,
+    "physics_only": 0.1958942374525239,
+    "zero_mean_gp": 0.31053407994222615,
+    "resid_gp_mll": 0.1835943511263415,
+    "resid_gp_tempered": 0.1835943511263415,
+    "resid_ridge_linear": 0.19267827475094249
+   },
+   "20": {
+    "b1_rbf": 0.9689622163337415,
+    "b2_lap_hop": 0.13791591562851585,
+    "b3_lap_adm": 0.19987425521521338,
+    "b4_ridge": 0.8652833781421684,
+    "b5_lindist": 0.115764352109,
+    "physics_only": 0.115764352109,
+    "zero_mean_gp": 0.1371541185705217,
+    "resid_gp_mll": 0.10357772686039034,
+    "resid_gp_tempered": 0.10357772686039034,
+    "resid_ridge_linear": 0.11477040847430314
+   },
+   "40": {
+    "b1_rbf": 0.640986371970802,
+    "b2_lap_hop": 0.0578657545461104,
+    "b3_lap_adm": 0.10040280072643122,
+    "b4_ridge": 0.6018852313045588,
+    "b5_lindist": 0.08724109908941158,
+    "physics_only": 0.08724109908941158,
+    "zero_mean_gp": 0.07013263931004919,
+    "resid_gp_mll": 0.048408747012975255,
+    "resid_gp_tempered": 0.048408747012975255,
+    "resid_ridge_linear": 0.08722612445579207
+   },
+   "80": {
+    "b1_rbf": 0.26620260553814307,
+    "b2_lap_hop": 0.02976329658410524,
+    "b3_lap_adm": 0.047821813405934645,
+    "b4_ridge": 0.12810219997514458,
+    "b5_lindist": 0.08086945026453454,
+    "physics_only": 0.08086945026453454,
+    "zero_mean_gp": 0.029732387268534426,
+    "resid_gp_mll": 0.033622369633631764,
+    "resid_gp_tempered": 0.033622369633631764,
+    "resid_ridge_linear": 0.08092002286816992
+   },
+   "160": {
+    "b1_rbf": 0.0944535960472603,
+    "b2_lap_hop": 0.014823888353372207,
+    "b3_lap_adm": 0.020259267868916724,
+    "b4_ridge": 0.09440920137566454,
+    "b5_lindist": 0.08044814854037209,
+    "physics_only": 0.08044814854037209,
+    "zero_mean_gp": 0.018990010366119005,
+    "resid_gp_mll": 0.022588970671861885,
+    "resid_gp_tempered": 0.022588970671861885,
+    "resid_ridge_linear": 0.08047185882951186
+   }
+  }
+ },
+ "guard_g2_grid": {
+  "penalty_was_a_fraction_of_lmax": true,
+  "grid_span": [
+   1e-06,
+   1000000.0
+  ],
+  "median_chosen_fraction": 0.00031622776601683794,
+  "chosen_fraction_per_n": {
+   "10": 0.03162277660168379,
+   "20": 0.00658113883008419,
+   "40": 0.00031622776601683794,
+   "80": 0.0001,
+   "160": 0.0001
+  }
+ },
+ "tempering_is_variance_only": {
+  "tempered_point_prediction_identical": true,
+  "exact_zero_difference": true,
+  "alpha_used": 0.049999999999999996,
+  "min_var_increase": 2.822753822635184e-07,
+  "n": 80
+ },
+ "n_equals_10_interpolation": {
+  "effective_dof_at_10": 2.493259853753735,
+  "effective_dof_over_n_at_10": 0.24932598537537354,
+  "n_parameters_of_physics_calibration": 47,
+  "interpretation": "the physics calibration has 47 parameters against 10 training rows at n=10, so it nearly interpolates and a small margin there is not new mechanism"
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "type": "bar",
+ "title": "Effective rank of the graph metrics",
+ "ylabel": "Participation ratio (max 55)",
+ "aspect": "16:9",
+ "categories": [
+  "unit-weight Laplacian",
+  "admittance Laplacian",
+  "impedance Laplacian (diagnostic)"
+ ],
+ "series": [
+  {
+   "label": "participation ratio",
+   "values": [
+    3.19498692755727,
+    1.4688917850291296,
+    2.3516725865127555
+   ]
+  }
+ ]
+}

@@ -1,0 +1,219 @@
+{
+  "metadata": {
+    "method_name": "physics-prior-mean residual GP with an output-restricted sensitivity kernel",
+    "description": "Candidate D of a five-way kernel screen on the IEEE PES European LV feeder: a train-calibrated multiphase LinDistFlow prediction is the GP prior mean and the output-restricted sensitivity kernel exp(-...",
+    "protocol": "12 seeds x 2 partition schemes = 24 folds per training size",
+    "regimes": {
+      "decision": "2.0x",
+      "robustness": "1.0x",
+      "reserved_forbidden": "2.6x"
+    },
+    "primary_metric": "mean normalised far-end RMSE (train-row normaliser)",
+    "screen_metric_at_80": -0.15181870788694637,
+    "screen_metric_definition": "mean paired margin of the physics-plus-residual GP (tempered intervals, point prediction identical to the marginal-likelihood arm) over the best of the five named baselines in the same fold, at n=80 o...",
+    "readings": {
+      "R1_small_n_crossing_at_10": {
+        "mean_margin": 0.018028937136372884,
+        "ci95": [
+          -0.015129706936887753,
+          0.04547040619280308
+        ],
+        "sign_test_p": 2.9802322387695312e-06,
+        "passes": false,
+        "physics_only_margin": -0.029016111252464134,
+        "zero_mean_gp_rmse": 0.4739959279694493,
+        "physics_only_rmse": 0.27478488278493146,
+        "tempered_rmse": 0.2590862569696746,
+        "effective_dof": 2.493259853753735,
+        "interpretation": "at n=10 the 47-parameter physics calibration nearly interpolates the training rows, so the residual GP has almost nothing left to fit and this arm is approximately the physics baseline by construction"
+      },
+      "R1_small_n_crossing_at_20": {
+        "mean_margin": 0.040885192098546554,
+        "ci95": [
+          -0.010917802172974668,
+          0.08999802660106371
+        ],
+        "sign_test_p": 0.001543879508972168,
+        "passes": false,
+        "physics_only_margin": -0.08263054472816249,
+        "zero_mean_gp_rmse": 0.1719126835939512,
+        "physics_only_rmse": 0.1403768694528883,
+        "tempered_rmse": 0.126824325683515,
+        "effective_dof": 3.8920276532692433,
+        "interpretation": "at n=10 the 47-parameter physics calibration nearly interpolates the training rows, so the residual GP has almost nothing left to fit and this arm is approximately the physics baseline by construction"
+      },
+      "R2_D_vs_zero_mean_gp": {
+        "10": {
+          "tempered_margin_vs_zero_mean": 0.45339982543821855,
+          "resid_mll_margin_vs_zero_mean": 0.45339982543821855,
+          "zero_mean_rmse": 0.4739959279694493,
+          "resid_mll_rmse": 0.2590862569696746
+        },
+        "20": {
+          "tempered_margin_vs_zero_mean": 0.26227476046463527,
+          "resid_mll_margin_vs_zero_mean": 0.26227476046463527,
+          "zero_mean_rmse": 0.1719126835939512,
+          "resid_mll_rmse": 0.126824325683515
+        },
+        "40": {
+          "tempered_margin_vs_zero_mean": 0.31209096137476233,
+          "resid_mll_margin_vs_zero_mean": 0.31209096137476233,
+          "zero_mean_rmse": 0.08359226976661467,
+          "resid_mll_rmse": 0.05750387793165342
+        },
+        "80": {
+          "tempered_margin_vs_zero_mean": -0.13141652116554137,
+          "resid_mll_margin_vs_zero_mean": -0.13141652116554137,
+          "zero_mean_rmse": 0.03413372525139064,
+          "resid_mll_rmse": 0.038619460678348795
+        },
+        "160": {
+          "tempered_margin_vs_zero_mean": -0.18963593823442548,
+          "resid_mll_margin_vs_zero_mean": -0.18963593823442548,
+          "zero_mean_rmse": 0.021038457442632285,
+          "resid_mll_rmse": 0.02502810505877089
+        }
+      },
+      "R3_coverage_repair": {
+        "qualifying_n": [],
+        "rule": "usable if, at every n from 10 to 160, |c68-0.68|<=0.05 and |c95-0.95|<=0.05",
+        "passes_rule": false,
+        "per_n": {
+          "10": {
+            "tempered_c68": 0.6345666987333654,
+            "tempered_c95": 0.8520735129068462,
+            "tempered_nlpd": 3.4365648039481607,
+            "mll_c68": 0.4986355619688953,
+            "mll_c95": 0.7388828763828764,
+            "ridge_c68": 0.5600088183421517,
+            "ridge_c95": 0.6885513868847203,
+            "physics_c68": 0.8346512746512748,
+            "physics_c95": 0.9656497514830846
+          },
+          "20": {
+            "tempered_c68": 0.6896254208754208,
+            "tempered_c95": 0.8970202020202019,
+            "tempered_nlpd": 4.244552351905507,
+            "mll_c68": 0.5361271043771044,
+            "mll_c95": 0.8061565656565657,
+            "ridge_c68": 0.8644970538720539,
+            "ridge_c95": 0.9287996632996633,
+            "physics_c68": 0.9173880471380471,
+            "physics_c95": 0.9809031986531987
+          },
+          "40": {
+            "tempered_c68": 0.8428128507295174,
+            "tempered_c95": 0.9599775533108866,
+            "tempered_nlpd": 5.719965817934852,
+            "mll_c68": 0.5603853348297793,
+            "mll_c95": 0.8319238683127571,
+            "ridge_c68": 0.9848569023569024,
+            "ridge_c95": 0.9967354096520764,
+            "physics_c68": 0.9622133370744482,
+            "physics_c95": 0.9865090722035167
+          },
+          "80": {
+            "tempered_c68": 0.8726412938912939,
+            "tempered_c95": 0.9724086099086099,
+            "tempered_nlpd": 6.090099027022036,
+            "mll_c68": 0.5367195767195767,
+            "mll_c95": 0.802027417027417,
+            "ridge_c68": 0.99374518999519,
+            "ridge_c95": 0.9994883357383357,
+            "physics_c68": 0.9816528379028379,
+            "physics_c95": 0.9952687590187589
+          },
+          "160": {
+            "tempered_c68": 0.897185746352413,
+            "tempered_c95": 0.9774915824915823,
+            "tempered_nlpd": 6.299322703559817,
+            "mll_c68": 0.49322530864197534,
+            "mll_c95": 0.7569051627384961,
+            "ridge_c68": 0.9996983726150392,
+            "ridge_c95": 1.0,
+            "physics_c68": 0.9914758698092031,
+            "physics_c95": 0.9990361952861954
+          }
+        }
+      },
+      "R4_screen_survival": {
+        "S1_mean_margin_at_80": -0.15181870788694637,
+        "S1_pass": false,
+        "S2_worst_fold_at_80": -0.4917202173427402,
+        "S2_pass": false,
+        "S3_no_candidate_beats_D_by_15pct": {
+          "note": "the other four screened artifacts run in parallel and reading them is forbidden, so this is not evaluable inside this artifact",
+          "status": "NOT_EVALUABLE_IN_ISOLATION"
+        },
+        "ranking_at_80": {
+          "b1_rbf": 0.30488585989145145,
+          "b2_lap_hop": 0.03440577908551045,
+          "b3_lap_adm": 0.05551827197982054,
+          "b4_ridge": 0.14579893942045674,
+          "b5_lindist": 0.09253262976218435,
+          "physics_only": 0.09253262976218435,
+          "zero_mean_gp": 0.03413372525139064,
+          "resid_gp_mll": 0.038619460678348795,
+          "resid_gp_tempered": 0.038619460678348795,
+          "resid_ridge_linear": 0.09259502650950224
+        },
+        "zero_mean_vs_tempered_ratio": 0.8838477972460919
+      },
+      "R5_nlpd_not_used_to_arbitrate": true
+    },
+    "protocol_checks_summary": {
+      "leakage_test_bit_identical": true,
+      "determinism_bit_identical": true,
+      "guard_g1_pass": true,
+      "tempering_is_variance_only": true,
+      "operator_normalised_deviation_vs_archived": 6.62269168978001e-17
+    },
+    "departures": [
+      "No neural-network baseline: at 10-160 AC solves a DNN is outside its data regime; the claim is about which kernel to use at small n, not about kernels beating neural networks.",
+      "One feeder, one 15-bus far-end sheet, one load model: external validity is asserted for this feeder only and the crossover number is not generalised.",
+      "No measurement noise: ground truth is a deterministic function of the injection vector, so the GP noise term is a regulariser and calibration is read off empirical coverage."
+    ],
+    "ac_solves": {
+      "operator": 1,
+      "labels": 220,
+      "note": "one no-load three-phase solve for the reference phasors, zero for the analytic operator"
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "ieee_european_lv_asymmetric_on_peak_566_runpp_3ph",
+      "examples": [
+        {
+          "input": "Predict per-unit magnitude at 15 far-end buses x 3 phases on the IEEE PES European LV feeder from 10 three-phase AC power-flow solves; model physics_only.",
+          "output": "mean normalised far-end RMSE 0.274785, worst fold 0.663746, mean paired margin over the best baseline -0.0290, mean NLPD 4.0507, coverage 68% 0.835 / 95% 0.966",
+          "metadata_n_train": 10,
+          "metadata_model": "physics_only",
+          "metadata_is_baseline": "false",
+          "metadata_is_diagnostic": "false",
+          "predict_our_method": "0.259086",
+          "predict_baseline": "0.274785"
+        },
+        {
+          "input": "Predict per-unit magnitude at 15 far-end buses x 3 phases on the IEEE PES European LV feeder from 10 three-phase AC power-flow solves; model zero_mean_gp.",
+          "output": "mean normalised far-end RMSE 0.473996, worst fold 1.268297, mean paired margin over the best baseline -0.7512, mean NLPD 3.8182, coverage 68% 0.669 / 95% 0.860",
+          "metadata_n_train": 10,
+          "metadata_model": "zero_mean_gp",
+          "metadata_is_baseline": "false",
+          "metadata_is_diagnostic": "false",
+          "predict_our_method": "0.259086",
+          "predict_baseline": "0.274785"
+        },
+        {
+          "input": "Predict per-unit magnitude at 15 far-end buses x 3 phases on the IEEE PES European LV feeder from 10 three-phase AC power-flow solves; model resid_gp_mll.",
+          "output": "mean normalised far-end RMSE 0.259086, worst fold 0.542791, mean paired margin over the best baseline +0.0180, mean NLPD 2.0939, coverage 68% 0.499 / 95% 0.739",
+          "metadata_n_train": 10,
+          "metadata_model": "resid_gp_mll",
+          "metadata_is_baseline": "false",
+          "metadata_is_diagnostic": "false",
+          "predict_our_method": "0.259086",
+          "predict_baseline": "0.274785"
+        }
+      ]
+    }
+  ]
+}

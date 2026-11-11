@@ -1,0 +1,23 @@
+[project]
+name = "physics-prior-residual-gp-lv-feeder"
+version = "1.0.0"
+description = "Physics-prior-mean residual Gaussian process with an output-restricted sensitivity kernel on the IEEE PES European LV feeder"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy==2.5.4",
+    "scipy==1.16.3",
+    "pandapower==3.3.3",
+    "pandas==2.3.3",
+    "networkx==3.7",
+    "loguru==0.7.3",
+    "matplotlib==3.11.2",
+    "geojson==3.3.0",
+    "tqdm==4.70.1",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["feeder", "kernels", "method", "test_stages", "audit", "make_figures"]
