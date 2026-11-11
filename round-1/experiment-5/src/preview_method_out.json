@@ -1,0 +1,442 @@
+{
+  "metadata": {
+    "method_name": "screen_E_laplacian_spectral_kernel",
+    "description": "Screen candidate E of the iteration-1 widen: the phase-expanded admittance-weighted block Laplacian of the IEEE PES European LV feeder used as a Gaussian-process kernel through a spectral embedding, a...",
+    "headline_arm": "SP-R1a-GP-k11",
+    "screen_metric_at_80": 0.7790265689162085,
+    "crossover_ac_runs": {
+      "SP-R1a-GP-k11": {
+        "mean_crossover_n": 20,
+        "every_fold_crossover_n": 40
+      },
+      "SP-R1a-GP-k11-S2": {
+        "mean_crossover_n": 20,
+        "every_fold_crossover_n": 40
+      },
+      "SP-R1a-GP-k22": {
+        "mean_crossover_n": 40,
+        "every_fold_crossover_n": 40
+      },
+      "SP-R1a-GP-k3": {
+        "mean_crossover_n": null,
+        "every_fold_crossover_n": null
+      },
+      "SP-R1a-GP-k45": {
+        "mean_crossover_n": 80,
+        "every_fold_crossover_n": 80
+      },
+      "SP-R1a-GP-k5": {
+        "mean_crossover_n": null,
+        "every_fold_crossover_n": null
+      },
+      "SP-R1a-LIN-k11": {
+        "mean_crossover_n": null,
+        "every_fold_crossover_n": null
+      },
+      "SP-R1b-GP-k11": {
+        "mean_crossover_n": 40,
+        "every_fold_crossover_n": 40
+      },
+      "SP-R2-GP-k11": {
+        "mean_crossover_n": 20,
+        "every_fold_crossover_n": 40
+      },
+      "SP-R3-GP-k11": {
+        "mean_crossover_n": 20,
+        "every_fold_crossover_n": 40
+      },
+      "SP-R4-GP-k11": {
+        "mean_crossover_n": 40,
+        "every_fold_crossover_n": 80
+      },
+      "SP-R4-GP-k45": {
+        "mean_crossover_n": 40,
+        "every_fold_crossover_n": 80
+      }
+    },
+    "verdict": "PASSES S1 and S2: SP-R1a-GP-k11-S2 beats the best per-fold baseline by +77.9% on the mean and +70.1% in its worst fold at n = 80",
+    "survival": {
+      "S1_mean_margin_at_80_ge_20pct": true,
+      "S2_worst_fold_at_80_ge_20pct": true,
+      "S3_downstream": "not evaluated here; the per-fold measure and arrays are recorded so the downstream comparison can be made without re-running",
+      "headline_arm_by_preregistered_rule": "SP-R1a-GP-k11-S2",
+      "headline_arm_frozen_in_plan": "SP-R1a-GP-k11",
+      "rule_note": "the pre-registered ranking rule selected SP-R1a-GP-k11-S2 over the plan's frozen SP-R1a-GP-k11; both are reported, and the frozen cell is the one named in the pre-registration so no criterion is moved...",
+      "coverage_arbiter": {
+        "arm": "SP-R1a-GP-k11-S2",
+        "mean_coverage68": 0.008363395863395863,
+        "mean_coverage95": 0.01626142376142376,
+        "nominal68": 0.68,
+        "nominal95": 0.95,
+        "arm_judged": "SP-R1a-GP-k11-S2",
+        "note": "",
+        "calibrated_at_68": false,
+        "calibrated_at_95": false,
+        "verdict": "the predictive density is UNUSABLE: empirical coverage is 0.8% at the nominal 68% level and 1.6% at 95%, i.e. the intervals are overconfident by orders of magnitude",
+        "cause": "the tuning protocol drives the noise variance to the grid floor (n2 = 1e-8) because the output is a deterministic AC solve: the marginal likelihood and held-out error both reward interpolating every t...",
+        "nlpd_note": "NLPD is reported but is not read as evidence in either direction: it becomes hugely negative when the density sharpens around a small-but-nonzero error, which is exactly the failure this run already c..."
+      },
+      "S4_density_calibrated": false,
+      "controls": {
+        "file": "results/controls_n80.json",
+        "available": true,
+        "mean_nrmse": {
+          "C1_laplacian": 0.02216952685513428,
+          "C2_random": 0.21439209923070537,
+          "C3_permuted_load_rows": 0.2409718298451268,
+          "C4_shuffled_phase": 0.2828525829058606,
+          "C6_identity11": 1.1578210366239041,
+          "C7_hop_laplacian": 0.9473776951073787,
+          "C5_pca_injection": 0.9329586717455989
+        },
+        "ratio_to_candidate": {
+          "C1_laplacian": 1.0,
+          "C2_random": 9.670576220757454,
+          "C3_permuted_load_rows": 10.86950711306316,
+          "C4_shuffled_phase": 12.758620639680194,
+          "C6_identity11": 52.22578921912184,
+          "C7_hop_laplacian": 42.73332946156105,
+          "C5_pca_injection": 42.08293112622443
+        },
+        "reading": "every control runs the identical GP protocol on 2k = 22 coordinates and changes only how the 55x11 block is chosen. The candidate beats a random block by 9.7x, a row-permutation of its own eigenvector..."
+      },
+      "decomposition": {
+        "file": "results/decomposition_n80.json",
+        "available": true,
+        "mean_ols": {
+          "spectral": 0.09245997085096236,
+          "pca": 0.9343906561385508,
+          "random": 0.2585305594005782
+        },
+        "mean_gp": {
+          "spectral": 0.02216952685513428,
+          "pca": 0.9311452973649451,
+          "random": 0.2578807283688833
+        },
+        "learner_gain": {
+          "spectral": 4.1705883691220675,
+          "pca": 1.0034853408837372,
+          "random": 1.002519889856854
+        },
+        "spectrum_gain_at_gp": 42.00113531738723,
+        "spectrum_gain_at_ols": 10.10589390780481,
+        "reading": "the wide-RBF GP at the selected lengthscale is a nonlinear interpolator. It improves on OLS by 4.17x on the spectral coordinates but by only 1.00x on PCA coordinates, so the learner is not the source ..."
+      }
+    },
+    "principal_angles": {
+      "s_effective_rank_at_1e-2": 11,
+      "per_k": {
+        "3": {
+          "dim_embedding": 6,
+          "dim_operator": 11,
+          "n_angles_informative": 6,
+          "min_deg": 3.5637893648653076,
+          "mean_deg": 41.06382062164325,
+          "max_deg": 82.26936388422236,
+          "angles_deg": [
+            3.5637893648653076,
+            5.137030093395769,
+            8.309263013323475
+          ],
+          "overlap_fraction": 0.524482461930896,
+          "frac_angles_under_10deg": 0.5
+        },
+        "11": {
+          "dim_embedding": 22,
+          "dim_operator": 11,
+          "n_angles_informative": 11,
+          "min_deg": 0.7445034499655886,
+          "mean_deg": 23.78419960331253,
+          "max_deg": 81.400184254963,
+          "angles_deg": [
+            0.7445034499655886,
+            0.9818360607585058,
+            1.5642516606667822
+          ],
+          "overlap_fraction": 0.7394194978029996,
+          "frac_angles_under_10deg": 0.6363636363636364
+        },
+        "22": {
+          "dim_embedding": 44,
+          "dim_operator": 11,
+          "n_angles_informative": 11,
+          "min_deg": 0.18699444433123844,
+          "mean_deg": 3.393272556643525,
+          "max_deg": 16.34801951592932,
+          "angles_deg": [
+            0.18699444433123844,
+            0.29070127682885843,
+            0.4000763521903925
+          ],
+          "overlap_fraction": 0.9897368070748673,
+          "frac_angles_under_10deg": 0.9090909090909091
+        },
+        "45": {
+          "dim_embedding": 90,
+          "dim_operator": 11,
+          "n_angles_informative": 11,
+          "min_deg": 0.00042254981999093093,
+          "mean_deg": 0.0898641817446418,
+          "max_deg": 0.8356672266089079,
+          "angles_deg": [
+            0.00042254981999093093,
+            0.0014469309821207121,
+            0.0035227464195844815
+          ],
+          "overlap_fraction": 0.9999805315137383,
+          "frac_angles_under_10deg": 1.0
+        }
+      }
+    },
+    "per_route_accuracy_cost_at_80": {
+      "SP-R1a-GP-k11": {
+        "mean_far_end_rmse": 0.02216952685513428,
+        "mean_margin_vs_best_baseline": 0.7666921577737469,
+        "worst_fold_margin": 0.6935296258939228,
+        "mean_rmse_over_mean_predictor": 0.019183285317758512
+      },
+      "SP-R1a-GP-k11-S2": {
+        "mean_far_end_rmse": 0.0210154973815805,
+        "mean_margin_vs_best_baseline": 0.7790265689162085,
+        "worst_fold_margin": 0.7011282995730235,
+        "mean_rmse_over_mean_predictor": 0.018171453775428736
+      },
+      "SP-R1a-GP-k22": {
+        "mean_far_end_rmse": 0.02611929471695304,
+        "mean_margin_vs_best_baseline": 0.7234728500526839,
+        "worst_fold_margin": 0.6799184813832533,
+        "mean_rmse_over_mean_predictor": 0.022628873302412967
+      },
+      "SP-R1a-GP-k3": {
+        "mean_far_end_rmse": 0.1514825335740858,
+        "mean_margin_vs_best_baseline": -0.62163385325114,
+        "worst_fold_margin": -1.1243157666270878,
+        "mean_rmse_over_mean_predictor": 0.13195724765284444
+      },
+      "SP-R1a-GP-k45": {
+        "mean_far_end_rmse": 0.034779456481759265,
+        "mean_margin_vs_best_baseline": 0.6319434225931706,
+        "worst_fold_margin": 0.546338532632697,
+        "mean_rmse_over_mean_predictor": 0.030114770445421064
+      },
+      "SP-R1a-GP-k5": {
+        "mean_far_end_rmse": 0.09169094802042294,
+        "mean_margin_vs_best_baseline": 0.02226430492409949,
+        "worst_fold_margin": -0.19552354076185208,
+        "mean_rmse_over_mean_predictor": 0.07975573258239405
+      },
+      "SP-R1a-LIN-k11": {
+        "mean_far_end_rmse": 0.09244301983278998,
+        "mean_margin_vs_best_baseline": 0.019494655873427327,
+        "worst_fold_margin": -0.04902754951779098,
+        "mean_rmse_over_mean_predictor": 0.08027266720124832
+      },
+      "SP-R1b-GP-k11": {
+        "mean_far_end_rmse": 0.0211611367340985,
+        "mean_margin_vs_best_baseline": 0.777504927922096,
+        "worst_fold_margin": 0.7201916251905776,
+        "mean_rmse_over_mean_predictor": 0.01828392268921691
+      },
+      "SP-R2-GP-k11": {
+        "mean_far_end_rmse": 0.022009369320768624,
+        "mean_margin_vs_best_baseline": 0.7684594769799871,
+        "worst_fold_margin": 0.699665432949828,
+        "mean_rmse_over_mean_predictor": 0.019042704256769426
+      },
+      "SP-R3-GP-k11": {
+        "mean_far_end_rmse": 0.022274054429501755,
+        "mean_margin_vs_best_baseline": 0.7655432320490047,
+        "worst_fold_margin": 0.699168682835986,
+        "mean_rmse_over_mean_predictor": 0.019275749156579
+      },
+      "SP-R4-GP-k11": {
+        "mean_far_end_rmse": 0.05667208487415079,
+        "mean_margin_vs_best_baseline": 0.3974763329291275,
+        "worst_fold_margin": 0.24906237887490468,
+        "mean_rmse_over_mean_predictor": 0.04919299978385578
+      },
+      "SP-R4-GP-k45": {
+        "mean_far_end_rmse": 0.035576152704806734,
+        "mean_margin_vs_best_baseline": 0.6242764415925435,
+        "worst_fold_margin": 0.5499225730660762,
+        "mean_rmse_over_mean_predictor": 0.030794799323843585
+      }
+    },
+    "ranking_at_80": [
+      {
+        "arm": "SP-R1a-GP-k11-S2",
+        "mean_margin": 0.7790265689162085,
+        "worst_fold_margin": 0.7011282995730235,
+        "frac_folds_clearing_20pct": 1.0,
+        "mean_nrmse": 0.0210154973815805,
+        "mean_nlpd": -7285.710593808737,
+        "mean_coverage68": 0.008363395863395863,
+        "coverage_error": 0.6716366041366042,
+        "mean_margin_vs_independent": 0.7790265689162085,
+        "worst_margin_vs_independent": 0.7011282995730235,
+        "k": 11,
+        "route": "R1",
+        "variant": "real",
+        "scaling": "S2"
+      },
+      {
+        "arm": "SP-R1b-GP-k11",
+        "mean_margin": 0.777504927922096,
+        "worst_fold_margin": 0.7201916251905776,
+        "frac_folds_clearing_20pct": 1.0,
+        "mean_nrmse": 0.0211611367340985,
+        "mean_nlpd": -1700.3237806863538,
+        "mean_coverage68": 0.017372534872534873,
+        "coverage_error": 0.6626274651274652,
+        "mean_margin_vs_independent": 0.777504927922096,
+        "worst_margin_vs_independent": 0.7201916251905776,
+        "k": 11,
+        "route": "R1",
+        "variant": "reim",
+        "scaling": "S1"
+      },
+      {
+        "arm": "SP-R2-GP-k11",
+        "mean_margin": 0.7684594769799871,
+        "worst_fold_margin": 0.699665432949828,
+        "frac_folds_clearing_20pct": 1.0,
+        "mean_nrmse": 0.022009369320768624,
+        "mean_nlpd": -7596.741583353008,
+        "mean_coverage68": 0.007610028860028859,
+        "coverage_error": 0.6723899711399712,
+        "mean_margin_vs_independent": 0.7684594769799871,
+        "worst_margin_vs_independent": 0.699665432949828,
+        "k": 11,
+        "route": "R2",
+        "variant": "real",
+        "scaling": "S1"
+      }
+    ],
+    "protocol_checks_file": "results/protocol_checks.json",
+    "screen_file": "results/screen_E.json",
+    "spectra_file": "results/spectra.npz",
+    "fold_counts": {
+      "10": 24,
+      "20": 24,
+      "40": 24,
+      "80": 24,
+      "160": 12
+    },
+    "ac_solve_cost": {
+      "spectral_embedding (R1-R4, SP-*)": 0,
+      "b1_rbf / b2_hop / b3_kirchhoff / b4_ridge": 0,
+      "b5_lindist": 1,
+      "ground truth (reused, not charged)": 220,
+      "note": "b5 needs ONE no-load runpp_3ph solve for its reference V0b and then propagates analytically; the 220 solves are the ground truth archive, shared by every arm and not attributable to any of them."
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "IEEE PES European LV test feeder (pandapower ieee_european_lv_asymmetric), 220-draw runpp_3ph ensembles at 2.0x loading",
+      "examples": [
+        {
+          "input": "fold: regime 2.0x, n_train=10, seed=0, partition scheme=0, n_test=210. Predict the 45 far-end phase-voltage magnitudes.",
+          "output": "normalised far-end RMSE per method on this fold (lower is better): b1_rbf 1.3740; b2_hop 1.3740; b3_kirchhoff 1.3740; b3p_kirchhoff_p 1.3740; b4_ridge 1.3856; b5_lindist 0.1302; b6_pca_gp_k11 1.3634; ...",
+          "metadata_n_train": "10",
+          "metadata_seed": "0",
+          "metadata_scheme": "0",
+          "metadata_n_test": "210",
+          "metadata_ysd_train": "0.018591",
+          "metadata_best_baseline": "b5_lindist",
+          "metadata_best_baseline_nrmse": "0.130182",
+          "metadata_best_independent_baseline": "b5_lindist",
+          "metadata_mean_predictor_nrmse": "1.374035",
+          "metadata_pca_control_nrmse": "1.363366",
+          "predict_b1_rbf": "1.374017",
+          "predict_b2_hop": "1.374035",
+          "predict_b3_kirchhoff": "1.374035",
+          "predict_b3p_kirchhoff_p": "1.374035",
+          "predict_b4_ridge": "1.385648",
+          "predict_b5_lindist": "0.130182",
+          "predict_b6_pca_gp_k11": "1.363366",
+          "predict_sp_r1a_gp_k11": "0.180911",
+          "predict_sp_r1a_gp_k11_s2": "0.192913",
+          "predict_sp_r1a_gp_k22": "0.356830",
+          "predict_sp_r1a_gp_k3": "0.211560",
+          "predict_sp_r1a_gp_k45": "0.305163",
+          "predict_sp_r1a_gp_k5": "0.155734",
+          "predict_sp_r1a_lin_k11": "0.158246",
+          "predict_sp_r1b_gp_k11": "0.183993",
+          "predict_sp_r2_gp_k11": "0.160556",
+          "predict_sp_r3_gp_k11": "0.165722",
+          "predict_sp_r4_gp_k11": "0.249043",
+          "predict_sp_r4_gp_k45": "0.350942",
+          "predict_mean_predictor": "1.374035"
+        },
+        {
+          "input": "fold: regime 2.0x, n_train=10, seed=1, partition scheme=0, n_test=210. Predict the 45 far-end phase-voltage magnitudes.",
+          "output": "normalised far-end RMSE per method on this fold (lower is better): b1_rbf 1.1626; b2_hop 1.1626; b3_kirchhoff 1.1626; b3p_kirchhoff_p 1.1626; b4_ridge 1.1625; b5_lindist 0.1227; b6_pca_gp_k11 1.1626; ...",
+          "metadata_n_train": "10",
+          "metadata_seed": "1",
+          "metadata_scheme": "0",
+          "metadata_n_test": "210",
+          "metadata_ysd_train": "0.020368",
+          "metadata_best_baseline": "b5_lindist",
+          "metadata_best_baseline_nrmse": "0.122651",
+          "metadata_best_independent_baseline": "b5_lindist",
+          "metadata_mean_predictor_nrmse": "1.162602",
+          "metadata_pca_control_nrmse": "1.162596",
+          "predict_b1_rbf": "1.162602",
+          "predict_b2_hop": "1.162602",
+          "predict_b3_kirchhoff": "1.162602",
+          "predict_b3p_kirchhoff_p": "1.162602",
+          "predict_b4_ridge": "1.162500",
+          "predict_b5_lindist": "0.122651",
+          "predict_b6_pca_gp_k11": "1.162596",
+          "predict_sp_r1a_gp_k11": "0.211735",
+          "predict_sp_r1a_gp_k11_s2": "0.202300",
+          "predict_sp_r1a_gp_k22": "0.374043",
+          "predict_sp_r1a_gp_k3": "0.238858",
+          "predict_sp_r1a_gp_k45": "0.418652",
+          "predict_sp_r1a_gp_k5": "0.209448",
+          "predict_sp_r1a_lin_k11": "0.183566",
+          "predict_sp_r1b_gp_k11": "0.339030",
+          "predict_sp_r2_gp_k11": "0.223089",
+          "predict_sp_r3_gp_k11": "0.205586",
+          "predict_sp_r4_gp_k11": "0.282241",
+          "predict_sp_r4_gp_k45": "0.534766",
+          "predict_mean_predictor": "1.162602"
+        },
+        {
+          "input": "fold: regime 2.0x, n_train=10, seed=2, partition scheme=0, n_test=210. Predict the 45 far-end phase-voltage magnitudes.",
+          "output": "normalised far-end RMSE per method on this fold (lower is better): b1_rbf 1.3106; b2_hop 1.3106; b3_kirchhoff 1.3280; b3p_kirchhoff_p 1.3116; b4_ridge 1.3105; b5_lindist 0.1503; b6_pca_gp_k11 1.3106; ...",
+          "metadata_n_train": "10",
+          "metadata_seed": "2",
+          "metadata_scheme": "0",
+          "metadata_n_test": "210",
+          "metadata_ysd_train": "0.018159",
+          "metadata_best_baseline": "b5_lindist",
+          "metadata_best_baseline_nrmse": "0.150262",
+          "metadata_best_independent_baseline": "b5_lindist",
+          "metadata_mean_predictor_nrmse": "1.310559",
+          "metadata_pca_control_nrmse": "1.310559",
+          "predict_b1_rbf": "1.310559",
+          "predict_b2_hop": "1.310599",
+          "predict_b3_kirchhoff": "1.328012",
+          "predict_b3p_kirchhoff_p": "1.311648",
+          "predict_b4_ridge": "1.310465",
+          "predict_b5_lindist": "0.150262",
+          "predict_b6_pca_gp_k11": "1.310559",
+          "predict_sp_r1a_gp_k11": "0.373076",
+          "predict_sp_r1a_gp_k11_s2": "0.372922",
+          "predict_sp_r1a_gp_k22": "0.256526",
+          "predict_sp_r1a_gp_k3": "0.209716",
+          "predict_sp_r1a_gp_k45": "0.391641",
+          "predict_sp_r1a_gp_k5": "0.180529",
+          "predict_sp_r1a_lin_k11": "0.193844",
+          "predict_sp_r1b_gp_k11": "0.521718",
+          "predict_sp_r2_gp_k11": "0.377729",
+          "predict_sp_r3_gp_k11": "0.361934",
+          "predict_sp_r4_gp_k11": "0.358173",
+          "predict_sp_r4_gp_k45": "0.429521",
+          "predict_mean_predictor": "1.310559"
+        }
+      ]
+    }
+  ]
+}

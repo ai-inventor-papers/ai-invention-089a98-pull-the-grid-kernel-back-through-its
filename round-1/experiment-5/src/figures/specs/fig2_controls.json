@@ -1,0 +1,29 @@
+{
+ "type": "barh",
+ "title": "What produces the margin: identical GP, same 22 coordinates",
+ "xlabel": "mean normalised far-end RMSE at 80 runs (lower is better)",
+ "aspect": "4:3",
+ "categories": [
+  "Laplacian eigenvectors (candidate)",
+  "random 55x11 block",
+  "row-permuted eigenvectors",
+  "shuffled phase labels",
+  "injection PCA",
+  "fixed indicator coordinates",
+  "hop-count Laplacian"
+ ],
+ "series": [
+  {
+   "label": "mean over 24 folds",
+   "values": [
+    0.02216952685513428,
+    0.21439209923070537,
+    0.2409718298451268,
+    0.2828525829058606,
+    0.9329586717455989,
+    1.1578210366239041,
+    0.9473776951073787
+   ]
+  }
+ ]
+}

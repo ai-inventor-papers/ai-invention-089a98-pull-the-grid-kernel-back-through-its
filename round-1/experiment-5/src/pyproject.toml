@@ -1,0 +1,45 @@
+[project]
+name = "screen-e-laplacian-kernel"
+version = "1.0.0"
+description = "Screen candidate E: the IEEE PES European LV feeder's phase-expanded admittance-weighted block Laplacian as a Gaussian-process kernel for unbalanced LV voltage prediction"
+requires-python = ">=3.12"
+# Pinned to the exact versions installed in .venv when the reported numbers were produced.
+# numpy 2.4.6 / scipy 1.18.1 with the same LAPACK build are what make the recorded
+# eigenvector sign/phase convention reproducible; see results/protocol_checks.json.
+dependencies = [
+    "numpy==2.4.6",
+    "scipy==1.18.1",
+    "pandas==2.3.3",
+    "networkx==3.7",
+    "pandapower==3.5.6",
+    "pandera==0.36.0",
+    "pydantic==2.14.3",
+    "pydantic_core==2.50.4",
+    "typeguard==4.6.0",
+    "typing_extensions==4.16.0",
+    "typing_inspection==0.4.5",
+    "typing-inspect==0.9.0",
+    "mypy_extensions==1.2.0",
+    "loguru==0.7.3",
+    "psutil==7.2.2",
+    "pytz==2026.6",
+    "tzdata==2026.6",
+    "python-dateutil==4.0.0",
+    "packaging==26.3",
+    "colorama==0.4.6",
+    "tqdm==4.70.1",
+    "geojson==3.3.0",
+    "deepdiff==9.1.0",
+    "orderly-set==5.5.0",
+    "cachebox==5.2.3",
+    "annotated-types==0.8.0",
+    "matplotlib==3.11.2",
+    "pillow==13.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = []

@@ -1,0 +1,440 @@
+{
+ "withheld": true,
+ "versions": {
+  "python": "3.12.14",
+  "numpy": "2.4.6",
+  "scipy": "1.18.1",
+  "networkx": "3.7",
+  "pandas": "2.3.3",
+  "pandapower": "3.5.6",
+  "numpy_blas": "scipy-openblas:0.3.31.188.0"
+ },
+ "blas": "scipy-openblas:0.3.31.188.0",
+ "data": {
+  "pilot_dir_found": true,
+  "data_dir": "pilot",
+  "regenerated": false,
+  "ens_1.0": {
+   "X_shape": [
+    220,
+    110
+   ],
+   "Y_shape": [
+    220,
+    45
+   ],
+   "finite_rows": 220,
+   "mean_total_kW": 57.491,
+   "mean_far_end_sd_pu": 0.009686,
+   "expected_kW": 57.49,
+   "expected_sd": 0.00969,
+   "kW_rel_err": 2.0740878982636976e-05,
+   "sd_rel_err": 0.00040083050638966053,
+   "nan_X": 0,
+   "nan_Y": 0
+  },
+  "ens_2.0": {
+   "X_shape": [
+    220,
+    110
+   ],
+   "Y_shape": [
+    220,
+    45
+   ],
+   "finite_rows": 220,
+   "mean_total_kW": 114.693,
+   "mean_far_end_sd_pu": 0.021013,
+   "expected_kW": 114.69,
+   "expected_sd": 0.02101,
+   "kW_rel_err": 2.4685204389059573e-05,
+   "sd_rel_err": 0.0001445793512421293,
+   "nan_X": 0,
+   "nan_Y": 0
+  },
+  "ens_2.6": {
+   "X_shape": [
+    220,
+    110
+   ],
+   "Y_shape": [
+    220,
+    45
+   ],
+   "finite_rows": 220,
+   "mean_total_kW": 148.31,
+   "mean_far_end_sd_pu": 0.028535,
+   "expected_kW": 148.31,
+   "expected_sd": 0.02853,
+   "kW_rel_err": 1.7114996291394012e-07,
+   "sd_rel_err": 0.0001619291381483545,
+   "nan_X": 0,
+   "nan_Y": 0
+  },
+  "sheet15": [
+   681,
+   697,
+   713,
+   729,
+   745,
+   761,
+   777,
+   793,
+   809,
+   825,
+   841,
+   857,
+   873,
+   889,
+   906
+  ],
+  "phase_counts": [
+   21,
+   19,
+   15
+  ]
+ },
+ "toy": {
+  "toy_identity_max_rel": 1.1818115348830844e-15,
+  "toy_identity_pass": true,
+  "toy_shape": [
+   15,
+   15
+  ]
+ },
+ "feeder": {
+  "n_buses": 906,
+  "n_lines": 905,
+  "n_loads": 55,
+  "phase_counts": [
+   21,
+   19,
+   15
+  ],
+  "nominal_kW": 57.358,
+  "n_far": 226,
+  "far_hop_min": 118,
+  "far_hop_max": 157,
+  "sheet15": [
+   681,
+   697,
+   713,
+   729,
+   745,
+   761,
+   777,
+   793,
+   809,
+   825,
+   841,
+   857,
+   873,
+   889,
+   906
+  ],
+  "all_loads_on_source_component": true
+ },
+ "regime": "2.0",
+ "lindist_seconds": 20.305351495742798,
+ "noload_abs_range": [
+  1.0499999523572676,
+  1.0499999523583208
+ ],
+ "lindist_raw_rmse": {
+  "order1": 0.05298254002811185,
+  "order2": 0.052804357329144076,
+  "ysd": 0.021013037612169598
+ },
+ "ac_solves_each_arm": {
+  "spectral_embedding (R1-R4, SP-*)": 0,
+  "b1_rbf / b2_hop / b3_kirchhoff / b4_ridge": 0,
+  "b5_lindist": 1,
+  "ground truth (reused, not charged)": 220,
+  "note": "b5 needs ONE no-load runpp_3ph solve for its reference V0b and then propagates analytically; the 220 solves are the ground truth archive, shared by every arm and not attributable to any of them."
+ },
+ "spectra_cache_hit": true,
+ "laplacian": {
+  "lap_shape": [
+   2715,
+   2715
+  ],
+  "lap_abs_max": 35552.93532928775,
+  "lap_asym_max": 4.067383956680332e-12,
+  "lap_nonherm_max": 24723.671843926095,
+  "lap_im_diag_ratio": 0.3477022588281095,
+  "lap_cond": 44340785.894657575,
+  "assembly_seconds": 0.024442672729492188,
+  "lca_table_seconds": 0.12180662155151367,
+  "zpath_seconds": 0.05147051811218262,
+  "inv_seconds": 2.064997434616089,
+  "lap_cond_estimator": "max|lambda|/min|lambda| from zgeev eigenvalues",
+  "identity_line_network_max_rel": 3.694816367158256e-12,
+  "identity_line_network_mean_rel": 3.6463793316003274e-12,
+  "identity_transformer_inclusive_max_rel": 0.0407739421719094,
+  "ztr_over_zpath_max": 0.041151536800111264,
+  "gather_identity_max_rel": 3.6675856430295235e-12,
+  "gather_index_min": 96,
+  "gather_index_max": 2712,
+  "gather_unique": 55,
+  "reverse_order_max_diff": 9.094947017729282e-13,
+  "eig_seconds": 15.2516770362854,
+  "frac_im_over_rel_gt_1e6_45": 1.0,
+  "r1_residual_max": 9.86239187213154e-09,
+  "r1_residual_mean": 4.077883438258443e-10,
+  "eigh_seconds": 27.869417190551758,
+  "r2_residual_max": 4.51291850167581,
+  "r2_residual_mean": 1.3628300867017584,
+  "herm_vs_general_re_lam_max_dev_45": 0.037945810886330866,
+  "r3_vs_r1_angle_min_deg": 0.005663456243263756,
+  "r3_vs_r1_angle_max_deg": 2.4767741341808485,
+  "eig_r4_seconds": 15.833593606948853,
+  "r4_impedance_weighted_max_rel_vs_zpath": 280746.6770643722,
+  "r4_impedance_weighted_corr_vs_zpath": 0.6785525078754401,
+  "r5_im_diag_ratio": 0.3477022588281095,
+  "r5_available": false,
+  "hermiticity_probe": {
+   "eigvalsh_vs_eig_max_dev_45": 9273.7006813602,
+   "eigsh_outcome": "TimeoutError: eigsh exceeded its 180 s wall-clock allowance"
+  },
+  "total_seconds": 264.5343532562256,
+  "re_lam_smallest_45": [
+   0.00170960290021253,
+   0.005637883417848025,
+   0.005637883417893556,
+   0.010628990974807842,
+   0.021043205579897035,
+   0.0347318860531432,
+   0.03473188605318486,
+   0.04588225720881771,
+   0.06787873482457263,
+   0.06787873482508174,
+   0.09063859783125125,
+   0.1334536431892262,
+   0.14224747534012785,
+   0.14224747534015592,
+   0.14411821523727664,
+   0.19619768845931368,
+   0.26565018882498803,
+   0.26691613053168134,
+   0.2669161305317235,
+   0.29714722835575197,
+   0.3516074275488089,
+   0.37684105235601645,
+   0.3908109843315112,
+   0.39081098433165834,
+   0.40190144172414,
+   0.4019014417243435,
+   0.43219229857151953,
+   0.44003035135010876,
+   0.44003035135015417,
+   0.4503155804229952,
+   0.5117568685484912,
+   0.5235418819461382,
+   0.5732196273729431,
+   0.5732196273731325,
+   0.6109767220113734,
+   0.6469164556227893,
+   0.6469164556230478,
+   0.6494386827880108,
+   0.6571076729595894,
+   0.685185292761513,
+   0.6851852927617258,
+   0.714328952410001,
+   0.7385255432503135,
+   0.7385255432503777,
+   0.7663858208618439
+  ],
+  "im_over_lam_smallest_45": [
+   0.06117975228621478,
+   0.17891689961391427,
+   0.17891689963496457,
+   0.0658019109277549,
+   0.0664058094972012,
+   0.1892104906087442,
+   0.18921049060547346,
+   0.07150079635342395,
+   0.18957369511244865,
+   0.189573695109101,
+   0.07046164042264438,
+   0.0709625176241868,
+   0.19956977635659887,
+   0.19956977635705736,
+   0.06988896321487117,
+   0.07277863127217124,
+   0.12054525841115434,
+   0.19058922792529634,
+   0.19058922792495675,
+   0.06560048112556334,
+   0.0674786209485981,
+   0.07298899318074772,
+   0.1501721694424834,
+   0.1501721694425349,
+   0.20205101274985893,
+   0.20205101274829615,
+   0.07176446097202227,
+   0.13345434483936605,
+   0.133454344839254,
+   0.08457753358662877,
+   0.06488567994801654,
+   0.06332433571336107,
+   0.12569251525489636,
+   0.12569251525488156,
+   0.07676562444256373,
+   0.24292964435007586,
+   0.24292964434962597,
+   0.0726218733978598,
+   0.12148894391014971,
+   0.11721051874522562,
+   0.1172105187451662,
+   0.06674649262212441,
+   0.11218921612550428,
+   0.11218921612549959,
+   0.06431493556200094
+  ],
+  "sign_phase_argmax_entries_45": [
+   2637,
+   2691,
+   2692,
+   1911,
+   2637,
+   2022,
+   2023,
+   2640,
+   2693,
+   2691,
+   1214,
+   501,
+   2692,
+   2691,
+   1882,
+   2433,
+   786,
+   1214,
+   1214,
+   1214,
+   2501,
+   2445,
+   1881,
+   1882,
+   245,
+   243,
+   503,
+   2445,
+   2447,
+   1155,
+   2712,
+   1829,
+   2349,
+   2351,
+   1515,
+   788,
+   786,
+   2330,
+   954,
+   1515,
+   1517,
+   2501,
+   2501,
+   2499,
+   1911
+  ]
+ },
+ "routes": {
+  "R1": {
+   "available": true,
+   "note": "",
+   "imfrac": null
+  },
+  "R2": {
+   "available": true,
+   "note": "",
+   "imfrac": null
+  },
+  "R3": {
+   "available": true,
+   "note": "",
+   "imfrac": null
+  },
+  "R4": {
+   "available": true,
+   "note": "",
+   "imfrac": null
+  },
+  "R5": {
+   "available": false,
+   "note": "UNAVAILABLE: no real diagonal D makes D Lg D^-1 Hermitian",
+   "imfrac": null
+  }
+ },
+ "gather": {
+  "zero_columns_k45": 0,
+  "bus_match": true,
+  "phase_match": true,
+  "offset_shift_checked": true
+ },
+ "hermiticity_probe": {
+  "status": "not run on cache load; recorded in the cached protocol checks"
+ },
+ "metrics": {
+  "b2_hop_max": 157.0,
+  "b3_M110_eig_min": 0.000675517971777706,
+  "b3_M110_eig_max": 218.90736287064374,
+  "b3_M110_cond": 324058.53288354405,
+  "b3p_M55_eig_min": 0.0006755179717798941,
+  "b3p_M55_eig_max": 135.7131230735517,
+  "circularity": "b3 (admittance multiphase Kirchhoff metric) is derived from the same block Laplacian the candidate's spectrum comes from and is therefore NOT an independent baseline. b1, b2, b4 and b5 are all constructible without that Laplacian or the treatment operator."
+ },
+ "fold_counts": {
+  "10": 24,
+  "20": 24,
+  "40": 24,
+  "80": 24,
+  "160": 12
+ },
+ "fold_counts_per_scheme": {
+  "10_0": 12,
+  "10_1": 12,
+  "20_0": 12,
+  "20_1": 12,
+  "40_0": 12,
+  "40_1": 12,
+  "80_0": 12,
+  "80_1": 12,
+  "160_0": 12,
+  "160_1": 0
+ },
+ "fold_counts_expected": {
+  "10": 24,
+  "20": 24,
+  "40": 24,
+  "80": 24,
+  "160": 12
+ },
+ "fold_counts_match": true,
+ "fold_note": "reserving seeds 12-29 reserves SPLITS and not data: the same 220 AC draws underlie every fold. The genuinely untouched evidence is the 2.6x regime and the moved-phase feeder, not the seed list. Realized folds are 24 at n<=80 and 12 at n=160, so the n=160 worst-fold statistic rests on 12 folds.",
+ "timing": {
+  "prepare_seconds": 21.152879238128662
+ },
+ "guards": {
+  "g1_folds_with_any_arm_at_or_above_mean": 1,
+  "g1_folds_where_a_baseline_at_or_above_mean": 49,
+  "g3_endpoint_hits": {
+   "hits": 0,
+   "total": 0
+  },
+  "cholesky_jitter_folds": 0,
+  "cholesky_jitter_total_fits": 0,
+  "nan_anywhere": false,
+  "note": "g3 is enforced inside gp_fit_predict: when the CV- or MLL-selected lengthscale sits at a grid endpoint the grid is extended by a decade, at most three times per fit, and the extension is recorded per fold."
+ },
+ "baseline_numerics": {
+  "issue": "the penalised-regression baselines were first solved as normal equations with a free unpenalised intercept. With 110 injection columns and n = 10 training rows the Gram matrix is singular and the intercept is unconstrained, so the solver returned coefficients whose predictions sat thousands of standard deviations away: b4_ridge scored 3093 and b5_lindist 1.86 against a mean predictor of 1.40.",
+  "fix": "ridge is now solved as an augmented least-squares problem by lstsq, which returns the minimum-norm solution on a rank-deficient design. The intercept stays unpenalised, so the comparison is still the plan's (free intercept, scale-free penalty grid by train-only CV).",
+  "verification": "with the fix the tuned LinDistFlow reproduces this run's independent reviewer: 0.1648 at n = 10 against the reviewer's 0.1665, and 0.0944 at n = 80 against 0.0974. The enlarged margins the buggy solver produced are not reported.",
+  "superseded_records": "results/per_fold_raw_before_ridgefix.json (audit only, not used by any summary)"
+ },
+ "total_seconds": 21.42841410636902,
+ "headline_arm": "SP-R1a-GP-k11",
+ "verdict": "PASSES S1 and S2: SP-R1a-GP-k11-S2 beats the best per-fold baseline by +77.9% on the mean and +70.1% in its worst fold at n = 80",
+ "screen_metric_at_80": 0.7790265689162085
+}
