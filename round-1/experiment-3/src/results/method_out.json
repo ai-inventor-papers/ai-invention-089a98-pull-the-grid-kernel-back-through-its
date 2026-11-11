@@ -1,0 +1,825 @@
+{
+ "artifact": "screen candidate C -- is the Gaussian process doing the work?",
+ "candidate": "C",
+ "verdict_class": "V3",
+ "verdict_one_line": "The nonlinearity is real but NOT kernel-specific: a fixed degree-2 polynomial feature map in the operator's coordinates (quad_S45) matches or beats the output-restricted GP kernel at n=80 while the purely linear arms fall short.",
+ "verdict_evidence": {
+  "gp_margin_at_80": 0.3400087337656467,
+  "quad_S11_margin_at_80": 0.26942290868241087,
+  "quad_S45_margin_at_80": 0.5295624783663598,
+  "gp_rmse_norm_at_80": 0.03403900185915768,
+  "quad_S45_rmse_norm_at_80": 0.022348884887710807,
+  "quad_S11_rmse_norm_at_80": 0.03455654760034082,
+  "best_purely_linear_arm_at_80": [
+   "lin_S45_iso_cv",
+   -0.9295654961553735
+  ],
+  "best_purely_linear_rmse_norm_at_80": 0.09099947613581232,
+  "v3_quad_S45_within_10pct_mean": true,
+  "v3_quad_S45_no_fold_worse_than_25pct": true,
+  "v3_quad_S45_purely_linear_arms_fall_short": true
+ },
+ "is_gp_doing_the_work": "Partly. At n=80 the output-restricted GP kernel on the analytic operator's coordinates reaches 0.0340 normalised RMSE against 0.0911 for plain ridge on the same coordinates and 0.0223 for a FIXED degree-2 polynomial map in those coordinates. The GP's paired relative advantage over the purely linear arm is +188.5% (sign test p=1.19e-07, 24/24 folds) -- so the GP is NOT decoration. But the fixed quadratic feature map matches or beats it, so the kernel itself is not the active ingredient: what the kernel contributes is the quadratic (second-order) structure in the operator's coordinates, which explicit degree-2 features reproduce without a kernel. Verdict class V3.",
+ "crossover_n_star": {
+  "n_star": 40,
+  "arm": "lin_S45_iso",
+  "sign_test_p": 0.006610751152038574,
+  "mean_d_rel": 0.3582098801672761,
+  "boot_ci_rel": [
+   0.17476904250458897,
+   0.5694179080723163
+  ],
+  "bracketed_by": [
+   20
+  ],
+  "method": "smallest n whose sign test favours the GP with p<0.05 and whose bootstrap CI of mean d_rel excludes 0; no interpolation"
+ },
+ "ranking_at_80": [
+  {
+   "arm": "quad_S45",
+   "mean_margin": 0.5295624783663598,
+   "worst_fold_margin": 0.024989147287055036,
+   "mean_rmse_norm": 0.022348884887710807,
+   "mean_df": 23.631039377777032,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "gp_S45",
+   "mean_margin": 0.3400087337656467,
+   "worst_fold_margin": -0.10754916144164639,
+   "mean_rmse_norm": 0.03403900185915768,
+   "mean_df": 48.95140613961416,
+   "coverage68_dev": 0.06822390572390578,
+   "n_folds": 24
+  },
+  {
+   "arm": "gp_S11_aux",
+   "mean_margin": 0.3399798615586927,
+   "worst_fold_margin": -0.10764213941654854,
+   "mean_rmse_norm": 0.03404007229952613,
+   "mean_df": 48.94732699954238,
+   "coverage68_dev": 0.06865079365079368,
+   "n_folds": 24
+  },
+  {
+   "arm": "quad_S11",
+   "mean_margin": 0.26942290868241087,
+   "worst_fold_margin": -0.5473699713407392,
+   "mean_rmse_norm": 0.03455654760034082,
+   "mean_df": 57.037710075431754,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "lin_S45_iso_cv",
+   "mean_margin": -0.9295654961553735,
+   "worst_fold_margin": -3.5212035082092115,
+   "mean_rmse_norm": 0.09099947613581232,
+   "mean_df": 7.019390585059988,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "lin_S45_std",
+   "mean_margin": -0.9311399492126057,
+   "worst_fold_margin": -3.543052303384581,
+   "mean_rmse_norm": 0.09104037504750025,
+   "mean_df": 7.347146820828544,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "lin_S45_iso",
+   "mean_margin": -0.9320167741260125,
+   "worst_fold_margin": -3.5212035082092115,
+   "mean_rmse_norm": 0.09107513892083545,
+   "mean_df": 7.298751687055373,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "lin_S11",
+   "mean_margin": -0.9327182691984991,
+   "worst_fold_margin": -3.5211511639997743,
+   "mean_rmse_norm": 0.09106645921798763,
+   "mean_df": 7.048384093666293,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "lin_V11",
+   "mean_margin": -0.9810591673928414,
+   "worst_fold_margin": -3.696382275818989,
+   "mean_rmse_norm": 0.09324026882397035,
+   "mean_df": 10.718319925838088,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "lin_rand45",
+   "mean_margin": -1.4751359368274126,
+   "worst_fold_margin": -5.059568599545954,
+   "mean_rmse_norm": 0.11405120674913534,
+   "mean_df": 33.731981389650095,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "blr_S45",
+   "mean_margin": -1.6991475149533068,
+   "worst_fold_margin": -5.087653957200773,
+   "mean_rmse_norm": 0.12573055126485452,
+   "mean_df": 3.4329726027764154,
+   "coverage68_dev": 0.03985449735449738,
+   "n_folds": 24
+  },
+  {
+   "arm": "lin_raw110",
+   "mean_margin": -2.3166891938420284,
+   "worst_fold_margin": -7.1740194748999215,
+   "mean_rmse_norm": 0.1487690084220363,
+   "mean_df": 54.34550927785989,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "lin_rand11",
+   "mean_margin": -6.062303749716126,
+   "worst_fold_margin": -15.829406804026732,
+   "mean_rmse_norm": 0.3229836648824322,
+   "mean_df": 9.49298780966341,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "lin_pca45",
+   "mean_margin": -10.167071797479494,
+   "worst_fold_margin": -26.69674904767161,
+   "mean_rmse_norm": 0.5079201101897374,
+   "mean_df": 43.03280569984645,
+   "coverage68_dev": null,
+   "n_folds": 24
+  },
+  {
+   "arm": "lin_S45_phaseshuf",
+   "mean_margin": -12.018829509713365,
+   "worst_fold_margin": -29.877169529369745,
+   "mean_rmse_norm": 0.6006841277967301,
+   "mean_df": 10.175226048537542,
+   "coverage68_dev": null,
+   "n_folds": 24
+  }
+ ],
+ "survival": {
+  "best_arm_at_80": "quad_S45",
+  "S1_mean_margin_ge_20pct": true,
+  "S1_value": 0.5295624783663598,
+  "S2_worst_fold_ge_20pct": false,
+  "S2_value": 0.024989147287055036,
+  "S3_status": "clear",
+  "S3_detail": {
+   "rival": "gp_S45",
+   "rival_rmse_norm": 0.03403900185915768,
+   "top_rmse_norm": 0.022348884887710807,
+   "ratio": 1.5230738370250871
+  },
+  "note": "S3 compares this candidate's best arm at n=80 against every other arm screened in THIS artifact, which is the only evidence available to it; the four sibling screen artifacts run in parallel and their workspaces are not read."
+ },
+ "key_numbers_at_80_normalised_rmse": {
+  "gp_on_operator_coordinates": 0.03403900185915768,
+  "degree2_polynomial_in_operator_coordinates": 0.022348884887710807,
+  "linear_ridge_on_operator_coordinates": 0.09107513892083545,
+  "best_baseline_per_fold_mean": 0.05782475541566356,
+  "best_single_baseline_across_folds": 0.018162551295994027,
+  "denominator": "train rows' mean per-output sd (primary)"
+ },
+ "head_to_head_summary": {
+  "10": {
+   "lin_S45_iso": {
+    "mean_d_rel": -0.3968721131557767,
+    "sign_test_p": 3.5881996154785156e-05,
+    "boot_ci_rel": [
+     -0.6242343855624528,
+     -0.025322411344811148
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S45_std": {
+    "mean_d_rel": -0.3166785778100652,
+    "sign_test_p": 0.0002771615982055664,
+    "boot_ci_rel": [
+     -0.6008799791456265,
+     0.1598140149701796
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S11": {
+    "mean_d_rel": -0.398306550865031,
+    "sign_test_p": 3.5881996154785156e-05,
+    "boot_ci_rel": [
+     -0.6239678827604448,
+     -0.030058222010654587
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_V11": {
+    "mean_d_rel": -0.1266430069598282,
+    "sign_test_p": 0.0931396484375,
+    "boot_ci_rel": [
+     -0.42485013532926424,
+     0.24770819923847015
+    ],
+    "n_folds": 23,
+    "min_attainable_p": 1.1920928955078125e-07
+   },
+   "quad_S11": {
+    "mean_d_rel": 1.891195042254614,
+    "sign_test_p": 7.62939453125e-06,
+    "boot_ci_rel": [
+     1.454086199330926,
+     2.4148413532103827
+    ],
+    "n_folds": 18,
+    "min_attainable_p": 3.814697265625e-06
+   },
+   "quad_S45": {
+    "mean_d_rel": null,
+    "sign_test_p": null,
+    "boot_ci_rel": null,
+    "n_folds": 0,
+    "min_attainable_p": null
+   },
+   "lin_raw110": {
+    "mean_d_rel": 2.366369681699095,
+    "sign_test_p": 6.103515625e-05,
+    "boot_ci_rel": [
+     1.6439301725878905,
+     3.2409688728997983
+    ],
+    "n_folds": 15,
+    "min_attainable_p": 3.0517578125e-05
+   },
+   "lin_pca45": {
+    "mean_d_rel": 2.3663696816990956,
+    "sign_test_p": 6.103515625e-05,
+    "boot_ci_rel": [
+     1.6439301725878908,
+     3.2409688728997983
+    ],
+    "n_folds": 15,
+    "min_attainable_p": 3.0517578125e-05
+   },
+   "lin_rand45": {
+    "mean_d_rel": 0.2533651214213593,
+    "sign_test_p": 0.8388197422027588,
+    "boot_ci_rel": [
+     -0.0005078069068087858,
+     0.530240240271136
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_rand11": {
+    "mean_d_rel": 1.2666997470159782,
+    "sign_test_p": 0.001312255859375,
+    "boot_ci_rel": [
+     0.7449525463912451,
+     1.8687968406527347
+    ],
+    "n_folds": 18,
+    "min_attainable_p": 3.814697265625e-06
+   },
+   "lin_S45_phaseshuf": {
+    "mean_d_rel": 1.5768425209064834,
+    "sign_test_p": 3.0517578125e-05,
+    "boot_ci_rel": [
+     1.1323536489883261,
+     2.0184807564776266
+    ],
+    "n_folds": 16,
+    "min_attainable_p": 1.52587890625e-05
+   }
+  },
+  "20": {
+   "lin_S45_iso": {
+    "mean_d_rel": -0.2429071179609108,
+    "sign_test_p": 0.001543879508972168,
+    "boot_ci_rel": [
+     -0.344442509640142,
+     -0.1252459865341744
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S45_std": {
+    "mean_d_rel": -0.2346301639469741,
+    "sign_test_p": 0.006610751152038574,
+    "boot_ci_rel": [
+     -0.3354581941202664,
+     -0.11668826427494747
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S11": {
+    "mean_d_rel": -0.24251177342715172,
+    "sign_test_p": 0.001543879508972168,
+    "boot_ci_rel": [
+     -0.34414303915741,
+     -0.12489434512286499
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_V11": {
+    "mean_d_rel": -0.1563657814958853,
+    "sign_test_p": 0.06391465663909912,
+    "boot_ci_rel": [
+     -0.2752114323629228,
+     -0.019870098918243262
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "quad_S11": {
+    "mean_d_rel": 2.5116673930454527,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     2.0538154951281546,
+     2.9953158335752543
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "quad_S45": {
+    "mean_d_rel": null,
+    "sign_test_p": null,
+    "boot_ci_rel": null,
+    "n_folds": 0,
+    "min_attainable_p": null
+   },
+   "lin_raw110": {
+    "mean_d_rel": 5.612376645723728,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     4.85787608896544,
+     6.4086494686664475
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_pca45": {
+    "mean_d_rel": 5.612376645723728,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     4.85787608896544,
+     6.408649468666448
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_rand45": {
+    "mean_d_rel": 0.7793789045102324,
+    "sign_test_p": 0.0002771615982055664,
+    "boot_ci_rel": [
+     0.49667236546327775,
+     1.090699447745101
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_rand11": {
+    "mean_d_rel": 1.7432820436046637,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     1.4927536639561454,
+     2.0069274891045437
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S45_phaseshuf": {
+    "mean_d_rel": 4.141389222066121,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     3.4835097197623144,
+     4.895758812642964
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   }
+  },
+  "40": {
+   "lin_S45_iso": {
+    "mean_d_rel": 0.3582098801672761,
+    "sign_test_p": 0.006610751152038574,
+    "boot_ci_rel": [
+     0.17476904250458897,
+     0.5694179080723163
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S45_std": {
+    "mean_d_rel": 0.36538362034219735,
+    "sign_test_p": 0.006610751152038574,
+    "boot_ci_rel": [
+     0.18156988833475993,
+     0.5760148563213612
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S11": {
+    "mean_d_rel": 0.3595965880128333,
+    "sign_test_p": 0.006610751152038574,
+    "boot_ci_rel": [
+     0.1766339570551507,
+     0.5708747431672807
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_V11": {
+    "mean_d_rel": 0.44107823782169014,
+    "sign_test_p": 0.006610751152038574,
+    "boot_ci_rel": [
+     0.2365257508514704,
+     0.6778451823489106
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "quad_S11": {
+    "mean_d_rel": 0.6022512531573423,
+    "sign_test_p": 0.0002771615982055664,
+    "boot_ci_rel": [
+     0.37881002782988704,
+     0.8565000748696537
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "quad_S45": {
+    "mean_d_rel": -0.5877568154311303,
+    "sign_test_p": 2.9802322387695312e-06,
+    "boot_ci_rel": [
+     -0.6494142858954874,
+     -0.5136024615128703
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_raw110": {
+    "mean_d_rel": 8.342391981398286,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     6.831940109865195,
+     9.962029803197511
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_pca45": {
+    "mean_d_rel": 8.342391981398286,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     6.8319401098651955,
+     9.962029803197511
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_rand45": {
+    "mean_d_rel": 1.4043965294443261,
+    "sign_test_p": 2.9802322387695312e-06,
+    "boot_ci_rel": [
+     1.0357532016924798,
+     1.7896136449742632
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_rand11": {
+    "mean_d_rel": 3.938654647960492,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     3.2190673197687216,
+     4.738511890500995
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S45_phaseshuf": {
+    "mean_d_rel": 8.185400817204217,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     6.812135915946249,
+     9.725937340721565
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   }
+  },
+  "80": {
+   "lin_S45_iso": {
+    "mean_d_rel": 1.8854920378715185,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     1.6430471281326797,
+     2.128598017002625
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S45_std": {
+    "mean_d_rel": 1.8835835469964277,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     1.6426914650643216,
+     2.1257942417374376
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S11": {
+    "mean_d_rel": 1.8865571301282433,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     1.6434203929274789,
+     2.1315504292246787
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_V11": {
+    "mean_d_rel": 1.9576264494301139,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     1.7032782536219522,
+     2.2123932959533166
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "quad_S11": {
+    "mean_d_rel": 0.09691954566030749,
+    "sign_test_p": 0.30745625495910645,
+    "boot_ci_rel": [
+     -0.005864010963786357,
+     0.20409960206386918
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "quad_S45": {
+    "mean_d_rel": -0.3015013330458079,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     -0.3529950680526898,
+     -0.2478072203083166
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_raw110": {
+    "mean_d_rel": 3.8964641912501414,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     3.2442704163605924,
+     4.551480995069194
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_pca45": {
+    "mean_d_rel": 15.355371406561511,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     13.41460901799701,
+     17.449109846307557
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_rand45": {
+    "mean_d_rel": 2.6687143314630526,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     2.2896469363545697,
+     3.054918636292227
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_rand11": {
+    "mean_d_rel": 9.411493994179413,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     8.328987206626687,
+     10.518877906674934
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   },
+   "lin_S45_phaseshuf": {
+    "mean_d_rel": 18.289832378786556,
+    "sign_test_p": 1.1920928955078125e-07,
+    "boot_ci_rel": [
+     16.364161211847602,
+     20.240509169631423
+    ],
+    "n_folds": 24,
+    "min_attainable_p": 5.960464477539063e-08
+   }
+  },
+  "160": {
+   "lin_S45_iso": {
+    "mean_d_rel": 3.376840888118642,
+    "sign_test_p": 0.00048828125,
+    "boot_ci_rel": [
+     2.9569710465874106,
+     3.779216383701332
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   },
+   "lin_S45_std": {
+    "mean_d_rel": 3.3797561524587363,
+    "sign_test_p": 0.00048828125,
+    "boot_ci_rel": [
+     2.9572691501874977,
+     3.7860571831797394
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   },
+   "lin_S11": {
+    "mean_d_rel": 3.3764287866036327,
+    "sign_test_p": 0.00048828125,
+    "boot_ci_rel": [
+     2.9561580787579325,
+     3.7788222533725406
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   },
+   "lin_V11": {
+    "mean_d_rel": 3.4194881429681487,
+    "sign_test_p": 0.00048828125,
+    "boot_ci_rel": [
+     3.004706793351359,
+     3.8279021732819647
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   },
+   "quad_S11": {
+    "mean_d_rel": 0.04317794558084137,
+    "sign_test_p": 0.7744140625,
+    "boot_ci_rel": [
+     -0.04020831783250184,
+     0.12431868006088861
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   },
+   "quad_S45": {
+    "mean_d_rel": -0.07984964729994233,
+    "sign_test_p": 0.14599609375,
+    "boot_ci_rel": [
+     -0.14921377936685856,
+     -0.013491803362550596
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   },
+   "lin_raw110": {
+    "mean_d_rel": 4.447677164242122,
+    "sign_test_p": 0.00048828125,
+    "boot_ci_rel": [
+     3.7795526716616794,
+     5.093788869624874
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   },
+   "lin_pca45": {
+    "mean_d_rel": 22.21271909534075,
+    "sign_test_p": 0.00048828125,
+    "boot_ci_rel": [
+     18.741584581481057,
+     25.616900583184794
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   },
+   "lin_rand45": {
+    "mean_d_rel": 4.2073072154465665,
+    "sign_test_p": 0.00048828125,
+    "boot_ci_rel": [
+     3.620244884078491,
+     4.751792330138173
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   },
+   "lin_rand11": {
+    "mean_d_rel": 14.502833550995184,
+    "sign_test_p": 0.00048828125,
+    "boot_ci_rel": [
+     12.47646755642191,
+     16.420683658861893
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   },
+   "lin_S45_phaseshuf": {
+    "mean_d_rel": 28.95181418552275,
+    "sign_test_p": 0.00048828125,
+    "boot_ci_rel": [
+     25.19394492518129,
+     32.420607720678866
+    ],
+    "n_folds": 12,
+    "min_attainable_p": 0.000244140625
+   }
+  }
+ },
+ "calibration_conclusion": "gp_S45 at n=80: NLPD -5.848, c68 0.61, c95 0.83; blr_S45 at n=80: NLPD -3.851, c68 0.65, c95 0.84. The Bayesian linear regression is the calibrated competitor: it carries a predictive variance from evidence-maximised noise, so the comparison is probabilistic against probabilistic rather than a point predictor against a probabilistic one. On a deterministic AC ground truth with marginal-likelihood noise inference, a lower NLPD can accompany worse coverage, so both are reported.",
+ "calibration_at_80": {
+  "gp_S45": {
+   "nlpd": -5.847677698452675,
+   "c68": 0.6117760942760943,
+   "c95": 0.8301521164021164
+  },
+  "gp_S11_aux": {
+   "nlpd": -5.843357985617007,
+   "c68": 0.6113492063492063,
+   "c95": 0.829849086099086
+  },
+  "blr_S45": {
+   "nlpd": -3.8506557005491686,
+   "c68": 0.6492243867243866,
+   "c95": 0.8415175565175567
+  }
+ },
+ "hardware": {
+  "cpu": "2 vCPU (container cgroup quota)",
+  "gpu": "none",
+  "workers": 2,
+  "blas_threads": "1",
+  "measured_runtime_note": "108 folds in ~50-55 s wall on 2 workers; see logs/run_screen.log"
+ },
+ "provenance": {
+  "inputs": {
+   "ensemble_X": "iter_2/gen_hypo/claude_agent/pilot/ens_s2.0_X.npy",
+   "ensemble_Y": "iter_2/gen_hypo/claude_agent/pilot/ens_s2.0_Y.npy",
+   "sheet15": "iter_2/gen_hypo/claude_agent/pilot/sheet15.npy",
+   "ph_true": "iter_2/gen_hypo/claude_agent/pilot/ph_true.npy",
+   "operator_crosscheck": "iter_3/gen_hypo/claude_agent/verify/S_sheet15.npy"
+  },
+  "input_sha256": {
+   "ens_s2.0_X.npy": "b0eca09f00f9267087326c71a51c14de7fa866362f665853032055af7c8d6640",
+   "ens_s2.0_Y.npy": "a7461a6be60a0515b71fa5c7dac5fb18fb21aa4bb461433bf37282613830e002",
+   "sheet15.npy": "87d0b54eae1a0c01fac60c0e0407cc76c6467d61c191adbb3fe57a300b9a4028",
+   "ph_true.npy": "633b6297173a11f907ce6e915c50acb358ffb19db0f484b2a9d6823db545bf7f"
+  },
+  "vendor_physics_sha256": "7d3e3fb17041bd1f9a289c0f1f7aaf5090c1a546b411bd30bb6c8fe5a386514a",
+  "reserved_not_read": [
+   "ens_s1.0_X.npy",
+   "ens_s1.0_Y.npy",
+   "ens_s2.6_X.npy",
+   "ens_s2.6_Y.npy",
+   "ens_perm_Y.npy",
+   "phase_perm.npy",
+   "ens_near_Y.npy"
+  ],
+  "baseline_table_sha256": "396072e4d95b6bea55e14d27c0be7d4c2c6fb9df110875e0ed94ea6e4ab0d7fa",
+  "ac_solves": {
+   "sensitivity_operator": 0,
+   "no_load_reference": 1,
+   "archived_ground_truth": 220,
+   "note": "no AC solve is run for any arm or for the operator; the 220 archived solves are the ground truth"
+  }
+ },
+ "scope_limits": [
+  "ONE feeder (IEEE European LV, 55 single-phase loads on their real phases). This supports a MECHANISM claim, not a generalisation claim.",
+  "ONE loading regime (2.0x, 114.7 kW mean active load). The 1.0x and 2.6x regimes are archived but RESERVED as the survivor's independent confirmation evidence in a later iteration, so no regime-independence claim is made here.",
+  "NO neural-network baseline. The artifact compares the GP against linear models and calibrated physics on identical features; it cannot claim the operator basis beats a learned nonlinear surrogate. A DNN comparison is named as deferred work.",
+  "The linear model on Sx is STILL A LINEAR MODEL IN THE INJECTIONS, because Sx is linear in x. The claim under test is therefore about conditioning and effective dimension at fixed n, never about a richer function class."
+ ],
+ "openrouter_calls": 0,
+ "openrouter_usd": 0.0,
+ "fold_counts": {
+  "10": 24,
+  "20": 24,
+  "40": 24,
+  "80": 24,
+  "160": 12
+ }
+}

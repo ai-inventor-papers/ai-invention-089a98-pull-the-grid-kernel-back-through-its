@@ -1,0 +1,26 @@
+[project]
+name = "screen-c-gp-decoration"
+version = "1.0.0"
+description = "Is the Gaussian process doing the work? A mechanism ablation of a phase-aware power-flow surrogate kernel on the IEEE European LV feeder."
+requires-python = "==3.12.*"
+# Every version below is the one actually installed in the .venv that produced
+# results/ (from `uv pip freeze`), pinned to an exact version for reproducibility.
+dependencies = [
+  "numpy==2.4.6",
+  "scipy==1.18.1",
+  "networkx==3.7",
+  "pandapower==3.5.6",
+  "pandas==2.3.3",
+  "loguru==0.7.3",
+  "psutil==7.2.2",
+  "matplotlib==3.11.2",
+  # transitive, pinned because the archived ground truth's comparability depends on the
+  # pandapower/scipy/numpy numeric stack being the one that was measured
+  "pandera==0.36.0",
+  "deepdiff==9.1.0",
+  "geojson==3.3.0",
+  "tqdm==4.70.1",
+  "typeguard==4.6.0",
+  "pydantic==2.14.3",
+  "packaging==26.3",
+]

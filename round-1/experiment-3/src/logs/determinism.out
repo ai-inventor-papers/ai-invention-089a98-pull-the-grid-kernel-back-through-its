@@ -1,0 +1,3 @@
+snapshot taken: {'protocol_checks.json': 'b022558dac95', 'operator_checks.json': '7cd750b83e52', 'baseline_table.json': '017e061f0dab', 'screen_C.json': '1717440c703b', 'headtohead_C.json': 'cbddb528c499', 'calibration_C.json': 'c968ea88a924', 'method_out.json': 'ce137d4a2f37'}
+re-running the whole pipeline ...
+DETERMINISTIC: all 7 result files byte-identical across two full pipeline runs

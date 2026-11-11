@@ -1,0 +1,55 @@
+{
+ "type": "line",
+ "logx": true,
+ "title": "Predictive-interval coverage against the number of AC solves",
+ "xlabel": "AC solves used for training (n)",
+ "ylabel": "empirical coverage of the nominal 68% interval",
+ "aspect": "16:9",
+ "series": [
+  {
+   "label": "gp_S45",
+   "x": [
+    10,
+    20,
+    40,
+    80,
+    160
+   ],
+   "values": [
+    0.6741718775052109,
+    0.7330189393939394,
+    0.6844070332959221,
+    0.6117760942760943,
+    0.5569444444444445
+   ]
+  },
+  {
+   "label": "blr_S45",
+   "x": [
+    10,
+    20,
+    40,
+    80,
+    160
+   ],
+   "values": [
+    0.2612169312169312,
+    0.4320904882154882,
+    0.557475215114104,
+    0.6492243867243866,
+    0.7803703703703704
+   ]
+  },
+  {
+   "label": "nominal 68%",
+   "x": [
+    10,
+    160
+   ],
+   "values": [
+    0.68,
+    0.68
+   ]
+  }
+ ]
+}

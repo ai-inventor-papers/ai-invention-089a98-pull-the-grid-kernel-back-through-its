@@ -1,0 +1,53 @@
+{
+ "x": [
+  10,
+  20,
+  40,
+  80,
+  160
+ ],
+ "series": {
+  "degree-2 polynomial in Sx": [
+   0.030267219046094692,
+   0.022348884887710807,
+   0.018625288558444666
+  ],
+  "GP on Sx (treatment)": [
+   0.4808862797067623,
+   0.17601033724005297,
+   0.08600068478803953,
+   0.03403900185915768,
+   0.020935155490761814
+  ],
+  "degree-2 polynomial in V11-x": [
+   1.4098829627916498,
+   0.5743895509442333,
+   0.12010642712347548,
+   0.03455654760034082,
+   0.021084422560943464
+  ],
+  "ridge on Sx": [
+   0.18804203520549287,
+   0.11825804053602161,
+   0.10009557689533159,
+   0.09107513892083545,
+   0.08774341554240261
+  ],
+  "Bayesian linear regression on Sx": [
+   0.29933313260033156,
+   0.1984495524802051,
+   0.14781181307623517,
+   0.12573055126485452,
+   0.09916981305351734
+  ],
+  "best of five baselines": [
+   0.2290795689067975,
+   0.12306233876065541,
+   0.09686184891417758,
+   0.05782475541566356,
+   0.025090166874609143
+  ]
+ },
+ "denominator": "train rows' mean per-output sd (primary); the whole-ensemble value is in results/screen_C.json under per_fold.rmse_all_denominator",
+ "note": "quad_S45 is not reported at n=10 or n=20: 1080 features against <40 rows is not a reportable RMSE (see results/screen_C.json arms['10']['quad_S45'])"
+}

@@ -1,0 +1,23 @@
+04:22:37|INFO   |openrouter_calls = 0 | openrouter_usd = 0.0 | no LLM client imported
+04:22:37|INFO   |numpy 2.4.6 | python 3.12.14
+04:22:37|INFO   |[T1] building shared state ...
+04:23:03|INFO   |  archive + operator checks written; spectrum 11/19 at 1e-2/1e-3, stable rank 2.1768
+04:23:03|INFO   |using 2 worker process(es)
+04:23:03|INFO   |[T4] partial sweep at the decision size (n in {20,80}, 4 seeds, 2 schemes)
+04:23:24|INFO   |  n=20: 8 folds | gp_S45 0.1877 lin_S45_iso 0.1190 | guards fired 0
+04:23:24|INFO   |  n=80: 8 folds | gp_S45 0.0332 lin_S45_iso 0.0913 | guards fired 0
+04:23:24|INFO   |[T5] full sweep: 120 jobs, 108 realised folds
+04:23:57|INFO   |  108 folds in 33.5s
+04:23:57|INFO   |  realised per n: {'10': 24, '20': 24, '40': 24, '80': 24, '160': 12}  (expected {'10': 24, '20': 24, '40': 24, '80': 24, '160': 12})
+04:23:57|INFO   |[T6] determinism: re-running a fixed subsample and diffing
+04:23:58|INFO   |  4 folds re-ran byte-identically
+04:23:58|INFO   |  VERDICT CLASS: V3
+04:23:58|INFO   |  The nonlinearity is real but NOT kernel-specific: a fixed degree-2 polynomial feature map in the operator's coordinates (quad_S45) matches or beats the output-restricted GP kernel at n=80 while the purely linear arms fall short.
+04:23:58|INFO   |    n=80 rank quad_S45               mean_margin  +53.0% worst   +2.5% rmse_norm 0.0223
+04:23:58|INFO   |    n=80 rank gp_S45                 mean_margin  +34.0% worst  -10.8% rmse_norm 0.0340
+04:23:58|INFO   |    n=80 rank gp_S11_aux             mean_margin  +34.0% worst  -10.8% rmse_norm 0.0340
+04:23:58|INFO   |    n=80 rank quad_S11               mean_margin  +26.9% worst  -54.7% rmse_norm 0.0346
+04:23:58|INFO   |    n=80 rank lin_S45_iso_cv         mean_margin  -93.0% worst -352.1% rmse_norm 0.0910
+04:23:58|INFO   |    n=80 rank lin_S45_std            mean_margin  -93.1% worst -354.3% rmse_norm 0.0910
+04:23:58|INFO   |  baseline table sha256 = 396072e4d95b6bea55e14d27c0be7d4c2c6fb9df110875e0ed94ea6e4ab0d7fa
+04:23:58|INFO   |[DONE] total 81.2s | verdict V3 | screen_metric_at_80 = +53.0% (quad_S45)

@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "method_name": "screen-C mechanism ablation of the phase-aware power-flow kernel",
+    "description": "Partly. At n=80 the output-restricted GP kernel on the analytic operator's coordinates reaches 0.0340 normalised RMSE against 0.0911 for plain ridge on the same coordinates and 0.0223 for a FIXED degree-2 polynomial map in those coordinates. The GP's paired relative advantage over the purely linear arm is +188.5% (sign test p=1.19e-07, 24/24 folds) -- so the GP is NOT decoration. But the fixed quadratic feature map matches or beats it, so the kernel itself is not the active ingredient: what the kernel contributes is the quadratic (second-order) structure in the operator's coordinates, which explicit degree-2 features reproduce without a kernel. Verdict class V3.",
+    "verdict_class": "V3",
+    "verdict_one_line": "The nonlinearity is real but NOT kernel-specific: a fixed degree-2 polynomial feature map in the operator's coordinates (quad_S45) matches or beats the output-restricted GP kernel at n=80 while the purely linear arms fall short.",
+    "candidate": "C",
+    "dataset": "IEEE European LV asymmetric feeder, 55 single-phase loads on their real phases, 2.0x loading, 220 archived runpp_3ph AC solves",
+    "targets": "15 far-end buses x phases (a,b,c) = 45 per-unit voltage magnitudes",
+    "features": "110 = P (55 loads) then Q (55 loads), never reordered",
+    "fold_recipe": "n in {10,20,40,80,160}; 12 seeds x 2 partition schemes; 24 folds per size, 12 at n=160",
+    "normalisation_denominator": "mean per-output sd on the TRAIN rows (primary)",
+    "openrouter_calls": 0,
+    "openrouter_usd": 0.0,
+    "scope_limits": "ONE feeder (IEEE European LV, 55 single-phase loads on their real phases). This supports a MECHANISM claim, not a generalisation claim.; ONE loading regime (2.0x, 114.7 kW mean active load). The 1.0x and 2.6x regimes are archived but RESERVED as the survivor's independent confirmation evidence in a later iteration, so no regime-independence claim is made here.; NO neural-network baseline. The artifact compares the GP against linear models and calibrated physics on identical features; it cannot claim the operator basis beats a learned nonlinear surrogate. A DNN comparison is named as deferred work.; The linear model on Sx is STILL A LINEAR MODEL IN THE INJECTIONS, because Sx is linear in x. The claim under test is therefore about conditioning and effective dimension at fixed n, never about a richer function class.",
+    "provenance": {
+      "inputs": {
+        "ensemble_X": "iter_2/gen_hypo/claude_agent/pilot/ens_s2.0_X.npy",
+        "ensemble_Y": "iter_2/gen_hypo/claude_agent/pilot/ens_s2.0_Y.npy",
+        "sheet15": "iter_2/gen_hypo/claude_agent/pilot/sheet15.npy",
+        "ph_true": "iter_2/gen_hypo/claude_agent/pilot/ph_true.npy",
+        "operator_crosscheck": "iter_3/gen_hypo/claude_agent/verify/S_sheet15.npy"
+      },
+      "input_sha256": {
+        "ens_s2.0_X.npy": "b0eca09f00f9267087326c71a51c14de7fa866362f665853032055af7c8d6640",
+        "ens_s2.0_Y.npy": "a7461a6be60a0515b71fa5c7dac5fb18fb21aa4bb461433bf37282613830e002",
+        "sheet15.npy": "87d0b54eae1a0c01fac60c0e0407cc76c6467d61c191adbb3fe57a300b9a4028",
+        "ph_true.npy": "633b6297173a11f907ce6e915c50acb358ffb19db0f484b2a9d6823db545bf7f"
+      },
+      "vendor_physics_sha256": "7d3e3fb17041bd1f9a289c0f1f7aaf5090c1a546b411bd30bb6c8fe5a386514a",
+      "reserved_not_read": [
+        "ens_s1.0_X.npy",
+        "ens_s1.0_Y.npy",
+        "ens_s2.6_X.npy",
+        "ens_s2.6_Y.npy",
+        "ens_perm_Y.npy",
+        "phase_perm.npy",
+        "ens_near_Y.npy"
+      ],
+      "baseline_table_sha256": "396072e4d95b6bea55e14d27c0be7d4c2c6fb9df110875e0ed94ea6e4ab0d7fa",
+      "ac_solves": {
+        "sensitivity_operator": 0,
+        "no_load_reference": 1,
+        "archived_ground_truth": 220,
+        "note": "no AC solve is run for any arm or for the operator; the 220 archived solves are the ground truth"
+      }
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "ieee_european_lv_asymmetric_2p0x_far_end_voltages",
+      "examples": [
+        {
+          "input": "Predict the 45 far-end per-unit voltage magnitudes (15 buses x phases a,b,c) of the IEEE European LV feeder at 2.0x loading (mean active load 114.69 kW) for 210 held-out lognormal household injection draws, after training on 10 converged runpp_3ph AC solves. Fold n10_s0_c0 (seed 0, partition scheme 0).",
+          "output": "GP kernel on the analytic operator's coordinates: normalised far-end RMSE 0.3730507507. Ridge on the same coordinates 0.1251850193. Degree-2 polynomial in the same coordinates not_reported. Best of five baselines 0.1286649058 (b5_lindist).",
+          "predict_gp_on_operator_coordinates_rmse": "0.3730507507",
+          "predict_ridge_on_operator_coordinates_rmse": "0.1251850193",
+          "predict_degree2_in_operator_coordinates_rmse": "not_reported",
+          "predict_bayesian_linear_regression_rmse": "0.2029137856",
+          "predict_rbf_gp_on_injections_rmse": "1.373502692",
+          "predict_best_baseline_name": "b5_lindist",
+          "predict_best_baseline_rmse": "0.1286649058",
+          "metadata_fold_id": "n10_s0_c0",
+          "metadata_n_train": "10",
+          "metadata_n_test": "210",
+          "metadata_seed": "0",
+          "metadata_scheme": "0",
+          "metadata_vsd_train_denominator": "0.0185905669",
+          "metadata_mean_predictor_rmse": "1.374034597",
+          "metadata_numerical_failures": "lin_raw110,lin_pca45"
+        },
+        {
+          "input": "Predict the 45 far-end per-unit voltage magnitudes (15 buses x phases a,b,c) of the IEEE European LV feeder at 2.0x loading (mean active load 114.69 kW) for 110 held-out lognormal household injection draws, after training on 10 converged runpp_3ph AC solves. Fold n10_s0_c1 (seed 0, partition scheme 1).",
+          "output": "GP kernel on the analytic operator's coordinates: normalised far-end RMSE 0.2734155375. Ridge on the same coordinates 0.1616091081. Degree-2 polynomial in the same coordinates not_reported. Best of five baselines 0.2157061648 (b5_lindist).",
+          "predict_gp_on_operator_coordinates_rmse": "0.2734155375",
+          "predict_ridge_on_operator_coordinates_rmse": "0.1616091081",
+          "predict_degree2_in_operator_coordinates_rmse": "not_reported",
+          "predict_bayesian_linear_regression_rmse": "0.2333370555",
+          "predict_rbf_gp_on_injections_rmse": "1.000427211",
+          "predict_best_baseline_name": "b5_lindist",
+          "predict_best_baseline_rmse": "0.2157061648",
+          "metadata_fold_id": "n10_s0_c1",
+          "metadata_n_train": "10",
+          "metadata_n_test": "110",
+          "metadata_seed": "0",
+          "metadata_scheme": "1",
+          "metadata_vsd_train_denominator": "0.02632237052",
+          "metadata_mean_predictor_rmse": "1.000427211",
+          "metadata_numerical_failures": "lin_raw110,lin_pca45"
+        },
+        {
+          "input": "Predict the 45 far-end per-unit voltage magnitudes (15 buses x phases a,b,c) of the IEEE European LV feeder at 2.0x loading (mean active load 114.69 kW) for 210 held-out lognormal household injection draws, after training on 10 converged runpp_3ph AC solves. Fold n10_s1_c0 (seed 1, partition scheme 0).",
+          "output": "GP kernel on the analytic operator's coordinates: normalised far-end RMSE 0.2532388427. Ridge on the same coordinates 0.1535541226. Degree-2 polynomial in the same coordinates not_reported. Best of five baselines 0.1587189851 (b5_lindist).",
+          "predict_gp_on_operator_coordinates_rmse": "0.2532388427",
+          "predict_ridge_on_operator_coordinates_rmse": "0.1535541226",
+          "predict_degree2_in_operator_coordinates_rmse": "not_reported",
+          "predict_bayesian_linear_regression_rmse": "0.2005296113",
+          "predict_rbf_gp_on_injections_rmse": "1.162601793",
+          "predict_best_baseline_name": "b5_lindist",
+          "predict_best_baseline_rmse": "0.1587189851",
+          "metadata_fold_id": "n10_s1_c0",
+          "metadata_n_train": "10",
+          "metadata_n_test": "210",
+          "metadata_seed": "1",
+          "metadata_scheme": "0",
+          "metadata_vsd_train_denominator": "0.02036769588",
+          "metadata_mean_predictor_rmse": "1.162601792",
+          "metadata_numerical_failures": "lin_raw110,lin_pca45,lin_rand11"
+        }
+      ]
+    }
+  ]
+}

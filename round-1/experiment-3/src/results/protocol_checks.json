@@ -1,0 +1,302 @@
+{
+ "archive_checks": {
+  "X_shape_220x110": {
+   "passed": true,
+   "value": [
+    220,
+    110
+   ]
+  },
+  "Y_shape_220x45": {
+   "passed": true,
+   "value": [
+    220,
+    45
+   ]
+  },
+  "X_all_finite": {
+   "passed": true,
+   "value": true
+  },
+  "Y_all_finite": {
+   "passed": true,
+   "value": true
+  },
+  "sheet15_exact": {
+   "passed": true,
+   "value": [
+    681,
+    697,
+    713,
+    729,
+    745,
+    761,
+    777,
+    793,
+    809,
+    825,
+    841,
+    857,
+    873,
+    889,
+    906
+   ]
+  },
+  "phase_counts": {
+   "passed": true,
+   "value": [
+    21,
+    19,
+    15
+   ]
+  },
+  "mean_total_active_load_kw": {
+   "passed": true,
+   "value": 114.69283114609138
+  },
+  "far_end_mean_per_output_sd_pu": {
+   "passed": true,
+   "value": 0.021013037612169598
+  },
+  "n_rows_220": {
+   "passed": true,
+   "value": 220
+  },
+  "reserved_not_read": [
+   "ens_s1.0_X.npy",
+   "ens_s1.0_Y.npy",
+   "ens_s2.6_X.npy",
+   "ens_s2.6_Y.npy",
+   "ens_perm_Y.npy",
+   "phase_perm.npy",
+   "ens_near_Y.npy"
+  ],
+  "archive_files_sha256": {
+   "ens_s2.0_X.npy": "b0eca09f00f9267087326c71a51c14de7fa866362f665853032055af7c8d6640",
+   "ens_s2.0_Y.npy": "a7461a6be60a0515b71fa5c7dac5fb18fb21aa4bb461433bf37282613830e002",
+   "sheet15.npy": "87d0b54eae1a0c01fac60c0e0407cc76c6467d61c191adbb3fe57a300b9a4028",
+   "ph_true.npy": "633b6297173a11f907ce6e915c50acb358ffb19db0f484b2a9d6823db545bf7f"
+  },
+  "openrouter_calls": 0,
+  "openrouter_usd": 0.0
+ },
+ "operator_checks": {
+  "shape": [
+   45,
+   110
+  ],
+  "singular_values": [
+   13.29815404236416,
+   12.546050491093078,
+   6.69770293505036,
+   1.5386437810854359,
+   1.3615394621490595,
+   0.7885607592954869,
+   0.6850764445208842,
+   0.5654614917140094,
+   0.3213663349575915,
+   0.25728319163615904,
+   0.13821877557971135,
+   0.08828906339658216,
+   0.08629757088837343,
+   0.07090278329768787,
+   0.06774956661243546,
+   0.03962975038267409,
+   0.033676696357571846,
+   0.03128443954586397,
+   0.026415285029989456,
+   0.011784621268237644,
+   0.008787650850454336,
+   0.006173111378854771,
+   0.005962794489459595,
+   0.0009466932040181511,
+   0.0007952042124904055,
+   0.0006025648003854224,
+   0.0005101562083487544,
+   9.296666479228027e-05,
+   9.96817971406921e-06,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.17633657925341e-15,
+   1.1763365792464366e-15
+  ],
+  "normalised_spectrum": [
+   1.0,
+   0.9434430110468647,
+   0.5036565912617174,
+   0.11570356127502747,
+   0.10238559861854357,
+   0.059298512920165844,
+   0.05151665729983457,
+   0.04252180339561483,
+   0.024166236451601417,
+   0.019347286158404205,
+   0.010393831740810445,
+   0.006639196922769743,
+   0.006489439858603966,
+   0.005331776355711601,
+   0.005094659484061057,
+   0.0029800940985060713,
+   0.0025324339190452606,
+   0.002352540017674678,
+   0.0019863873546537227,
+   0.0008861847464463994,
+   0.0006608173452089188,
+   0.0004642081419111993,
+   0.00044839264686390433,
+   7.118982085801188e-05,
+   5.97980900173896e-05,
+   4.5311913102060726e-05,
+   3.836293418797383e-05,
+   6.990945096297933e-06,
+   7.495912351679343e-07,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685335078e-17,
+   8.845863685282639e-17
+  ],
+  "effective_rank_1e_2": 11,
+  "effective_rank_1e_3": 19,
+  "effective_rank_1e_6": 28,
+  "stable_rank": 2.1768365417805677,
+  "condition_number": 1.1304718629835504e+16,
+  "frobenius_norm": 19.62023789956432,
+  "nonzero_singular_values": 29,
+  "sheet15_rebuilt_equals_archive": true,
+  "archive_operator_max_rel_diff": 0.0,
+  "sensitivity_operator_ac_solves": 0,
+  "physics_baseline_ac_solves": 1,
+  "ac_solve_note": "S costs zero AC solves. The physics BASELINE uses one zero-load solve for the no-load reference voltage; the treatment does not.",
+  "noload_reference_max_abs_diff": 0.5435199823799888,
+  "noload_reference_max_abs_mag_diff": 4.764273242585659e-08,
+  "noload_sensitivity": {
+   "order1_rmse_norm_archive_ref": 2.5214127060538485,
+   "order1_rmse_norm_analytic_ref": 2.205199383765103,
+   "order2_rmse_norm_archive_ref": 2.5129330801065475,
+   "order2_rmse_norm_analytic_ref": 2.1749317022904386,
+   "used": "archive (noload_voltage)"
+  },
+  "graph_kernel_metrics": {
+   "hop": {
+    "kind": "hop_mds",
+    "rank": 54,
+    "negative_eigenvalues": 0,
+    "reconstruction_rel_error": 2.2931126084061592e-15,
+    "top_eigenvalues": [
+     836.4685658600972,
+     375.56785460509184,
+     110.9890723244557,
+     88.46031474001141,
+     84.64006857637514,
+     76.65985633449556
+    ]
+   },
+   "admittance_metric": {
+    "generator": "per-line sequence-impedance admittance blocks only",
+    "symmetry_max_abs_diff": 2.220446049250313e-16,
+    "min_eigenvalue": 1.115668300096398e-05,
+    "max_eigenvalue": 10.495047441071822,
+    "condition_number": 940696.033056152,
+    "n_negative_eigenvalues": 0
+   },
+   "admittance_basis": {
+    "kind": "admittance_gram",
+    "rank": 55,
+    "negative_eigenvalues": 0,
+    "reconstruction_rel_error": 9.08232724885949e-15,
+    "top_eigenvalues": [
+     10.495047441071824,
+     1.0355954005372099,
+     0.8560112428263741,
+     0.3274565505808247,
+     0.07842806567564342,
+     0.04116544562496622
+    ]
+   },
+   "basis_widths": {
+    "b2_hop_laplacian_gp": 54,
+    "b3_admittance_laplacian_gp": 55
+   },
+   "hop_metric_shape": [
+    55,
+    55
+   ],
+   "standardisation": "per-fold, TRAIN rows only (applied inside run_fold)",
+   "built_from": "line sequence-impedance blocks and phase labels only; no sensitivity Jacobian"
+  }
+ },
+ "openrouter_calls": 0,
+ "openrouter_usd": 0.0,
+ "python": "3.12.14",
+ "numpy": "2.4.6",
+ "pandapower_version": "3.5.6",
+ "vendor_physics_sha256": "7d3e3fb17041bd1f9a289c0f1f7aaf5090c1a546b411bd30bb6c8fe5a386514a",
+ "input_paths": {
+  "pilot_relative": "iter_2/gen_hypo/claude_agent/pilot",
+  "verify_relative": "iter_3/gen_hypo/claude_agent/verify"
+ },
+ "fold_recipe": {
+  "sizes": [
+   10,
+   20,
+   40,
+   80,
+   160
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "schemes": [
+   0,
+   1
+  ],
+  "realised": {
+   "10": 24,
+   "20": 24,
+   "40": 24,
+   "80": 24,
+   "160": 12
+  },
+  "reserved_seeds": "12..29",
+  "reserved_sizes": [
+   60,
+   120
+  ]
+ },
+ "openrouter_budget_note": "this artifact makes zero OpenRouter calls"
+}

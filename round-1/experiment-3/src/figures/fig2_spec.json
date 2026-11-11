@@ -1,0 +1,36 @@
+{
+ "type": "bar",
+ "title": "Paired error difference: explicit features against the GP, same folds",
+ "xlabel": "AC solves used for training (n)",
+ "ylabel": "mean RMSE ratio minus 1 (negative = arm better)",
+ "aspect": "16:9",
+ "categories": [
+  "10",
+  "20",
+  "40",
+  "80",
+  "160"
+ ],
+ "series": [
+  {
+   "label": "ridge on Sx (purely linear)",
+   "values": [
+    -0.3968721131557767,
+    -0.2429071179609108,
+    0.3582098801672761,
+    1.8854920378715185,
+    3.376840888118642
+   ]
+  },
+  {
+   "label": "degree-2 polynomial in V11-x",
+   "values": [
+    1.891195042254614,
+    2.5116673930454527,
+    0.6022512531573423,
+    0.09691954566030749,
+    0.04317794558084137
+   ]
+  }
+ ]
+}

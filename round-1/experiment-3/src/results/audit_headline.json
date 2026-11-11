@@ -1,0 +1,147 @@
+{
+ "n_checks": 28,
+ "n_passed": 28,
+ "all_passed": true,
+ "checks": [
+  {
+   "check": "mean_rmse_norm[gp_S45] at n=80 \u00b7 raw-recompute",
+   "passed": true,
+   "detail": "raw 0.034039001859 vs aggregate 0.034039001859"
+  },
+  {
+   "check": "mean_rmse_norm[gp_S45] at n=80 \u00b7 method_out agrees",
+   "passed": true,
+   "detail": "raw 0.034039001859 vs method_out 0.034039001859"
+  },
+  {
+   "check": "mean_rmse_norm[quad_S45] at n=80 \u00b7 raw-recompute",
+   "passed": true,
+   "detail": "raw 0.022348884888 vs aggregate 0.022348884888"
+  },
+  {
+   "check": "mean_rmse_norm[quad_S45] at n=80 \u00b7 method_out agrees",
+   "passed": true,
+   "detail": "raw 0.022348884888 vs method_out 0.022348884888"
+  },
+  {
+   "check": "mean_rmse_norm[lin_S45_iso] at n=80 \u00b7 raw-recompute",
+   "passed": true,
+   "detail": "raw 0.091075138921 vs aggregate 0.091075138921"
+  },
+  {
+   "check": "mean_rmse_norm[lin_S45_iso] at n=80 \u00b7 method_out agrees",
+   "passed": true,
+   "detail": "raw 0.091075138921 vs method_out 0.091075138921"
+  },
+  {
+   "check": "clause A: quad_S45 within 10% of gp_S45 (mean)",
+   "passed": true,
+   "detail": "0.022349 <= 1.10 x 0.034039 = 0.037443"
+  },
+  {
+   "check": "clause B: no fold worse than 25%",
+   "passed": true,
+   "detail": "worst per-fold quad/gp = 0.9638"
+  },
+  {
+   "check": "clause C: best PURELY LINEAR arm misses the 10% band",
+   "passed": true,
+   "detail": "best purely linear 0.090999 > 0.037443"
+  },
+  {
+   "check": "verdict label matches the recomputed clauses",
+   "passed": true,
+   "detail": "method_out says V3"
+  },
+  {
+   "check": "sign test p for GP vs linear at n=80",
+   "passed": true,
+   "detail": "recomputed 1.192093e-07 vs stored 1.192093e-07"
+  },
+  {
+   "check": "PLACEBO (all ties) is NOT significant",
+   "passed": true,
+   "detail": "p = 1.000 over n_eff = 0 (a test that fires here is vacuous)"
+  },
+  {
+   "check": "the dropped-tie convention is load-bearing",
+   "passed": true,
+   "detail": "the naive full-count version returns p = 1.192e-07 on the same null"
+  },
+  {
+   "check": "PLACEBO (14/24 artificial split) is NOT significant",
+   "passed": true,
+   "detail": "p = 0.541"
+  },
+  {
+   "check": "PLACEBO (200 coin-flip competitors) is significant at ~5% only",
+   "passed": true,
+   "detail": "2.0% of null trials reach p<0.05"
+  },
+  {
+   "check": "gp_S45 fold n40_s0_c0 \u00b7 loop-GP vs pipeline",
+   "passed": true,
+   "detail": "loop 0.085209 vs pipeline 0.085209 (0.00% apart)"
+  },
+  {
+   "check": "lin_S45_iso fold n40_s0_c0 \u00b7 normal-equations K-fold vs pipeline GCV",
+   "passed": true,
+   "detail": "K-fold 0.097953 vs pipeline 0.097787 (0.2% apart; two different selection criteria, so exact agreement is not expected)"
+  },
+  {
+   "check": "quad_S45 fold n40_s0_c0 \u00b7 explicit expansion vs pipeline",
+   "passed": true,
+   "detail": "direct 0.029198 vs pipeline 0.029040 (0.5% apart; different selection criteria on a 1080-feature design)"
+  },
+  {
+   "check": "gp_S45 fold n80_s0_c0 \u00b7 loop-GP vs pipeline",
+   "passed": true,
+   "detail": "loop 0.027873 vs pipeline 0.027873 (0.00% apart)"
+  },
+  {
+   "check": "lin_S45_iso fold n80_s0_c0 \u00b7 normal-equations K-fold vs pipeline GCV",
+   "passed": true,
+   "detail": "K-fold 0.088787 vs pipeline 0.088787 (0.0% apart; two different selection criteria, so exact agreement is not expected)"
+  },
+  {
+   "check": "quad_S45 fold n80_s0_c0 \u00b7 explicit expansion vs pipeline",
+   "passed": true,
+   "detail": "direct 0.018421 vs pipeline 0.018421 (0.0% apart; different selection criteria on a 1080-feature design)"
+  },
+  {
+   "check": "rebuilt S equals the archived operator",
+   "passed": true,
+   "detail": "max rel diff 0.000e+00"
+  },
+  {
+   "check": "effective rank 11 at 1e-2, 19 at 1e-3",
+   "passed": true,
+   "detail": "11 / 19"
+  },
+  {
+   "check": "baseline_table sha256 matches its payload",
+   "passed": true,
+   "detail": "396072e4d95b6bea55e14d27... == 396072e4d95b6bea55e14d27..."
+  },
+  {
+   "check": "screen_C.json cites that same hash",
+   "passed": true,
+   "detail": "396072e4d95b6bea55e14d27..."
+  },
+  {
+   "check": "crossover n* for lin_S45_iso",
+   "passed": true,
+   "detail": "recomputed n*=40, method_out says 40"
+  },
+  {
+   "check": "RAW PLACEBO (broken pairing) fires -- reported, not asserted",
+   "passed": true,
+   "detail": "200/200 fired; informative, not a defect: the two arms' marginals are 2.68x apart at n=80, so the GP is smaller under any pairing"
+  },
+  {
+   "check": "MATCHED PLACEBO (two draws from the same law) rarely reaches p<0.05",
+   "passed": true,
+   "detail": "21/500 null trials reached p<0.05 (rate 0.042; nominal 0.05, inflated only by the 5 sizes tried per trial)"
+  }
+ ]
+}
