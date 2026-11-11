@@ -1,0 +1,148 @@
+{
+ "determinism_and_leakage": {
+  "folds_checked": [
+   {
+    "n": 20,
+    "seed": 0,
+    "scheme": 0,
+    "deterministic": true,
+    "identical_hyperparameters": true,
+    "n_dummy_rows": 200,
+    "dummy_kind": "synthetic block from train statistics (no disjoint real row exists)"
+   },
+   {
+    "n": 80,
+    "seed": 3,
+    "scheme": 1,
+    "deterministic": true,
+    "identical_hyperparameters": true,
+    "n_dummy_rows": 60,
+    "dummy_kind": "real rows disjoint from train"
+   },
+   {
+    "n": 160,
+    "seed": 5,
+    "scheme": 0,
+    "deterministic": true,
+    "identical_hyperparameters": true,
+    "n_dummy_rows": 60,
+    "dummy_kind": "synthetic block from train statistics (no disjoint real row exists)"
+   }
+  ],
+  "deterministic": true,
+  "identical_hyperparameters": true,
+  "pass": true,
+  "note": "the test block is replaced by a disjoint dummy block of the same size; if any fitted quantity changed, a test row was leaking into the fit.  The TEST error is of course different -- only the fitted quantities are required to be identical."
+ },
+ "reserved_evidence": {
+  "sizes": [
+   10,
+   20,
+   40,
+   80,
+   160
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "schemes": [
+   0,
+   1
+  ],
+  "reserved_sizes": [
+   60,
+   120
+  ],
+  "reserved_seed_min": 12,
+  "violations": [],
+  "passed": true,
+  "reserved_2_6x_regime": "never opened on any code path; guarded in code/data.py::_guard"
+ },
+ "baseline_sanity": {
+  "n10": {
+   "mean": {
+    "rmse": 1.3740345966140128,
+    "over_mean": 1.0
+   },
+   "treatment": {
+    "rmse": 0.9350625317576761,
+    "over_mean": 0.6805232808998545
+   },
+   "b1_rbf": {
+    "rmse": 1.3735507640701239,
+    "over_mean": 0.9996478745549193
+   },
+   "b2_hop": {
+    "rmse": 1.2001989537175317,
+    "over_mean": 0.8734852504261112
+   },
+   "b3_adm": {
+    "rmse": 1.1367944603677222,
+    "over_mean": 0.8273404928588308
+   },
+   "b4_ridge": {
+    "rmse": 1.3626012179937663,
+    "over_mean": 0.9916789732599008
+   },
+   "b5_lindistflow": {
+    "rmse": 0.12103644161480742,
+    "over_mean": 0.08808835084143693,
+    "cell": "order1_v0-noload_std0_scale_free"
+   },
+   "b5_legacy": {
+    "rmse": 0.19987819504535595,
+    "over_mean": 0.14546809486304715,
+    "cell": "order2_v0-noload_std0_absolute"
+   }
+  },
+  "n160": {
+   "mean": {
+    "rmse": 1.2562194230245178,
+    "over_mean": 1.0
+   },
+   "treatment": {
+    "rmse": 0.0165609548821005,
+    "over_mean": 0.013183170534195186
+   },
+   "b1_rbf": {
+    "rmse": 0.14057565313954304,
+    "over_mean": 0.11190374114825273
+   },
+   "b2_hop": {
+    "rmse": 0.08980985654128322,
+    "over_mean": 0.07149217317867436
+   },
+   "b3_adm": {
+    "rmse": 0.06866259318673944,
+    "over_mean": 0.054658120968568515
+   },
+   "b4_ridge": {
+    "rmse": 0.12262369314128291,
+    "over_mean": 0.09761327590847928
+   },
+   "b5_lindistflow": {
+    "rmse": 0.10978259033226238,
+    "over_mean": 0.08739125372536112,
+    "cell": "order1_v0-noload_std0_scale_free"
+   },
+   "b5_legacy": {
+    "rmse": 0.18092293074711488,
+    "over_mean": 0.14402175880350465,
+    "cell": "order2_v0-noload_std0_absolute"
+   }
+  },
+  "lindistflow_flat_ratio_n160_over_n10": 0.9070209671368242,
+  "lindistflow_flat_pass": true
+ }
+}

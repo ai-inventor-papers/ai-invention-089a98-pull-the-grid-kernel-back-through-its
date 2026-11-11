@@ -1,0 +1,1327 @@
+{
+  "metadata": {
+    "method_name": "output-restricted sensitivity-operator pullback kernel",
+    "candidate_id": "A_output_restricted_pullback",
+    "mechanism": "output-restricted sensitivity-operator pullback: an isotropic RBF in the coordinates S x, S = d|V_far|/dx of shape 45 x 110",
+    "feeder": "IEEE PES European LV test feeder (pandapower ieee_european_lv_asymmetric('on_peak_566')), 906 LV buses, 905 lines, 55 single-phase loads on their real phases (21/19/15)",
+    "ground_truth": "pandapower runpp_3ph; 220-draw archived ensemble per regime",
+    "folds": "12 seeds x 2 partition schemes = 24 folds per cell",
+    "normaliser": "training-fold per-output voltage standard deviation",
+    "regime_primary": "2.0",
+    "regime_secondary": "1.0",
+    "screen_metric_at_80": 0.717989786498841,
+    "crossovers": {
+      "crossover_vs_best": {
+        "interval": [
+          10,
+          20
+        ]
+      },
+      "mean_margin_curve_vs_best": {
+        "10": -2.6624689680103883,
+        "20": 0.15340622225818032,
+        "40": 0.4562871955486685,
+        "80": 0.717989786498841,
+        "160": 0.7191782617328298
+      },
+      "crossover_vs_lindistflow": {
+        "interval": [
+          10,
+          20
+        ]
+      },
+      "mean_margin_curve_vs_lindistflow": {
+        "10": -2.6624689680103883,
+        "20": 0.15340622225818032,
+        "40": 0.4562871955486685,
+        "80": 0.7533685548113702,
+        "160": 0.831633267733579
+      },
+      "crossover_everyfold20": {
+        "value": 80,
+        "grid": [
+          10,
+          20,
+          40,
+          80,
+          160
+        ]
+      },
+      "frac_clearing_20pct_curve": {
+        "10": 0.0,
+        "20": 0.375,
+        "40": 0.875,
+        "80": 1.0,
+        "160": 1.0
+      }
+    },
+    "verdicts": {
+      "S1": {
+        "statement": "the treatment must beat the best per-fold canonical baseline by >= 20 percent in every one of the 24 folds at n = 80 on the 2.0x regime",
+        "measured": {
+          "frac_folds_clearing_20pct": 1.0,
+          "mean_margin": 0.717989786498841,
+          "worst_fold_margin": 0.5060213351653154,
+          "n_folds": 24
+        },
+        "result": "PASS"
+      },
+      "S2": {
+        "statement": "the mean paired margin must become positive at a finite n, reported as the interval between adjacent grid sizes, with the full fraction-clearing curve",
+        "measured": {
+          "crossover_vs_best": {
+            "interval": [
+              10,
+              20
+            ]
+          },
+          "crossover_vs_lindistflow": {
+            "interval": [
+              10,
+              20
+            ]
+          },
+          "crossover_everyfold20": {
+            "value": 80,
+            "grid": [
+              10,
+              20,
+              40,
+              80,
+              160
+            ]
+          },
+          "frac_clearing_curve": {
+            "10": 0.0,
+            "20": 0.375,
+            "40": 0.875,
+            "80": 1.0,
+            "160": 1.0
+          }
+        },
+        "result": "PASS"
+      },
+      "S3": {
+        "statement": "NOT EVALUABLE INSIDE THIS ARTIFACT: it requires the other four candidates' screen files, which this artifact must not read",
+        "result": "NOT EVALUABLE INSIDE THIS ARTIFACT",
+        "reason": "needs the other candidates' screen files, which this artifact must not read"
+      }
+    },
+    "mechanism_verdict_summary": {
+      "result": "MIXED",
+      "far_over_full_ratio": {
+        "20": {
+          "far_over_full": 0.936787257926388,
+          "far_wins": true
+        },
+        "40": {
+          "far_over_full": 1.2015026081457314,
+          "far_wins": false
+        },
+        "80": {
+          "far_over_full": 1.2808717414520738,
+          "far_wins": false
+        },
+        "160": {
+          "far_over_full": 1.3299149884134849,
+          "far_wins": false
+        }
+      },
+      "interpretation": "see far_over_full_ratio for the measured values"
+    },
+    "headline_claim": {
+      "what_is_claimed": "an isotropic RBF in the coordinates S x, with S the analytic sensitivity of the far-end phase-voltage magnitudes, is far more sample-efficient than a standard stationary kernel, a graph-Laplacian kernel, ridge, an MLP and a tuned LinDistFlow baseline on this feeder",
+      "what_is_NOT_claimed": "that the OUTPUT RESTRICTION is what carries the kernel -- the mechanism factorial finds the unrestricted full-state operator at least as accurate on far-end targets from n = 40 upward",
+      "retained_claim": "admittance structure helps, and the analytic zero-AC-solve operator is what supplies it"
+    },
+    "pools": {
+      "canonical": [
+        "b1_rbf",
+        "b2_hop",
+        "b3_adm",
+        "b4_ridge",
+        "b5_lindistflow"
+      ],
+      "extended": [
+        "canonical + b6_mlp, b7_ard, the impedance-weighted Laplacian retained as a demonstration, and the unrestricted 55-dimension admittance Z-bus metric"
+      ],
+      "deliberate_exclusion": "the unrestricted 55x55 Z-bus metric is NOT in the canonical pool because it is the full-state metric's load-restricted cousin; including it would let a same-object comparison suppress the treatment's margin.  It appears only in the mechanism section, where it is the point."
+    },
+    "cost_ledger": {
+      "ac_solves_spent_by_this_artifact": 1,
+      "breakdown": {
+        "operator_construction": "0 AC solves with a flat reference voltage; 1 AC solve (no-load) if the no-load reference is adopted",
+        "adopted_reference_voltage": "noload|pu_correct",
+        "ensembles": "0 (archived 660-solve pool reused; 0 if regenerated, see provenance in protocol_checks)"
+      },
+      "ensembles_provenance": {
+        "primary": "archived",
+        "secondary": "archived"
+      },
+      "identification_cost_the_previous_framing_charged_to_the_kernel": 220,
+      "note": "the kernel itself needs no AC solve; the 220-solve identification cost belongs to the ground-truth ensemble, not to the metric"
+    },
+    "limitations": [
+      "the bootstrap interval is over SPLITS, not over data: all folds share one 220-draw pool, so the genuinely independent evidence is the untouched regime and the untouched physically-moved-phase feeder, not the seed list",
+      "the physically-moved-phase control is NOT run here: it is reserved confirmation evidence for the survivor.  This artifact therefore cannot distinguish 'phase identity matters' from 'phase consistency matters'; the shuffled-label control here is the INCONSISTENCY test, not the identity test",
+      "the 2.6x stressed regime is reserved confirmation evidence and was never opened",
+      "the paper cannot claim a data-efficiency advantage over neural surrogates across the curve: the MLP is run at n = 80 only",
+      "S3 (ranking against the other candidates) is not evaluable inside this artifact"
+    ],
+    "detail_file": "method_detail.json",
+    "results_files": [
+      "results/screen_2.0x.json",
+      "results/screen_1.0x.json",
+      "results/mechanism.json",
+      "results/controls.json",
+      "results/operator_checks.json",
+      "results/protocol_checks.json",
+      "results/extended_pool.json",
+      "results/screen_A_output_restricted_pullback.json"
+    ],
+    "audit": "audit_result.json"
+  },
+  "datasets": [
+    {
+      "dataset": "ieee_european_lv_asymmetric on_peak_566, pandapower runpp_3ph (1.0x and 2.0x loading; 24 folds per cell)",
+      "examples": [
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 2.0 loading from n = 10 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pullback kernel against every canonical baseline on identical folds.",
+          "output": "Treatment 0.552108; best per-fold baseline margin -266.2 percent; worst fold -854.2 percent; 0 percent of folds clear 20 percent.",
+          "metadata_regime": "2.0",
+          "metadata_n_train": "10",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "-2.66247",
+          "metadata_worst_fold_margin": "-8.54159",
+          "metadata_frac_folds_clearing_20pct": "0",
+          "metadata_mean_margin_vs_lindistflow": "-2.66247",
+          "metadata_mean_coverage68": "0.84731",
+          "metadata_mean_coverage95": "0.952983",
+          "metadata_mean_nlpd": "0.503247",
+          "predict_output_restricted_pullback": "0.552108",
+          "predict_over_mean_predictor": "0.388928",
+          "predict_b1_rbf": "1.38726",
+          "predict_b2_hop": "1.17006",
+          "predict_b3_adm": "1.11799",
+          "predict_b4_ridge": "1.34829",
+          "predict_b5_lindistflow": "0.154245"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 2.0 loading from n = 20 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pullback kernel against every canonical baseline on identical folds.",
+          "output": "Treatment 0.0974407; best per-fold baseline margin +15.3 percent; worst fold -21.2 percent; 38 percent of folds clear 20 percent.",
+          "metadata_regime": "2.0",
+          "metadata_n_train": "20",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "0.153406",
+          "metadata_worst_fold_margin": "-0.211845",
+          "metadata_frac_folds_clearing_20pct": "0.375",
+          "metadata_mean_margin_vs_lindistflow": "0.153406",
+          "metadata_mean_coverage68": "0.972835",
+          "metadata_mean_coverage95": "0.999377",
+          "metadata_mean_nlpd": "-0.713069",
+          "predict_output_restricted_pullback": "0.0974407",
+          "predict_over_mean_predictor": "0.0786444",
+          "predict_b1_rbf": "1.19535",
+          "predict_b2_hop": "0.451229",
+          "predict_b3_adm": "0.49631",
+          "predict_b4_ridge": "1.03919",
+          "predict_b5_lindistflow": "0.113585"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 2.0 loading from n = 40 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pullback kernel against every canonical baseline on identical folds.",
+          "output": "Treatment 0.0548653; best per-fold baseline margin +45.6 percent; worst fold +15.9 percent; 88 percent of folds clear 20 percent.",
+          "metadata_regime": "2.0",
+          "metadata_n_train": "40",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "0.456287",
+          "metadata_worst_fold_margin": "0.15901",
+          "metadata_frac_folds_clearing_20pct": "0.875",
+          "metadata_mean_margin_vs_lindistflow": "0.456287",
+          "metadata_mean_coverage68": "0.985813",
+          "metadata_mean_coverage95": "0.999676",
+          "metadata_mean_nlpd": "-1.2223",
+          "predict_output_restricted_pullback": "0.0548653",
+          "predict_over_mean_predictor": "0.0454389",
+          "predict_b1_rbf": "1.05744",
+          "predict_b2_hop": "0.235369",
+          "predict_b3_adm": "0.169162",
+          "predict_b4_ridge": "0.698478",
+          "predict_b5_lindistflow": "0.0988209"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 2.0 loading from n = 80 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pullback kernel against every canonical baseline on identical folds.",
+          "output": "Treatment 0.0229176; best per-fold baseline margin +71.8 percent; worst fold +50.6 percent; 100 percent of folds clear 20 percent.",
+          "metadata_regime": "2.0",
+          "metadata_n_train": "80",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "0.71799",
+          "metadata_worst_fold_margin": "0.506021",
+          "metadata_frac_folds_clearing_20pct": "1",
+          "metadata_mean_margin_vs_lindistflow": "0.753369",
+          "metadata_mean_coverage68": "0.998347",
+          "metadata_mean_coverage95": "1",
+          "metadata_mean_nlpd": "-1.78849",
+          "predict_output_restricted_pullback": "0.0229176",
+          "predict_over_mean_predictor": "0.0197293",
+          "predict_b1_rbf": "0.350667",
+          "predict_b2_hop": "0.0938203",
+          "predict_b3_adm": "0.0808559",
+          "predict_b4_ridge": "0.14842",
+          "predict_b5_lindistflow": "0.0912128"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 2.0 loading from n = 160 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pullback kernel against every canonical baseline on identical folds.",
+          "output": "Treatment 0.0144821; best per-fold baseline margin +71.9 percent; worst fold +60.1 percent; 100 percent of folds clear 20 percent.",
+          "metadata_regime": "2.0",
+          "metadata_n_train": "160",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "0.719178",
+          "metadata_worst_fold_margin": "0.600828",
+          "metadata_frac_folds_clearing_20pct": "1",
+          "metadata_mean_margin_vs_lindistflow": "0.831633",
+          "metadata_mean_coverage68": "0.997515",
+          "metadata_mean_coverage95": "1",
+          "metadata_mean_nlpd": "-2.0724",
+          "predict_output_restricted_pullback": "0.0144821",
+          "predict_over_mean_predictor": "0.0128259",
+          "predict_b1_rbf": "0.144778",
+          "predict_b2_hop": "0.0700336",
+          "predict_b3_adm": "0.052941",
+          "predict_b4_ridge": "0.103105",
+          "predict_b5_lindistflow": "0.0863345"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 1.0 loading from n = 10 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pullback kernel against every canonical baseline on identical folds.",
+          "output": "Treatment 0.522405; best per-fold baseline margin -505.8 percent; worst fold -1985.7 percent; 0 percent of folds clear 20 percent.",
+          "metadata_regime": "1.0",
+          "metadata_n_train": "10",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "-5.05786",
+          "metadata_worst_fold_margin": "-19.8569",
+          "metadata_frac_folds_clearing_20pct": "0",
+          "metadata_mean_margin_vs_lindistflow": "-5.05786",
+          "metadata_mean_coverage68": "0.859841",
+          "metadata_mean_coverage95": "0.955763",
+          "metadata_mean_nlpd": "0.42756",
+          "predict_output_restricted_pullback": "0.522405",
+          "predict_over_mean_predictor": "0.365001",
+          "predict_b1_rbf": "1.40813",
+          "predict_b2_hop": "1.22083",
+          "predict_b3_adm": "1.1587",
+          "predict_b4_ridge": "1.35582",
+          "predict_b5_lindistflow": "0.0825711"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 1.0 loading from n = 20 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pullback kernel against every canonical baseline on identical folds.",
+          "output": "Treatment 0.0507315; best per-fold baseline margin +31.8 percent; worst fold -5.8 percent; 75 percent of folds clear 20 percent.",
+          "metadata_regime": "1.0",
+          "metadata_n_train": "20",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "0.318332",
+          "metadata_worst_fold_margin": "-0.0576829",
+          "metadata_frac_folds_clearing_20pct": "0.75",
+          "metadata_mean_margin_vs_lindistflow": "0.318332",
+          "metadata_mean_coverage68": "0.998255",
+          "metadata_mean_coverage95": "0.999986",
+          "metadata_mean_nlpd": "-1.35637",
+          "predict_output_restricted_pullback": "0.0507315",
+          "predict_over_mean_predictor": "0.0395692",
+          "predict_b1_rbf": "1.20179",
+          "predict_b2_hop": "0.565168",
+          "predict_b3_adm": "0.629303",
+          "predict_b4_ridge": "1.03609",
+          "predict_b5_lindistflow": "0.0705333"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 1.0 loading from n = 40 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pullback kernel against every canonical baseline on identical folds.",
+          "output": "Treatment 0.038952; best per-fold baseline margin +46.5 percent; worst fold +16.6 percent; 83 percent of folds clear 20 percent.",
+          "metadata_regime": "1.0",
+          "metadata_n_train": "40",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "0.464605",
+          "metadata_worst_fold_margin": "0.165676",
+          "metadata_frac_folds_clearing_20pct": "0.833333",
+          "metadata_mean_margin_vs_lindistflow": "0.464605",
+          "metadata_mean_coverage68": "0.99572",
+          "metadata_mean_coverage95": "0.999907",
+          "metadata_mean_nlpd": "-1.82718",
+          "predict_output_restricted_pullback": "0.038952",
+          "predict_over_mean_predictor": "0.0315849",
+          "predict_b1_rbf": "1.04369",
+          "predict_b2_hop": "0.261984",
+          "predict_b3_adm": "0.151494",
+          "predict_b4_ridge": "0.678061",
+          "predict_b5_lindistflow": "0.0677617"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 1.0 loading from n = 80 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pullback kernel against every canonical baseline on identical folds.",
+          "output": "Treatment 0.0275117; best per-fold baseline margin +62.7 percent; worst fold +1.2 percent; 96 percent of folds clear 20 percent.",
+          "metadata_regime": "1.0",
+          "metadata_n_train": "80",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "0.627287",
+          "metadata_worst_fold_margin": "0.0122577",
+          "metadata_frac_folds_clearing_20pct": "0.958333",
+          "metadata_mean_margin_vs_lindistflow": "0.633109",
+          "metadata_mean_coverage68": "0.997851",
+          "metadata_mean_coverage95": "1",
+          "metadata_mean_nlpd": "-2.08668",
+          "predict_output_restricted_pullback": "0.0275117",
+          "predict_over_mean_predictor": "0.0227732",
+          "predict_b1_rbf": "0.203597",
+          "predict_b2_hop": "0.0806587",
+          "predict_b3_adm": "0.0770366",
+          "predict_b4_ridge": "0.0956803",
+          "predict_b5_lindistflow": "0.0626273"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 1.0 loading from n = 160 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pullback kernel against every canonical baseline on identical folds.",
+          "output": "Treatment 0.0175251; best per-fold baseline margin +65.4 percent; worst fold +23.8 percent; 100 percent of folds clear 20 percent.",
+          "metadata_regime": "1.0",
+          "metadata_n_train": "160",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "0.654216",
+          "metadata_worst_fold_margin": "0.23782",
+          "metadata_frac_folds_clearing_20pct": "1",
+          "metadata_mean_margin_vs_lindistflow": "0.757551",
+          "metadata_mean_coverage68": "0.997685",
+          "metadata_mean_coverage95": "1",
+          "metadata_mean_nlpd": "-2.4152",
+          "predict_output_restricted_pullback": "0.0175251",
+          "predict_over_mean_predictor": "0.0148192",
+          "predict_b1_rbf": "0.0845537",
+          "predict_b2_hop": "0.0448632",
+          "predict_b3_adm": "0.0544848",
+          "predict_b4_ridge": "0.0693696",
+          "predict_b5_lindistflow": "0.0568736"
+        },
+        {
+          "input": "Mechanism cell: metric S_far on far-end targets at n = 10 AC training runs.",
+          "output": "Far-end/target test RMSE 0.552108 (0.388928 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "10",
+          "predict_metric_rmse": "0.552108"
+        },
+        {
+          "input": "Mechanism cell: metric S_far on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0974407 (0.0786444 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.0974407"
+        },
+        {
+          "input": "Mechanism cell: metric S_far on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0548653 (0.0454389 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0548653"
+        },
+        {
+          "input": "Mechanism cell: metric S_far on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0229176 (0.0197293 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0229176"
+        },
+        {
+          "input": "Mechanism cell: metric S_far on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0144821 (0.0128259 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0144821"
+        },
+        {
+          "input": "Mechanism cell: metric S_far on near-end targets at n = 10 AC training runs.",
+          "output": "Far-end/target test RMSE 0.953276 (0.642726 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far",
+          "metadata_target_sheet": "near",
+          "metadata_n_train": "10",
+          "predict_metric_rmse": "0.953276"
+        },
+        {
+          "input": "Mechanism cell: metric S_far on near-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.326652 (0.234926 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far",
+          "metadata_target_sheet": "near",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.326652"
+        },
+        {
+          "input": "Mechanism cell: metric S_far on near-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.151601 (0.120303 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far",
+          "metadata_target_sheet": "near",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.151601"
+        },
+        {
+          "input": "Mechanism cell: metric S_far on near-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.118684 (0.0972538 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far",
+          "metadata_target_sheet": "near",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.118684"
+        },
+        {
+          "input": "Mechanism cell: metric S_full on far-end targets at n = 10 AC training runs.",
+          "output": "Far-end/target test RMSE 0.66861 (0.463922 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_full",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "10",
+          "predict_metric_rmse": "0.66861"
+        },
+        {
+          "input": "Mechanism cell: metric S_full on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.104016 (0.0842504 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_full",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.104016"
+        },
+        {
+          "input": "Mechanism cell: metric S_full on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0456639 (0.0374803 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_full",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0456639"
+        },
+        {
+          "input": "Mechanism cell: metric S_full on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0178922 (0.0153462 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_full",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0178922"
+        },
+        {
+          "input": "Mechanism cell: metric S_full on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0108895 (0.00964115 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_full",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0108895"
+        },
+        {
+          "input": "Mechanism cell: metric S_full_r on far-end targets at n = 10 AC training runs.",
+          "output": "Far-end/target test RMSE 0.668497 (0.463839 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_full_r",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "10",
+          "predict_metric_rmse": "0.668497"
+        },
+        {
+          "input": "Mechanism cell: metric S_full_r on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.110158 (0.0894964 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_full_r",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.110158"
+        },
+        {
+          "input": "Mechanism cell: metric S_full_r on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0499919 (0.0413011 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_full_r",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0499919"
+        },
+        {
+          "input": "Mechanism cell: metric S_full_r on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0177641 (0.0152437 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_full_r",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0177641"
+        },
+        {
+          "input": "Mechanism cell: metric S_full_r on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.011073 (0.0098094 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_full_r",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.011073"
+        },
+        {
+          "input": "Mechanism cell: metric S_all90 on far-end targets at n = 10 AC training runs.",
+          "output": "Far-end/target test RMSE 0.728232 (0.504645 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_all90",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "10",
+          "predict_metric_rmse": "0.728232"
+        },
+        {
+          "input": "Mechanism cell: metric S_all90 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.11225 (0.0910058 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_all90",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.11225"
+        },
+        {
+          "input": "Mechanism cell: metric S_all90 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0473962 (0.0392491 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_all90",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0473962"
+        },
+        {
+          "input": "Mechanism cell: metric S_all90 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0170621 (0.0146216 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_all90",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0170621"
+        },
+        {
+          "input": "Mechanism cell: metric S_all90 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0101235 (0.00896512 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_all90",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0101235"
+        },
+        {
+          "input": "Mechanism cell: metric S_all55 on far-end targets at n = 10 AC training runs.",
+          "output": "Far-end/target test RMSE 0.720012 (0.499111 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_all55",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "10",
+          "predict_metric_rmse": "0.720012"
+        },
+        {
+          "input": "Mechanism cell: metric S_all55 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0986155 (0.079502 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_all55",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.0986155"
+        },
+        {
+          "input": "Mechanism cell: metric S_all55 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0395058 (0.0327099 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_all55",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0395058"
+        },
+        {
+          "input": "Mechanism cell: metric S_all55 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0199597 (0.0170126 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_all55",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0199597"
+        },
+        {
+          "input": "Mechanism cell: metric S_all55 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0124232 (0.0110018 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_all55",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0124232"
+        },
+        {
+          "input": "Mechanism cell: metric S_near on far-end targets at n = 10 AC training runs.",
+          "output": "Far-end/target test RMSE 1.00443 (0.698889 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_near",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "10",
+          "predict_metric_rmse": "1.00443"
+        },
+        {
+          "input": "Mechanism cell: metric S_near on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.682896 (0.534016 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_near",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.682896"
+        },
+        {
+          "input": "Mechanism cell: metric S_near on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.563684 (0.459604 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_near",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.563684"
+        },
+        {
+          "input": "Mechanism cell: metric S_near on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.38192 (0.32516 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_near",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.38192"
+        },
+        {
+          "input": "Mechanism cell: metric S_near on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.325322 (0.286041 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_near",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.325322"
+        },
+        {
+          "input": "Mechanism cell: metric S_near on near-end targets at n = 10 AC training runs.",
+          "output": "Far-end/target test RMSE 0.185294 (0.130928 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_near",
+          "metadata_target_sheet": "near",
+          "metadata_n_train": "10",
+          "predict_metric_rmse": "0.185294"
+        },
+        {
+          "input": "Mechanism cell: metric S_near on near-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.107766 (0.0828103 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_near",
+          "metadata_target_sheet": "near",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.107766"
+        },
+        {
+          "input": "Mechanism cell: metric S_near on near-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0810216 (0.0644624 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_near",
+          "metadata_target_sheet": "near",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0810216"
+        },
+        {
+          "input": "Mechanism cell: metric S_near on near-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0672153 (0.0536856 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_near",
+          "metadata_target_sheet": "near",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0672153"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k3 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.184206 (0.149505 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k3",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.184206"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k3 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.148487 (0.125152 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k3",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.148487"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k3 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.133163 (0.115846 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k3",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.133163"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k3 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.12456 (0.110874 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k3",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.12456"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k5 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.116341 (0.094699 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k5",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.116341"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k5 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0888478 (0.0744945 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k5",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0888478"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k5 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0721769 (0.0624974 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k5",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0721769"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k5 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0613343 (0.0545218 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k5",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0613343"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k8 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0977271 (0.0788857 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k8",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.0977271"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k8 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.056608 (0.0467009 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k8",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.056608"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k8 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0230148 (0.0198134 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k8",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0230148"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k8 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0146857 (0.0130048 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k8",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0146857"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k10 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0974491 (0.0786518 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k10",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.0974491"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k10 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0548681 (0.0454416 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k10",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0548681"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k10 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0229305 (0.0197418 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k10",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0229305"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k10 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0145147 (0.0128547 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k10",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0145147"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k11 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0974429 (0.0786464 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k11",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.0974429"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k11 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0548655 (0.0454394 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k11",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0548655"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k11 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0229136 (0.0197266 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k11",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0229136"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k11 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0144883 (0.0128311 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k11",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0144883"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k15 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0974406 (0.0786444 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k15",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.0974406"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k15 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0548657 (0.0454392 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k15",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0548657"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k15 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0229169 (0.0197287 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k15",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0229169"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k15 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0144269 (0.0127775 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k15",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0144269"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k20 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0974407 (0.0786445 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k20",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.0974407"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k20 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0548653 (0.0454389 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k20",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0548653"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k20 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0229176 (0.0197293 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k20",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0229176"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k20 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0144821 (0.0128259 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k20",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0144821"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k45 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0974407 (0.0786444 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k45",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.0974407"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k45 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0548653 (0.0454389 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k45",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0548653"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k45 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0229176 (0.0197293 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k45",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0229176"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_k45 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0144821 (0.0128259 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_k45",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0144821"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_gamma0.5 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0877948 (0.0695964 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_gamma0.5",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.0877948"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_gamma0.5 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0432718 (0.0357765 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_gamma0.5",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0432718"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_gamma0.5 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0249538 (0.021328 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_gamma0.5",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0249538"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_gamma0.5 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.014435 (0.0127328 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_gamma0.5",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.014435"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_gamma1.0 on far-end targets at n = 20 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0974407 (0.0786444 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_gamma1.0",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "20",
+          "predict_metric_rmse": "0.0974407"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_gamma1.0 on far-end targets at n = 40 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0548653 (0.0454389 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_gamma1.0",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "40",
+          "predict_metric_rmse": "0.0548653"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_gamma1.0 on far-end targets at n = 80 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0229176 (0.0197293 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_gamma1.0",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "80",
+          "predict_metric_rmse": "0.0229176"
+        },
+        {
+          "input": "Mechanism cell: metric S_far_gamma1.0 on far-end targets at n = 160 AC training runs.",
+          "output": "Far-end/target test RMSE 0.0144821 (0.0128259 of the mean predictor).",
+          "metadata_regime": "2.0",
+          "metadata_metric": "S_far_gamma1.0",
+          "metadata_target_sheet": "far",
+          "metadata_n_train": "160",
+          "predict_metric_rmse": "0.0144821"
+        },
+        {
+          "input": "Attribution control shuffled_phase at n = 20 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.06344, 0.868546 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "shuffled_phase",
+          "metadata_n_train": "20",
+          "predict_control_rmse": "1.06344"
+        },
+        {
+          "input": "Attribution control shuffled_phase at n = 40 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.971727, 0.818068 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "shuffled_phase",
+          "metadata_n_train": "40",
+          "predict_control_rmse": "0.971727"
+        },
+        {
+          "input": "Attribution control shuffled_phase at n = 80 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.882745, 0.765036 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "shuffled_phase",
+          "metadata_n_train": "80",
+          "predict_control_rmse": "0.882745"
+        },
+        {
+          "input": "Attribution control shuffled_phase at n = 160 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.897246, 0.796237 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "shuffled_phase",
+          "metadata_n_train": "160",
+          "predict_control_rmse": "0.897246"
+        },
+        {
+          "input": "Attribution control random_operator at n = 20 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.489935, 0.389213 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "random_operator",
+          "metadata_n_train": "20",
+          "predict_control_rmse": "0.489935"
+        },
+        {
+          "input": "Attribution control random_operator at n = 40 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.231489, 0.19259 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "random_operator",
+          "metadata_n_train": "40",
+          "predict_control_rmse": "0.231489"
+        },
+        {
+          "input": "Attribution control random_operator at n = 80 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.0994437, 0.0862855 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "random_operator",
+          "metadata_n_train": "80",
+          "predict_control_rmse": "0.0994437"
+        },
+        {
+          "input": "Attribution control random_operator at n = 160 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.0653387, 0.058063 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "random_operator",
+          "metadata_n_train": "160",
+          "predict_control_rmse": "0.0653387"
+        },
+        {
+          "input": "Attribution control rotated_injections at n = 20 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.17543, 0.961555 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "rotated_injections",
+          "metadata_n_train": "20",
+          "predict_control_rmse": "1.17543"
+        },
+        {
+          "input": "Attribution control rotated_injections at n = 40 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.12418, 0.94827 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "rotated_injections",
+          "metadata_n_train": "40",
+          "predict_control_rmse": "1.12418"
+        },
+        {
+          "input": "Attribution control rotated_injections at n = 80 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.08185, 0.941118 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "rotated_injections",
+          "metadata_n_train": "80",
+          "predict_control_rmse": "1.08185"
+        },
+        {
+          "input": "Attribution control rotated_injections at n = 160 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.04523, 0.928776 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "rotated_injections",
+          "metadata_n_train": "160",
+          "predict_control_rmse": "1.04523"
+        },
+        {
+          "input": "Attribution control phase_aggregate_6 at n = 20 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.601297, 0.475412 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "phase_aggregate_6",
+          "metadata_n_train": "20",
+          "predict_control_rmse": "0.601297"
+        },
+        {
+          "input": "Attribution control phase_aggregate_6 at n = 40 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.611947, 0.500354 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "phase_aggregate_6",
+          "metadata_n_train": "40",
+          "predict_control_rmse": "0.611947"
+        },
+        {
+          "input": "Attribution control phase_aggregate_6 at n = 80 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.396332, 0.338035 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "phase_aggregate_6",
+          "metadata_n_train": "80",
+          "predict_control_rmse": "0.396332"
+        },
+        {
+          "input": "Attribution control phase_aggregate_6 at n = 160 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.321002, 0.282041 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "phase_aggregate_6",
+          "metadata_n_train": "160",
+          "predict_control_rmse": "0.321002"
+        },
+        {
+          "input": "Attribution control phase_aggregate_9 at n = 20 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.642603, 0.506694 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "phase_aggregate_9",
+          "metadata_n_train": "20",
+          "predict_control_rmse": "0.642603"
+        },
+        {
+          "input": "Attribution control phase_aggregate_9 at n = 40 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.595376, 0.484582 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "phase_aggregate_9",
+          "metadata_n_train": "40",
+          "predict_control_rmse": "0.595376"
+        },
+        {
+          "input": "Attribution control phase_aggregate_9 at n = 80 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.404009, 0.344989 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "phase_aggregate_9",
+          "metadata_n_train": "80",
+          "predict_control_rmse": "0.404009"
+        },
+        {
+          "input": "Attribution control phase_aggregate_9 at n = 160 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 0.289903, 0.254589 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "phase_aggregate_9",
+          "metadata_n_train": "160",
+          "predict_control_rmse": "0.289903"
+        },
+        {
+          "input": "Attribution control pca_11 at n = 20 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.18805, 0.975053 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "pca_11",
+          "metadata_n_train": "20",
+          "predict_control_rmse": "1.18805"
+        },
+        {
+          "input": "Attribution control pca_11 at n = 40 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.15518, 0.976433 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "pca_11",
+          "metadata_n_train": "40",
+          "predict_control_rmse": "1.15518"
+        },
+        {
+          "input": "Attribution control pca_11 at n = 80 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.10293, 0.959605 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "pca_11",
+          "metadata_n_train": "80",
+          "predict_control_rmse": "1.10293"
+        },
+        {
+          "input": "Attribution control pca_11 at n = 160 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.06855, 0.950158 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "pca_11",
+          "metadata_n_train": "160",
+          "predict_control_rmse": "1.06855"
+        },
+        {
+          "input": "Attribution control randproj_11 at n = 20 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.21579, 0.998595 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "randproj_11",
+          "metadata_n_train": "20",
+          "predict_control_rmse": "1.21579"
+        },
+        {
+          "input": "Attribution control randproj_11 at n = 40 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.1816, 0.998812 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "randproj_11",
+          "metadata_n_train": "40",
+          "predict_control_rmse": "1.1816"
+        },
+        {
+          "input": "Attribution control randproj_11 at n = 80 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.14714, 0.998505 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "randproj_11",
+          "metadata_n_train": "80",
+          "predict_control_rmse": "1.14714"
+        },
+        {
+          "input": "Attribution control randproj_11 at n = 160 AC training runs, matched folds and matched tuning budget.",
+          "output": "Test RMSE 1.1234, 0.998299 of the mean predictor.",
+          "metadata_regime": "2.0",
+          "metadata_control": "randproj_11",
+          "metadata_n_train": "160",
+          "predict_control_rmse": "1.1234"
+        }
+      ]
+    }
+  ]
+}

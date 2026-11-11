@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "method_name": "output-restricted sensitivity-operator pullback kernel",
+    "candidate_id": "A_output_restricted_pullback",
+    "mechanism": "output-restricted sensitivity-operator pullback: an isotropic RBF in the coordinates S x, S = d|V_far|/dx of shape 45 x 110",
+    "feeder": "IEEE PES European LV test feeder (pandapower ieee_european_lv_asymmetric('on_peak_566')), 906 LV buses, 905 lines, 55 single-phase loads on their real phases (21/19/15)",
+    "ground_truth": "pandapower runpp_3ph; 220-draw archived ensemble per regime",
+    "folds": "12 seeds x 2 partition schemes = 24 folds per cell",
+    "normaliser": "training-fold per-output voltage standard deviation",
+    "regime_primary": "2.0",
+    "regime_secondary": "1.0",
+    "screen_metric_at_80": 0.717989786498841,
+    "crossovers": {
+      "crossover_vs_best": {
+        "interval": [
+          10,
+          20
+        ]
+      },
+      "mean_margin_curve_vs_best": {
+        "10": -2.6624689680103883,
+        "20": 0.15340622225818032,
+        "40": 0.4562871955486685,
+        "80": 0.717989786498841,
+        "160": 0.7191782617328298
+      },
+      "crossover_vs_lindistflow": {
+        "interval": [
+          10,
+          20
+        ]
+      },
+      "mean_margin_curve_vs_lindistflow": {
+        "10": -2.6624689680103883,
+        "20": 0.15340622225818032,
+        "40": 0.4562871955486685,
+        "80": 0.7533685548113702,
+        "160": 0.831633267733579
+      },
+      "crossover_everyfold20": {
+        "value": 80,
+        "grid": [
+          10,
+          20,
+          40
+        ]
+      },
+      "frac_clearing_20pct_curve": {
+        "10": 0.0,
+        "20": 0.375,
+        "40": 0.875,
+        "80": 1.0,
+        "160": 1.0
+      }
+    },
+    "verdicts": {
+      "S1": {
+        "statement": "the treatment must beat the best per-fold canonical baseline by >= 20 percent in every one of the 24 folds at n = 80 on the 2.0x regime",
+        "measured": {
+          "frac_folds_clearing_20pct": 1.0,
+          "mean_margin": 0.717989786498841,
+          "worst_fold_margin": 0.5060213351653154,
+          "n_folds": 24
+        },
+        "result": "PASS"
+      },
+      "S2": {
+        "statement": "the mean paired margin must become positive at a finite n, reported as the interval between adjacent grid sizes, with the full fraction-clearing curve",
+        "measured": {
+          "crossover_vs_best": {
+            "interval": [
+              10,
+              20
+            ]
+          },
+          "crossover_vs_lindistflow": {
+            "interval": [
+              10,
+              20
+            ]
+          },
+          "crossover_everyfold20": {
+            "value": 80,
+            "grid": [
+              10,
+              20,
+              40
+            ]
+          },
+          "frac_clearing_curve": {
+            "10": 0.0,
+            "20": 0.375,
+            "40": 0.875,
+            "80": 1.0,
+            "160": 1.0
+          }
+        },
+        "result": "PASS"
+      },
+      "S3": {
+        "statement": "NOT EVALUABLE INSIDE THIS ARTIFACT: it requires the other four candidates' screen files, which this artifact must not read",
+        "result": "NOT EVALUABLE INSIDE THIS ARTIFACT",
+        "reason": "needs the other candidates' screen files, which this artifact must not read"
+      }
+    },
+    "mechanism_verdict_summary": {
+      "result": "MIXED",
+      "far_over_full_ratio": {
+        "20": {
+          "far_over_full": 0.936787257926388,
+          "far_wins": true
+        },
+        "40": {
+          "far_over_full": 1.2015026081457314,
+          "far_wins": false
+        },
+        "80": {
+          "far_over_full": 1.2808717414520738,
+          "far_wins": false
+        },
+        "160": {
+          "far_over_full": 1.3299149884134849,
+          "far_wins": false
+        }
+      },
+      "interpretation": "see far_over_full_ratio for the measured values"
+    },
+    "headline_claim": {
+      "what_is_claimed": "an isotropic RBF in the coordinates S x, with S the analytic sensitivity of the far-end phase-voltage magnitudes, is far more sample-efficient than a standard stationary kernel, a graph-Laplacian kern...",
+      "what_is_NOT_claimed": "that the OUTPUT RESTRICTION is what carries the kernel -- the mechanism factorial finds the unrestricted full-state operator at least as accurate on far-end targets from n = 40 upward",
+      "retained_claim": "admittance structure helps, and the analytic zero-AC-solve operator is what supplies it"
+    },
+    "pools": {
+      "canonical": [
+        "b1_rbf",
+        "b2_hop",
+        "b3_adm"
+      ],
+      "extended": [
+        "canonical + b6_mlp, b7_ard, the impedance-weighted Laplacian retained as a demonstration, and the unrestricted 55-dimension admittance Z-bus metric"
+      ],
+      "deliberate_exclusion": "the unrestricted 55x55 Z-bus metric is NOT in the canonical pool because it is the full-state metric's load-restricted cousin; including it would let a same-object comparison suppress the treatment's ..."
+    },
+    "cost_ledger": {
+      "ac_solves_spent_by_this_artifact": 1,
+      "breakdown": {
+        "operator_construction": "0 AC solves with a flat reference voltage; 1 AC solve (no-load) if the no-load reference is adopted",
+        "adopted_reference_voltage": "noload|pu_correct",
+        "ensembles": "0 (archived 660-solve pool reused; 0 if regenerated, see provenance in protocol_checks)"
+      },
+      "ensembles_provenance": {
+        "primary": "archived",
+        "secondary": "archived"
+      },
+      "identification_cost_the_previous_framing_charged_to_the_kernel": 220,
+      "note": "the kernel itself needs no AC solve; the 220-solve identification cost belongs to the ground-truth ensemble, not to the metric"
+    },
+    "limitations": [
+      "the bootstrap interval is over SPLITS, not over data: all folds share one 220-draw pool, so the genuinely independent evidence is the untouched regime and the untouched physically-moved-phase feeder, ...",
+      "the physically-moved-phase control is NOT run here: it is reserved confirmation evidence for the survivor.  This artifact therefore cannot distinguish 'phase identity matters' from 'phase consistency ...",
+      "the 2.6x stressed regime is reserved confirmation evidence and was never opened"
+    ],
+    "detail_file": "method_detail.json",
+    "results_files": [
+      "results/screen_2.0x.json",
+      "results/screen_1.0x.json",
+      "results/mechanism.json"
+    ],
+    "audit": "audit_result.json"
+  },
+  "datasets": [
+    {
+      "dataset": "ieee_european_lv_asymmetric on_peak_566, pandapower runpp_3ph (1.0x and 2.0x loading; 24 folds per cell)",
+      "examples": [
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 2.0 loading from n = 10 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pu...",
+          "output": "Treatment 0.552108; best per-fold baseline margin -266.2 percent; worst fold -854.2 percent; 0 percent of folds clear 20 percent.",
+          "metadata_regime": "2.0",
+          "metadata_n_train": "10",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "-2.66247",
+          "metadata_worst_fold_margin": "-8.54159",
+          "metadata_frac_folds_clearing_20pct": "0",
+          "metadata_mean_margin_vs_lindistflow": "-2.66247",
+          "metadata_mean_coverage68": "0.84731",
+          "metadata_mean_coverage95": "0.952983",
+          "metadata_mean_nlpd": "0.503247",
+          "predict_output_restricted_pullback": "0.552108",
+          "predict_over_mean_predictor": "0.388928",
+          "predict_b1_rbf": "1.38726",
+          "predict_b2_hop": "1.17006",
+          "predict_b3_adm": "1.11799",
+          "predict_b4_ridge": "1.34829",
+          "predict_b5_lindistflow": "0.154245"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 2.0 loading from n = 20 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pu...",
+          "output": "Treatment 0.0974407; best per-fold baseline margin +15.3 percent; worst fold -21.2 percent; 38 percent of folds clear 20 percent.",
+          "metadata_regime": "2.0",
+          "metadata_n_train": "20",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "0.153406",
+          "metadata_worst_fold_margin": "-0.211845",
+          "metadata_frac_folds_clearing_20pct": "0.375",
+          "metadata_mean_margin_vs_lindistflow": "0.153406",
+          "metadata_mean_coverage68": "0.972835",
+          "metadata_mean_coverage95": "0.999377",
+          "metadata_mean_nlpd": "-0.713069",
+          "predict_output_restricted_pullback": "0.0974407",
+          "predict_over_mean_predictor": "0.0786444",
+          "predict_b1_rbf": "1.19535",
+          "predict_b2_hop": "0.451229",
+          "predict_b3_adm": "0.49631",
+          "predict_b4_ridge": "1.03919",
+          "predict_b5_lindistflow": "0.113585"
+        },
+        {
+          "input": "Predict the far-end phase-voltage magnitudes of the IEEE PES European LV feeder at 2.0 loading from n = 40 AC training runs, and report the normalised test RMSE of the output-restricted sensitivity-pu...",
+          "output": "Treatment 0.0548653; best per-fold baseline margin +45.6 percent; worst fold +15.9 percent; 88 percent of folds clear 20 percent.",
+          "metadata_regime": "2.0",
+          "metadata_n_train": "40",
+          "metadata_n_folds": "24",
+          "metadata_mean_margin_vs_best_baseline": "0.456287",
+          "metadata_worst_fold_margin": "0.15901",
+          "metadata_frac_folds_clearing_20pct": "0.875",
+          "metadata_mean_margin_vs_lindistflow": "0.456287",
+          "metadata_mean_coverage68": "0.985813",
+          "metadata_mean_coverage95": "0.999676",
+          "metadata_mean_nlpd": "-1.2223",
+          "predict_output_restricted_pullback": "0.0548653",
+          "predict_over_mean_predictor": "0.0454389",
+          "predict_b1_rbf": "1.05744",
+          "predict_b2_hop": "0.235369",
+          "predict_b3_adm": "0.169162",
+          "predict_b4_ridge": "0.698478",
+          "predict_b5_lindistflow": "0.0988209"
+        }
+      ]
+    }
+  ]
+}
