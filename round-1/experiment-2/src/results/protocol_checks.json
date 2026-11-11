@@ -1,0 +1,294 @@
+{
+  "input_regeneration": {
+    "regenerated": false,
+    "missing_at_start": []
+  },
+  "X_shape": [
+    220,
+    110
+  ],
+  "Y_shape": [
+    220,
+    45
+  ],
+  "finite_rows": 220,
+  "mean_total_load_kW": 114.69283114609138,
+  "far_end_sd_mean": 0.021013037612169598,
+  "sheet15": [
+    681,
+    697,
+    713,
+    729,
+    745,
+    761,
+    777,
+    793,
+    809,
+    825,
+    841,
+    857,
+    873,
+    889,
+    906
+  ],
+  "phase_counts": [
+    21,
+    19,
+    15
+  ],
+  "n_loads": 55,
+  "y_min_row_p1": 0.8361971283214061,
+  "deviation_from_archive": {
+    "mean_total_load_kW": 3.114609137355728e-05,
+    "far_end_sd": 3.761216959760616e-08
+  },
+  "ensemble_source": "archived (iter_2 pilot ens_s2.0_X.npy / ens_s2.0_Y.npy)",
+  "S_vs_Physics_lin_operator_max_rel": 0.0,
+  "exponent_orientation": {
+    "gamma0_rotation_identity_rel_dev": 2.447593707889208e-15,
+    "cond_gamma0": 1.130471862983551e+16,
+    "cond_gamma05": 106323650.37862225,
+    "cond_gamma05_expected": 106323650.37862228,
+    "cond_gamma10": 1.0000000000000013,
+    "note": "STEP 3 asserts Phi_{45,0}(x) == S x / sv0 elementwise. That is impossible: the ratio form drops the left singular vector U, an orthogonal rotation that leaves every RBF kernel bit-identical. The assertion is therefore implemented as (a) U @ Phi_{45,0}(x) == S x / sv0 to 1e-10 and (b) the squared-distance matrices agreeing. Recorded as a correction."
+  },
+  "folds_per_n": {
+    "10": 24,
+    "20": 24,
+    "40": 24,
+    "80": 24,
+    "160": 12
+  },
+  "total_fold_cells": 108,
+  "shuffled_phase_operator": {
+    "seed": 31,
+    "construction": "phase_shuffled = phase_true[perm] with perm = default_rng(31).permutation(55); the operator's load-to-phase assignment is permuted while the data stay on the real phases",
+    "permutation": [
+      32,
+      15,
+      24,
+      34,
+      39,
+      5,
+      33,
+      20,
+      17,
+      40,
+      29,
+      23,
+      46,
+      53,
+      13,
+      42,
+      54,
+      7,
+      38,
+      27,
+      22,
+      2,
+      49,
+      10,
+      25,
+      3,
+      28,
+      43,
+      12,
+      51,
+      11,
+      37,
+      50,
+      4,
+      47,
+      9,
+      44,
+      36,
+      48,
+      0,
+      6,
+      18,
+      16,
+      1,
+      30,
+      35,
+      41,
+      26,
+      21,
+      45,
+      52,
+      19,
+      8,
+      14,
+      31
+    ],
+    "n_phase_labels_changed": 33,
+    "shuffled_phase_counts": [
+      21,
+      19,
+      15
+    ],
+    "singular_values_normalised_first20": [
+      1.0,
+      0.92053740264732,
+      0.4951085927771594,
+      0.11438729412094119,
+      0.09959248843766284,
+      0.058432295969981396,
+      0.0531684569519053,
+      0.03468022379583643,
+      0.022574187608260216,
+      0.014771994750086904,
+      0.012760296028844912,
+      0.011295243162248305,
+      0.009235982616047654,
+      0.007623934877259207,
+      0.005530479426309781,
+      0.0050643770703694205,
+      0.0047520977577508935,
+      0.0031561231325021246,
+      0.002313404912668837,
+      0.0018243522857844952
+    ],
+    "cyclic_relabel_null_control": {
+      "construction": "phase_true + 1 mod 3 (global cyclic relabel, a symmetry)",
+      "max_abs_rel_dev_from_real": 1.2077482700279658,
+      "singular_values_normalised_first20": [
+        1.0,
+        0.9434430110468647,
+        0.5036565912617175,
+        0.11570356127502758,
+        0.10238559861854353,
+        0.05929851292016588,
+        0.05151665729983457,
+        0.04252180339561486,
+        0.024166236451601427,
+        0.019347286158404184,
+        0.010393831740810456,
+        0.006639196922769742,
+        0.006489439858603978,
+        0.005331776355711596,
+        0.005094659484061058,
+        0.002980094098506073,
+        0.002532433919045274,
+        0.002352540017674678,
+        0.001986387354653732,
+        0.0008861847464463992
+      ]
+    }
+  },
+  "inputs_regenerated": false,
+  "reused_ensembles": "archived 220-draw runpp_3ph pools from iter_2/gen_hypo/claude_agent/pilot (ens_s2.0_X.npy, ens_s2.0_Y.npy); zero AC solves on the measurement path",
+  "T4_baseline_order": {
+    "n": 10,
+    "b5p_honest_per_output_ridge_mean": 0.18327212733100384,
+    "b5s_p17_jointmap_mean": 0.4315265435947066,
+    "honest_beats_p17": true,
+    "honest_in_expected_range": true,
+    "p17_in_expected_range": true,
+    "note": "probe8.log recorded 0.1665 honest against 0.3805 for the archived joint-map calibration at n=10 on the p17 fold family. This artifact uses the shared screen fold family (seed base 20261111, not p17's 31337), so the levels are close but not identical. The ordering is the invariant that matters.",
+    "passes": true
+  },
+  "T7_rbf_defect_check": {
+    "10": {
+      "b1a_median_normalised": 1.4017008135385123,
+      "b1b_raw_scale": 1.4016449240572086,
+      "mean_predictor": 1.401845056250229,
+      "median_normalisation_gain": -3.987420804254851e-05
+    },
+    "160": {
+      "b1a_median_normalised": 0.22197133772726654,
+      "b1b_raw_scale": 0.19744571589453563,
+      "mean_predictor": 1.1156597455627477,
+      "median_normalisation_gain": -0.12421450484056648
+    }
+  },
+  "baselines_per_fold_rows": 108,
+  "baselines_per_fold_nan_cells": 0,
+  "leakage_checks": {
+    "T6a_predictions_bit_identical": true,
+    "T6a_predictive_variance_bit_identical": true,
+    "T6a_hyperparameters_identical": true,
+    "T6a_rmse_changed_by_permutation": true,
+    "T6b_vsd_train": 0.02045297363178279,
+    "T6b_vsd_test": 0.021056667880665365,
+    "T6b_vsd_differs_from_test": true,
+    "T6b_feature_scale_ignores_test_rows": true,
+    "T6b_ridge_refit_matches": true,
+    "T6b_ridge_single_shared_coefficient_vector": true,
+    "T6b_ridge_refit_residual": 2.220446049250313e-16,
+    "T6c_selection_unchanged_by_test_permutation": true
+  },
+  "audit": {
+    "fold_counts": {
+      "10": 24,
+      "20": 24,
+      "40": 24,
+      "80": 24,
+      "160": 12
+    },
+    "n80_A1_sel_mean_margin": -0.15143700034637606,
+    "n80_A1_sel_worst_margin": -1.112011480675391,
+    "n80_A1_sel_mean_rmse": 0.11111523215108499,
+    "n80_best_baseline_mean_rmse": 0.09411521568791087,
+    "n80_frac_folds_clearing_20pct": 0.08333333333333333,
+    "n80_A1_sel_margin_boot95": [
+      -0.28961961340304554,
+      -0.023906083402293655
+    ],
+    "n80_A1_sel_margin_wilcoxon_p": 0.09509599208831787,
+    "n80_aggr_field_matches": true,
+    "n80_A0_minus_A1_mean": 0.0006421223204710549,
+    "n80_A0_minus_A1_boot95": [
+      -0.001442056013978288,
+      0.002645574831095769
+    ],
+    "n80_selection_optimism": 0.002894499573732709,
+    "n80_aggr_selection_optimism": 0.002894499573732709,
+    "n80_sel_opt_matches": true,
+    "selected_k_counts": {
+      "3": 16,
+      "8": 71,
+      "11": 9,
+      "20": 2,
+      "45": 10
+    },
+    "selected_gamma_counts": {
+      "0": 18,
+      "0.3": 64,
+      "0.5": 13,
+      "0.7": 13
+    },
+    "S_rank_1e2": 11,
+    "S_rank_1e3": 19,
+    "S_rank_1e4": 23,
+    "S_stable_rank": 2.176836541780568,
+    "S_facts_match": true,
+    "crossover_rederived": {
+      "A1_sel": {
+        "mean_margin_crossover": 160,
+        "every_fold_crossover": null
+      },
+      "A0_raw": {
+        "mean_margin_crossover": 160,
+        "every_fold_crossover": null
+      }
+    },
+    "crossover_matches": true,
+    "placebo_permuted_margin_mean": 1.0922975487067297e-17,
+    "placebo_permuted_margin_clears_20pct": false,
+    "placebo_permuted_margin_ci": [
+      -0.14034644832555082,
+      0.12940580081939856
+    ],
+    "placebo_mean_predictor_mean_margin": -11.30835694041606,
+    "placebo_mean_predictor_clears_20pct": false,
+    "placebo_random_arm_mean_margin": -0.30597513843695895,
+    "placebo_random_arm_clears_20pct": false,
+    "A10_equals_A1_mean_prediction": true
+  },
+  "test_suite": [
+    "test_gp.py: GP posterior + both hyperparameter-selection criteria vs dense reference",
+    "test_leakage.py: T6 test-permutation invariance and train-only calibration",
+    "test_cell.py: T2 single-cell smoke test with timings",
+    "audit.py: independent re-derivation of every headline number with three placebo controls"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "n_grid": [
+    10,
+    20,
+    40,
+    80,
+    160
+  ],
+  "k_grid": [
+    3,
+    5,
+    8,
+    10,
+    11,
+    15,
+    20,
+    45
+  ],
+  "gamma_grid": [
+    0.0,
+    0.15,
+    0.3,
+    0.5,
+    0.7,
+    0.85,
+    1.0
+  ],
+  "f_grid": [
+    0.1,
+    0.01,
+    0.001,
+    0.0001,
+    1e-05,
+    1e-06,
+    1e-07,
+    1e-08
+  ],
+  "seed_base": 20261111,
+  "seeds_used": "0-11",
+  "schemes": [
+    0,
+    1
+  ],
+  "folds_per_n": {
+    "10": 24,
+    "20": 24,
+    "40": 24,
+    "80": 24,
+    "160": 12
+  },
+  "total_fold_cells": 108,
+  "reserved": [
+    "seeds 12-29",
+    "n equal 60",
+    "n equal 120",
+    "scheme 2",
+    "regimes 1.0x and 2.6x",
+    "moved-phase feeder",
+    "near-end targets"
+  ],
+  "reserved_note": "Reserving seeds reserves SPLITS, not data: every fold draws from the same 220-row pool, so the genuinely untouched evidence is the 2.6x regime and the moved-phase feeder.",
+  "denominator": "mean per-output standard deviation of the TRAINING rows of each fold (leak-free); the all-row denominator is reported beside it for the LinDistFlow row so the change from the archived tables is quantified",
+  "baseline_primary": "per-output ridge with an unpenalised intercept on a logspace(-8,3,12) trace-relative grid chosen by train-only CV on multiphase LinDistFlow",
+  "margin_reference": "minimum over b1a, b2, b3, b4 and b5-primary, per fold",
+  "reused_ensembles": "archived 220-draw runpp_3ph pools at the 2.0x regime, never re-solved on the measurement path",
+  "gp_hyperparameters": {
+    "lgrid": [
+      0.02,
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0,
+      8.0,
+      16.0
+    ],
+    "s2": [
+      0.3,
+      1.0,
+      3.0
+    ],
+    "noise": [
+      1e-08,
+      1e-05,
+      0.001,
+      0.1
+    ],
+    "convention": "one shared triple per arm and fold, chosen by marginal likelihood over all 45 outputs"
+  },
+  "selection": {
+    "k_coarse": [
+      3,
+      8,
+      11,
+      20,
+      45
+    ],
+    "gamma_coarse": [
+      0.0,
+      0.3,
+      0.5,
+      0.7
+    ],
+    "reps": 5,
+    "tie_break": "larger gamma then smaller k"
+  },
+  "nproc": 2
+}

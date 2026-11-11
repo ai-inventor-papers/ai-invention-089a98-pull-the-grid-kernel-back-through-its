@@ -1,0 +1,18 @@
+{
+  "rendered": [
+    "gamma_curve",
+    "k_curve",
+    "jitter_sweep",
+    "rmse_vs_n",
+    "selected_hist",
+    "margin_vs_n"
+  ],
+  "specs": [
+    "gamma_curve",
+    "k_curve",
+    "jitter_sweep",
+    "rmse_vs_n",
+    "selected_hist",
+    "margin_vs_n"
+  ]
+}

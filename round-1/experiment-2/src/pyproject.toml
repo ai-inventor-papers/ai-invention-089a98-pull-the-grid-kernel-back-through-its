@@ -1,0 +1,15 @@
+[project]
+name = "screen-b-whitening-rank"
+version = "0.1.0"
+description = "Screen candidate B: whiten versus truncate the pullback sensitivity kernel of a three-phase unbalanced LV feeder"
+requires-python = ">=3.12"
+# pinned to the exact versions installed in .venv when the sweep was run
+dependencies = [
+    "numpy==2.4.6",
+    "scipy==1.18.1",
+    "networkx==3.7",
+    "loguru==0.7.3",
+    "matplotlib==3.11.2",
+    "pandas==2.3.3",
+    "pandapower==3.5.6",
+]

@@ -1,0 +1,5474 @@
+{
+  "metadata": {
+    "method_name": "B_whitening_rank",
+    "description": "Screen candidate B: whiten versus truncate the target-restricted pullback sensitivity operator of a three-phase unbalanced LV feeder.",
+    "screen_B": {
+      "candidate": "B_whitening_rank",
+      "mechanism_one_line": "partial whitening of the target-restricted sensitivity operator re-weights its near-null directions, while rank truncation discards them",
+      "protocol": {
+        "n_grid": [
+          10,
+          20,
+          40
+        ],
+        "k_grid": [
+          3,
+          5,
+          8
+        ],
+        "gamma_grid": [
+          0.0,
+          0.15,
+          0.3
+        ],
+        "f_grid": [
+          0.1,
+          0.01,
+          0.001
+        ],
+        "seed_base": 20261111,
+        "seeds_used": "0-11",
+        "schemes": [
+          0,
+          1
+        ],
+        "folds_per_n": {
+          "10": 24,
+          "20": 24,
+          "40": 24,
+          "80": 24,
+          "160": 12
+        },
+        "total_fold_cells": 108,
+        "reserved": [
+          "seeds 12-29",
+          "n equal 60",
+          "n equal 120"
+        ],
+        "reserved_note": "Reserving seeds reserves SPLITS, not data: every fold draws from the same 220-row pool, so the genuinely untouched evidence is the 2.6x regime and the moved-phase feeder.",
+        "denominator": "mean per-output standard deviation of the TRAINING rows of each fold (leak-free); the all-row denominator is reported beside it for the LinDistFlow row so the change from the archived tables is quanti...",
+        "baseline_primary": "per-output ridge with an unpenalised intercept on a logspace(-8,3,12) trace-relative grid chosen by train-only CV on multiphase LinDistFlow",
+        "margin_reference": "minimum over b1a, b2, b3, b4 and b5-primary, per fold",
+        "reused_ensembles": "archived 220-draw runpp_3ph pools at the 2.0x regime, never re-solved on the measurement path",
+        "gp_hyperparameters": {
+          "lgrid": [
+            0.02,
+            0.05,
+            0.1
+          ],
+          "s2": [
+            0.3,
+            1.0,
+            3.0
+          ],
+          "noise": [
+            1e-08,
+            1e-05,
+            0.001
+          ],
+          "convention": "one shared triple per arm and fold, chosen by marginal likelihood over all 45 outputs"
+        },
+        "selection": {
+          "k_coarse": [
+            3,
+            8,
+            11
+          ],
+          "gamma_coarse": [
+            0.0,
+            0.3,
+            0.5
+          ],
+          "reps": 5,
+          "tie_break": "larger gamma then smaller k"
+        },
+        "nproc": 2
+      },
+      "structural_facts": {
+        "shape": [
+          45,
+          110
+        ],
+        "singular_values_normalised_first20": [
+          1.0,
+          0.9434430110468647,
+          0.5036565912617174
+        ],
+        "stable_rank": 2.1768365417805677,
+        "rank_1e2": 11,
+        "rank_1e3": 19,
+        "rank_1e4": 23,
+        "rank_at_double_precision_floor": 29,
+        "condition_number": 1.1304718629835504e+16,
+        "condition_number_note": "cond(S) is NOT a reproducible number for this operator. S is rank deficient (29 of 45 singular values sit above the double-precision floor, so the last sixteen are pure round-off), therefore cond(S) i...",
+        "condition_number_at_rank23": 2230.1882222959803,
+        "operator_crosscheck_vs_archive": {
+          "elementwise_max_abs_over_max_abs": 0.0,
+          "top11_principal_angles_rad": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "top45_principal_angles_rad": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "agree": true
+        },
+        "admittance_laplacian_identity_max_rel_dev": 4.5563466363436756e-12,
+        "admittance_laplacian_asymmetry": {
+          "max_abs_L_minus_LT": 8.134767913360665e-12,
+          "max_abs_L_minus_LH": 114292.1190464186,
+          "laplacian_scale": 164353.43191560943
+        },
+        "admittance_spectrum_method": "scipy.linalg.eigvals on the full grounded block Laplacian (general, non-Hermitian)",
+        "admittance_spectrum_top10_general": [
+          351088.20978383877,
+          351088.20978383877,
+          276178.1950151687
+        ],
+        "admittance_spectrum_top10_hermitian_part": [
+          324886.232312605,
+          324886.232312605,
+          266869.1798080468
+        ],
+        "singular_values_normalised_first45": [
+          1.0,
+          0.9434430110468647,
+          0.5036565912617174
+        ]
+      },
+      "per_n": {
+        "10": {
+          "folds": 24,
+          "arms": {
+            "A0_raw": {
+              "description": "gamma 0, k 45 - the archived treatment",
+              "folds": 24,
+              "mean_far_end_rmse": 0.9147002887853267,
+              "worst_fold_far_end_rmse": 2.1379589832150394,
+              "mean_rmse_over_mean_predictor": 0.626413214266742,
+              "mean_margin_vs_best_baseline": -4.114937289421994,
+              "worst_fold_margin": -7.652773837276133,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.1510971695377976,
+              "mean_coverage68": 0.7757182940516274,
+              "mean_coverage95": 0.9289670514670515,
+              "per_fold": {
+                "rmse": [
+                  1.1302628715464773,
+                  0.7502420113238787,
+                  0.5002492620455129
+                ],
+                "margin": [
+                  -7.408932220875158,
+                  -1.9604804697465466,
+                  -2.0408969607005947
+                ],
+                "nlpd": [
+                  2.8250702898906743,
+                  2.725117928125765,
+                  3.5659416678319658
+                ],
+                "c68": [
+                  0.7417989417989418,
+                  0.7678787878787878,
+                  0.8511111111111112
+                ],
+                "c95": [
+                  0.9084656084656084,
+                  0.9290909090909091,
+                  0.9822222222222222
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A1_sel": {
+              "description": "train-selected (k, gamma) - the candidate deliverable",
+              "folds": 24,
+              "mean_far_end_rmse": 0.9277588360794159,
+              "worst_fold_far_end_rmse": 2.144326536275941,
+              "mean_rmse_over_mean_predictor": 0.6372402194726489,
+              "mean_margin_vs_best_baseline": -4.25453531462,
+              "worst_fold_margin": -7.7802473269698,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.087434898131393,
+              "mean_coverage68": 0.7621813371813372,
+              "mean_coverage95": 0.9218738977072309,
+              "per_fold": {
+                "rmse": [
+                  1.084378681273828,
+                  0.8703485827524052,
+                  0.4735603135063741
+                ],
+                "margin": [
+                  -7.06756292022342,
+                  -2.434425081799031,
+                  -1.8786611541646563
+                ],
+                "nlpd": [
+                  2.911707941377169,
+                  2.567291077089728,
+                  3.7014266072237656
+                ],
+                "c68": [
+                  0.7409523809523809,
+                  0.7573737373737374,
+                  0.8105820105820106
+                ],
+                "c95": [
+                  0.9112169312169313,
+                  0.9303030303030303,
+                  0.9703703703703703
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A2_fixed_0p5": {
+              "description": "gamma 0.5, k 45 - the pilot chosen exponent, no selection",
+              "folds": 24,
+              "mean_far_end_rmse": 0.9382163943834243,
+              "worst_fold_far_end_rmse": 2.1413311845421914,
+              "mean_rmse_over_mean_predictor": 0.6484903506161545,
+              "mean_margin_vs_best_baseline": -4.323973105195969,
+              "worst_fold_margin": -8.247145879020646,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.0403246957097756,
+              "mean_coverage68": 0.7622174122174122,
+              "mean_coverage95": 0.9262109187109188,
+              "per_fold": {
+                "rmse": [
+                  1.242928992682889,
+                  0.8703759381950008,
+                  0.3458941533679665
+                ],
+                "margin": [
+                  -8.247145879020646,
+                  -2.4345330273050454,
+                  -1.1026087582815038
+                ],
+                "nlpd": [
+                  2.657241258979586,
+                  2.567208739950288,
+                  3.739796972282562
+                ],
+                "c68": [
+                  0.6922751322751323,
+                  0.7571717171717172,
+                  0.8174603174603174
+                ],
+                "c95": [
+                  0.9019047619047619,
+                  0.9303030303030303,
+                  0.9535449735449736
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A3_fixed_0p5_k11": {
+              "description": "gamma 0.5, k 11 - the pilot chosen pair",
+              "folds": 24,
+              "mean_far_end_rmse": 0.9379430059013192,
+              "worst_fold_far_end_rmse": 2.1419246145343704,
+              "mean_rmse_over_mean_predictor": 0.6482596872351724,
+              "mean_margin_vs_best_baseline": -4.3221631062166646,
+              "worst_fold_margin": -8.24489050801167,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.0412949344825546,
+              "mean_coverage68": 0.7621484688151354,
+              "mean_coverage95": 0.9262008978675645,
+              "per_fold": {
+                "rmse": [
+                  1.2426258433595208,
+                  0.8700117721005458,
+                  0.3456997132067501
+                ],
+                "margin": [
+                  -8.24489050801167,
+                  -2.43309601552204,
+                  -1.1014268025243612
+                ],
+                "nlpd": [
+                  2.6578393337912227,
+                  2.5677566271928445,
+                  3.741829316209216
+                ],
+                "c68": [
+                  0.6922751322751323,
+                  0.757979797979798,
+                  0.8174603174603174
+                ],
+                "c95": [
+                  0.9019047619047619,
+                  0.9303030303030303,
+                  0.9537566137566138
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A4_gamma1": {
+              "description": "gamma 1.0, k 45 - the catastrophic arm, mechanism test",
+              "folds": 24,
+              "mean_far_end_rmse": 0.9884760086498402,
+              "worst_fold_far_end_rmse": 2.5382070162299177,
+              "mean_rmse_over_mean_predictor": 0.6576374439497993,
+              "mean_margin_vs_best_baseline": -4.370202961470043,
+              "worst_fold_margin": -9.822654937277546,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 2.82799246283914,
+              "mean_coverage68": 0.7281625781625781,
+              "mean_coverage95": 0.9105234888568222,
+              "per_fold": {
+                "rmse": [
+                  1.329195027821522,
+                  0.6152818835840294,
+                  0.505917414698324
+                ],
+                "margin": [
+                  -8.888948118752602,
+                  -1.4279232197689269,
+                  -2.075352320223248
+                ],
+                "nlpd": [
+                  2.5390815259003405,
+                  2.802493248763967,
+                  3.366827575746509
+                ],
+                "c68": [
+                  0.6517460317460317,
+                  0.7795959595959596,
+                  0.8453968253968254
+                ],
+                "c95": [
+                  0.8901587301587301,
+                  0.9175757575757576,
+                  0.972910052910053
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A5_trunc_inert": {
+              "description": "gamma 0, k in {8, 11, 20} - the inert family, falsification test",
+              "folds": 24,
+              "mean_far_end_rmse": 0.9146206089530198,
+              "worst_fold_far_end_rmse": 2.1379273380280552,
+              "mean_rmse_over_mean_predictor": 0.6263531746431331,
+              "mean_margin_vs_best_baseline": -4.1144496657301985,
+              "worst_fold_margin": -7.651140740716032,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.1514430617077847,
+              "mean_coverage68": 0.775650152316819,
+              "mean_coverage95": 0.9289371225482336,
+              "per_fold": {
+                "rmse": [
+                  1.1301254881408862,
+                  0.7500951883549604,
+                  0.5001819236537174
+                ],
+                "margin": [
+                  -7.407910115509255,
+                  -1.9599011013221816,
+                  -2.040487626541635
+                ],
+                "nlpd": [
+                  2.825342775439971,
+                  2.725443843542465,
+                  3.5665195974186013
+                ],
+                "c68": [
+                  0.7417636684303351,
+                  0.7678787878787879,
+                  0.8510052910052911
+                ],
+                "c95": [
+                  0.9084656084656085,
+                  0.9290909090909091,
+                  0.9821869488536156
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A6_floor": {
+              "description": "gamma 0 with the singular-value-floor family - data-independent",
+              "folds": 24,
+              "mean_far_end_rmse": 0.9147002250736813,
+              "worst_fold_far_end_rmse": 2.1379589796573164,
+              "mean_rmse_over_mean_predictor": 0.6264131694074598,
+              "mean_margin_vs_best_baseline": -4.114936901744843,
+              "worst_fold_margin": -7.65277189758617,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.1510975260182974,
+              "mean_coverage68": 0.7757182940516274,
+              "mean_coverage95": 0.9289670514670515,
+              "per_fold": {
+                "rmse": [
+                  1.1302627630705466,
+                  0.7502419692279749,
+                  0.5002491800057233
+                ],
+                "margin": [
+                  -7.408931413835688,
+                  -1.9604803036346796,
+                  -2.040896462000115
+                ],
+                "nlpd": [
+                  2.8250705657532285,
+                  2.725118198326481,
+                  3.565942381342123
+                ],
+                "c68": [
+                  0.7417989417989418,
+                  0.7678787878787878,
+                  0.8511111111111112
+                ],
+                "c95": [
+                  0.9084656084656084,
+                  0.9290909090909091,
+                  0.9822222222222222
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A7_oracle": {
+              "description": "per-fold TEST-argmin variant - selection optimism gap",
+              "folds": 24,
+              "mean_far_end_rmse": 0.7464972939679638,
+              "worst_fold_far_end_rmse": 2.122390227929796,
+              "mean_rmse_over_mean_predictor": 0.49047519910149645,
+              "mean_margin_vs_best_baseline": -3.026692637638417,
+              "worst_fold_margin": -6.8035211386307815,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.357834059709812,
+              "mean_coverage68": 0.783263187429854,
+              "mean_coverage95": 0.9251451018117685,
+              "per_fold": {
+                "rmse": [
+                  1.0225121072355194,
+                  0.5173147635764731,
+                  0.3276755067339979
+                ],
+                "margin": [
+                  -6.607287845351601,
+                  -1.0413416353173983,
+                  -0.9918619138968088
+                ],
+                "nlpd": [
+                  2.989932650191462,
+                  2.9129937696398915,
+                  3.83820627444961
+                ],
+                "c68": [
+                  0.7497354497354497,
+                  0.7765656565656566,
+                  0.8028571428571428
+                ],
+                "c95": [
+                  0.9178835978835979,
+                  0.917979797979798,
+                  0.9325925925925926
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A8_shuffled": {
+              "description": "shuffled-phase operator at the selected (k, gamma) - consistency control",
+              "folds": 24,
+              "mean_far_end_rmse": 1.2264233549119528,
+              "worst_fold_far_end_rmse": 2.5327417714917755,
+              "mean_rmse_over_mean_predictor": 0.8502671477243869,
+              "mean_margin_vs_best_baseline": -6.0133761693040455,
+              "worst_fold_margin": -9.956039360547292,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 2.4739872836039787,
+              "mean_coverage68": 0.6404914221580887,
+              "mean_coverage95": 0.8785277376944043,
+              "per_fold": {
+                "rmse": [
+                  1.2382552234147204,
+                  0.5407119275936803,
+                  1.1034299873083526
+                ],
+                "margin": [
+                  -8.212373960043722,
+                  -1.1336676395599095,
+                  -5.7074899441762454
+                ],
+                "nlpd": [
+                  2.6534791503435806,
+                  2.7033091233030984,
+                  2.638936783869232
+                ],
+                "c68": [
+                  0.6446560846560847,
+                  0.7616161616161616,
+                  0.711957671957672
+                ],
+                "c95": [
+                  0.8831746031746032,
+                  0.8955555555555555,
+                  0.9278306878306878
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.05,
+                    1.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A10_tempered": {
+              "description": "tempered-noise diagnostic at the selected (k, gamma): marginal-likelihood mean, predictive variance fixed at the TRAIN empirical residual variance",
+              "folds": 24,
+              "mean_far_end_rmse": 0.9277588360794159,
+              "worst_fold_far_end_rmse": 2.144326536275941,
+              "mean_rmse_over_mean_predictor": 0.6372402194726489,
+              "mean_margin_vs_best_baseline": -4.25453531462,
+              "worst_fold_margin": -7.7802473269698,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 2.2238704415606767,
+              "mean_coverage68": 0.8476627384960719,
+              "mean_coverage95": 0.9320506653839988,
+              "per_fold": {
+                "rmse": [
+                  1.084378681273828,
+                  0.8703485827524052,
+                  0.4735603135063741
+                ],
+                "margin": [
+                  -7.06756292022342,
+                  -2.434425081799031,
+                  -1.8786611541646563
+                ],
+                "nlpd": [
+                  2.461268478120391,
+                  2.2040200925105857,
+                  3.171551321222686
+                ],
+                "c68": [
+                  0.8782010582010582,
+                  0.8763636363636363,
+                  0.9237037037037037
+                ],
+                "c95": [
+                  0.953968253968254,
+                  0.9850505050505051,
+                  0.9688888888888889
+                ],
+                "hyperparams": [
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A9_meanpred": {
+              "description": "the do-nothing reference - guard g1",
+              "folds": 24,
+              "mean_far_end_rmse": 1.401845056250229,
+              "worst_fold_far_end_rmse": 2.5610117770463643,
+              "mean_rmse_over_mean_predictor": 1.0,
+              "mean_margin_vs_best_baseline": -7.026843264505622,
+              "worst_fold_margin": -10.205965626801342,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": null,
+              "mean_coverage68": null,
+              "mean_coverage95": null,
+              "per_fold": {
+                "rmse": [
+                  1.3740345966140128,
+                  1.0004272107007666,
+                  1.1626017925437773
+                ],
+                "margin": [
+                  -9.222545642197234,
+                  -2.947719767727124,
+                  -6.067181354741884
+                ],
+                "nlpd": [
+                  null,
+                  null,
+                  null
+                ],
+                "c68": [
+                  null,
+                  null,
+                  null
+                ],
+                "c95": [
+                  null,
+                  null,
+                  null
+                ],
+                "hyperparams": [
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ]
+                ],
+                "fold_id": [
+                  1000,
+                  1001,
+                  1002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            }
+          },
+          "selected_distribution": {
+            "k_counts": {
+              "3": 10,
+              "20": 1,
+              "8": 11,
+              "11": 2
+            },
+            "gamma_counts": {
+              "0": 3,
+              "0.5": 4,
+              "0.7": 7,
+              "0.3": 10
+            },
+            "joint": {
+              "k3_g0": 2,
+              "k20_g0.5": 1,
+              "k3_g0.5": 1,
+              "k3_g0.7": 5,
+              "k8_g0.3": 6,
+              "k8_g0": 1,
+              "k8_g0.7": 2,
+              "k8_g0.5": 2,
+              "k3_g0.3": 2,
+              "k11_g0.3": 2
+            },
+            "tie_break": "larger gamma then smaller k"
+          },
+          "curves": {
+            "gamma_at_k45": {
+              "0": 0.9147002887853267,
+              "0.15": 0.9265222324254575,
+              "0.3": 0.91815386411748,
+              "0.5": 0.9382163943834243,
+              "0.7": 0.9537684933402968,
+              "0.85": 0.9826553857769406,
+              "1": 0.9884760086498402
+            },
+            "k_at_gamma0": {
+              "3": 1.0025272951193835,
+              "5": 0.9210974778175006,
+              "8": 0.9144686843205768,
+              "10": 0.914682282391445,
+              "11": 0.9146929104038325,
+              "15": 0.9146996039045224,
+              "20": 0.9147002321346499,
+              "45": 0.9147002887853267
+            },
+            "k_at_gamma0p5": {
+              "3": 0.9743656140593302,
+              "5": 0.9247971017688128,
+              "8": 0.9347144266785902,
+              "10": 0.9378405730896993,
+              "11": 0.9379430059013192,
+              "15": 0.9381186947357278,
+              "20": 0.9381786960620806,
+              "45": 0.9382163943834243
+            },
+            "k_at_gamma1": {
+              "3": 0.9701776898534366,
+              "5": 1.0975598169915648,
+              "8": 1.1455589636453414,
+              "10": 1.1135590921143652,
+              "11": 1.132706115779498,
+              "15": 1.102510938411301,
+              "20": 1.0743521835826517,
+              "45": 0.9884760086498402
+            },
+            "floor_f": {
+              "0.1": 0.9210974778175006,
+              "0.01": 0.9146929104038325,
+              "0.001": 0.9147002250736813,
+              "0.0001": 0.914700286129956,
+              "1e-05": 0.9147002887835374,
+              "1e-06": 0.9147002887853253,
+              "1e-07": 0.9147002887853267,
+              "1e-08": 0.9147002887853267
+            },
+            "floor_f_effective_rank": {
+              "0.1": 5,
+              "0.01": 11,
+              "0.001": 19,
+              "0.0001": 23,
+              "1e-05": 27,
+              "1e-06": 28,
+              "1e-07": 29,
+              "1e-08": 29
+            }
+          },
+          "diagnostics": {
+            "raw": {
+              "cond_K": 82.72179383128467,
+              "cond_K_max": 222.31328741592944,
+              "min_cholesky_pivot": 0.5996764446310111,
+              "min_cholesky_pivot_min": 0.3858461393719159,
+              "jitter_sweep": {
+                "0": {
+                  "mean_rmse": 0.9147002887853267,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-08": {
+                  "mean_rmse": 0.9147002906375308,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-07": {
+                  "mean_rmse": 0.9147003073073631,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-06": {
+                  "mean_rmse": 0.9147004740053543,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-05": {
+                  "mean_rmse": 0.9147021409521429,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.0001": {
+                  "mean_rmse": 0.9147188071093018,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.001": {
+                  "mean_rmse": 0.9148851391837268,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.01": {
+                  "mean_rmse": 0.9165170001717735,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                }
+              },
+              "jitter_note": "each entry carries the fold count and how many of them exceeded the mean predictor (guard g1: such an entry is a numerical failure, not a finding)"
+            },
+            "whitened_g0p5": {
+              "cond_K": 71.40179337503334,
+              "cond_K_max": 266.43843568582184,
+              "min_cholesky_pivot": 0.7010808986854234,
+              "min_cholesky_pivot_min": 0.3745482640134085,
+              "jitter_sweep": {
+                "0": {
+                  "mean_rmse": 0.9382163943834242,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-08": {
+                  "mean_rmse": 0.9382163962321727,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-07": {
+                  "mean_rmse": 0.9382164128709056,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-06": {
+                  "mean_rmse": 0.9382165792580054,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-05": {
+                  "mean_rmse": 0.9382182431060272,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.0001": {
+                  "mean_rmse": 0.9382348792893646,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.001": {
+                  "mean_rmse": 0.9384010123946034,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.01": {
+                  "mean_rmse": 0.9400403808353274,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                }
+              },
+              "jitter_note": "each entry carries the fold count and how many of them exceeded the mean predictor (guard g1: such an entry is a numerical failure, not a finding)"
+            }
+          },
+          "baselines": {
+            "folds": 24,
+            "b1a": 1.4017008135385123,
+            "b1b": 1.4016449240572086,
+            "b2": 0.6535601669552947,
+            "b3": 1.1722002705329624,
+            "b4": 1.3804812252182492,
+            "b5_primary": 0.18327212733100384,
+            "b5_primary_vsd_all": 0.15987656602070024,
+            "b5_p17secondary": 0.4315265435947066,
+            "b5_p17secondary_vsd_all": 0.34671164449177266,
+            "mean_predictor": 1.401845056250229,
+            "winner_counts": {
+              "b5p_lindist_honest": 24
+            },
+            "lindist_order_chosen": {
+              "order1": 22,
+              "order2": 2
+            },
+            "rbf_median_normalisation_gain": -3.987420804254851e-05,
+            "b1a_over_mean_predictor": 0.9998971050965486,
+            "b1b_over_mean_predictor": 0.9998572365810844,
+            "rbf_restatement": "At n=10 the median-normalised RBF (b1a) scores 1.4017 and the raw-scale form (b1b, what the archived arms used) 1.4016, against a mean predictor of 1.4018. b1a is 0.0% worse than b1b, so the median he..."
+          },
+          "crossover": {
+            "raw_mean_margin": 160,
+            "raw_every_fold": null,
+            "selected_mean_margin": 160,
+            "selected_every_fold": null,
+            "note": "mean_margin_crossover = first n at which the mean paired margin over the best per-fold baseline is positive; every_fold_crossover = first n at which the worst fold margin is positive"
+          }
+        },
+        "20": {
+          "folds": 24,
+          "arms": {
+            "A0_raw": {
+              "description": "gamma 0, k 45 - the archived treatment",
+              "folds": 24,
+              "mean_far_end_rmse": 0.44852772378192163,
+              "worst_fold_far_end_rmse": 0.9217186977615276,
+              "mean_rmse_over_mean_predictor": 0.35389123951163426,
+              "mean_margin_vs_best_baseline": -2.593467016816635,
+              "worst_fold_margin": -4.545785217619399,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.897683402581277,
+              "mean_coverage68": 0.886797558922559,
+              "mean_coverage95": 0.9807626262626262,
+              "per_fold": {
+                "rmse": [
+                  0.2087075062916085,
+                  0.3184819377618917,
+                  0.41498878042876175
+                ],
+                "margin": [
+                  -0.8165554681026257,
+                  -1.7970186165988897,
+                  -3.0177575844165565
+                ],
+                "nlpd": [
+                  4.172607374698658,
+                  3.7380490331169924,
+                  3.8545864180187652
+                ],
+                "c68": [
+                  0.7806666666666666,
+                  0.862020202020202,
+                  0.9506666666666667
+                ],
+                "c95": [
+                  0.9167777777777778,
+                  0.9777777777777777,
+                  0.998
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A1_sel": {
+              "description": "train-selected (k, gamma) - the candidate deliverable",
+              "folds": 24,
+              "mean_far_end_rmse": 0.4365853041840733,
+              "worst_fold_far_end_rmse": 0.9253076743453598,
+              "mean_rmse_over_mean_predictor": 0.3443138865317213,
+              "mean_margin_vs_best_baseline": -2.489216924702723,
+              "worst_fold_margin": -4.6659621388234145,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.874466233260069,
+              "mean_coverage68": 0.8811557239057239,
+              "mean_coverage95": 0.9804377104377103,
+              "per_fold": {
+                "rmse": [
+                  0.21223161220786066,
+                  0.3326084686467961,
+                  0.4149072997554787
+                ],
+                "margin": [
+                  -0.8472287006379047,
+                  -1.9210827005802473,
+                  -3.0169687206966067
+                ],
+                "nlpd": [
+                  4.10681594278069,
+                  3.554344445210504,
+                  3.8571079867299463
+                ],
+                "c68": [
+                  0.8006666666666666,
+                  0.8775757575757576,
+                  0.9505555555555556
+                ],
+                "c95": [
+                  0.9342222222222222,
+                  0.9785858585858586,
+                  0.998
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A2_fixed_0p5": {
+              "description": "gamma 0.5, k 45 - the pilot chosen exponent, no selection",
+              "folds": 24,
+              "mean_far_end_rmse": 0.4459960883633916,
+              "worst_fold_far_end_rmse": 1.0631447579659614,
+              "mean_rmse_over_mean_predictor": 0.34804977465184034,
+              "mean_margin_vs_best_baseline": -2.5275413774392104,
+              "worst_fold_margin": -5.396715719488011,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.7857351137647464,
+              "mean_coverage68": 0.8711245791245791,
+              "mean_coverage95": 0.9753484848484849,
+              "per_fold": {
+                "rmse": [
+                  0.24053722290147278,
+                  0.3877256579149275,
+                  0.29170378164310795
+                ],
+                "margin": [
+                  -1.0935960345066849,
+                  -2.4051409349684922,
+                  -1.8241608842742587
+                ],
+                "nlpd": [
+                  3.9894399059847627,
+                  3.4866857271216207,
+                  4.046680553738113
+                ],
+                "c68": [
+                  0.8123333333333334,
+                  0.798989898989899,
+                  0.886
+                ],
+                "c95": [
+                  0.9418888888888889,
+                  0.9278787878787879,
+                  0.9845555555555555
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A3_fixed_0p5_k11": {
+              "description": "gamma 0.5, k 11 - the pilot chosen pair",
+              "folds": 24,
+              "mean_far_end_rmse": 0.44575368495091583,
+              "worst_fold_far_end_rmse": 1.0623885513118265,
+              "mean_rmse_over_mean_predictor": 0.3478602499049417,
+              "mean_margin_vs_best_baseline": -2.525627923427619,
+              "worst_fold_margin": -5.392165785007837,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.787823406228212,
+              "mean_coverage68": 0.8711666666666668,
+              "mean_coverage95": 0.9752697811447811,
+              "per_fold": {
+                "rmse": [
+                  0.24029109809921514,
+                  0.3872110687255764,
+                  0.29195227651429206
+                ],
+                "margin": [
+                  -1.0914538051095684,
+                  -2.400621634587974,
+                  -1.8265667135411539
+                ],
+                "nlpd": [
+                  3.9911561889371856,
+                  3.4877929322447376,
+                  4.048150554013938
+                ],
+                "c68": [
+                  0.8122222222222222,
+                  0.7993939393939394,
+                  0.8858888888888888
+                ],
+                "c95": [
+                  0.9412222222222222,
+                  0.9276767676767677,
+                  0.9845555555555555
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A4_gamma1": {
+              "description": "gamma 1.0, k 45 - the catastrophic arm, mechanism test",
+              "folds": 24,
+              "mean_far_end_rmse": 0.4905190574635629,
+              "worst_fold_far_end_rmse": 0.9215480698927949,
+              "mean_rmse_over_mean_predictor": 0.39183927109737865,
+              "mean_margin_vs_best_baseline": -2.9961439468199935,
+              "worst_fold_margin": -6.296213192546134,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.5073124919306906,
+              "mean_coverage68": 0.849381313131313,
+              "mean_coverage95": 0.9696893939393939,
+              "per_fold": {
+                "rmse": [
+                  0.3653365412701722,
+                  0.5564403239746323,
+                  0.3587587555269442
+                ],
+                "margin": [
+                  -2.1798285722161177,
+                  -3.8868515311124616,
+                  -2.473360676172934
+                ],
+                "nlpd": [
+                  3.655421806651475,
+                  3.1224776323480117,
+                  3.643115869314607
+                ],
+                "c68": [
+                  0.8661111111111112,
+                  0.8062626262626262,
+                  0.9088888888888889
+                ],
+                "c95": [
+                  0.9832222222222222,
+                  0.9367676767676768,
+                  0.9966666666666667
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A5_trunc_inert": {
+              "description": "gamma 0, k in {8, 11, 20} - the inert family, falsification test",
+              "folds": 24,
+              "mean_far_end_rmse": 0.44848859910980954,
+              "worst_fold_far_end_rmse": 0.9215597009178517,
+              "mean_rmse_over_mean_predictor": 0.3538619431655377,
+              "mean_margin_vs_best_baseline": -2.5931658802682604,
+              "worst_fold_margin": -4.544828567453305,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.8983323423242027,
+              "mean_coverage68": 0.886675505050505,
+              "mean_coverage95": 0.9807326038159371,
+              "per_fold": {
+                "rmse": [
+                  0.20869863304297476,
+                  0.31847827494683956,
+                  0.4149608135481974
+                ],
+                "margin": [
+                  -0.8164782368203789,
+                  -1.7969864484892568,
+                  -3.017486820116896
+                ],
+                "nlpd": [
+                  4.172987568975143,
+                  3.73874793492536,
+                  3.8554547536439117
+                ],
+                "c68": [
+                  0.7804074074074073,
+                  0.8612794612794613,
+                  0.9506296296296296
+                ],
+                "c95": [
+                  0.9167407407407407,
+                  0.9777777777777777,
+                  0.9979999999999999
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A6_floor": {
+              "description": "gamma 0 with the singular-value-floor family - data-independent",
+              "folds": 24,
+              "mean_far_end_rmse": 0.44852768933728465,
+              "worst_fold_far_end_rmse": 0.9217186082283648,
+              "mean_rmse_over_mean_predictor": 0.3538912128010872,
+              "mean_margin_vs_best_baseline": -2.593466745158411,
+              "worst_fold_margin": -4.545784678917416,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.8976841159185334,
+              "mean_coverage68": 0.886797558922559,
+              "mean_coverage95": 0.9807626262626262,
+              "per_fold": {
+                "rmse": [
+                  0.20870750763459758,
+                  0.3184819236816074,
+                  0.4149887455833225
+                ],
+                "margin": [
+                  -0.8165554797917798,
+                  -1.7970184929409592,
+                  -3.0177572470567666
+                ],
+                "nlpd": [
+                  4.172607671457325,
+                  3.7380496186734655,
+                  3.854587276929459
+                ],
+                "c68": [
+                  0.7806666666666666,
+                  0.862020202020202,
+                  0.9506666666666667
+                ],
+                "c95": [
+                  0.9167777777777778,
+                  0.9777777777777777,
+                  0.998
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A7_oracle": {
+              "description": "per-fold TEST-argmin variant - selection optimism gap",
+              "folds": 24,
+              "mean_far_end_rmse": 0.36652012941835305,
+              "worst_fold_far_end_rmse": 0.8294826791317901,
+              "mean_rmse_over_mean_predictor": 0.28823365167271414,
+              "mean_margin_vs_best_baseline": -1.9083573811313534,
+              "worst_fold_margin": -3.990820725859453,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 4.028002393647596,
+              "mean_coverage68": 0.839878367003367,
+              "mean_coverage95": 0.9600180976430975,
+              "per_fold": {
+                "rmse": [
+                  0.20724386634249858,
+                  0.3184727855007506,
+                  0.2638893972411677
+                ],
+                "margin": [
+                  -0.8038161890985722,
+                  -1.7969382382735897,
+                  -1.5548729922707385
+                ],
+                "nlpd": [
+                  4.154316683171866,
+                  3.740077615859124,
+                  4.250081494338083
+                ],
+                "c68": [
+                  0.7921111111111111,
+                  0.86,
+                  0.8606666666666667
+                ],
+                "c95": [
+                  0.9272222222222222,
+                  0.9777777777777777,
+                  0.9788888888888889
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A8_shuffled": {
+              "description": "shuffled-phase operator at the selected (k, gamma) - consistency control",
+              "folds": 24,
+              "mean_far_end_rmse": 1.0646390013771765,
+              "worst_fold_far_end_rmse": 1.679802200447167,
+              "mean_rmse_over_mean_predictor": 0.8623917000579349,
+              "mean_margin_vs_best_baseline": -7.64914488263501,
+              "worst_fold_margin": -10.867938235409211,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 2.6928167142008395,
+              "mean_coverage68": 0.7217819865319864,
+              "mean_coverage95": 0.9270290404040405,
+              "per_fold": {
+                "rmse": [
+                  0.973855612064544,
+                  1.0177155038177848,
+                  1.107421755543106
+                ],
+                "margin": [
+                  -7.476277488393361,
+                  -7.937929826048276,
+                  -9.72162036015574
+                ],
+                "nlpd": [
+                  2.8054624505926875,
+                  2.537288753536278,
+                  2.664543154721158
+                ],
+                "c68": [
+                  0.7733333333333333,
+                  0.6747474747474748,
+                  0.762
+                ],
+                "c95": [
+                  0.9367777777777778,
+                  0.9395959595959597,
+                  0.9347777777777778
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.05,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.05,
+                    1.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A10_tempered": {
+              "description": "tempered-noise diagnostic at the selected (k, gamma): marginal-likelihood mean, predictive variance fixed at the TRAIN empirical residual variance",
+              "folds": 24,
+              "mean_far_end_rmse": 0.4365853041840733,
+              "worst_fold_far_end_rmse": 0.9253076743453598,
+              "mean_rmse_over_mean_predictor": 0.3443138865317213,
+              "mean_margin_vs_best_baseline": -2.489216924702723,
+              "worst_fold_margin": -4.6659621388234145,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.159227989306043,
+              "mean_coverage68": 0.9204061447811448,
+              "mean_coverage95": 0.964918771043771,
+              "per_fold": {
+                "rmse": [
+                  0.21223161220786066,
+                  0.3326084686467961,
+                  0.4149072997554787
+                ],
+                "margin": [
+                  -0.8472287006379047,
+                  -1.9210827005802473,
+                  -3.0169687206966067
+                ],
+                "nlpd": [
+                  3.485918901530359,
+                  3.0514181500750532,
+                  3.241346166107013
+                ],
+                "c68": [
+                  0.9807777777777777,
+                  0.9648484848484848,
+                  0.9418888888888889
+                ],
+                "c95": [
+                  0.9932222222222222,
+                  0.98989898989899,
+                  0.9764444444444444
+                ],
+                "hyperparams": [
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A9_meanpred": {
+              "description": "the do-nothing reference - guard g1",
+              "folds": 24,
+              "mean_far_end_rmse": 1.2262281682263978,
+              "worst_fold_far_end_rmse": 1.7083939873305543,
+              "mean_rmse_over_mean_predictor": 1.0,
+              "mean_margin_vs_best_baseline": -9.035284722780686,
+              "worst_fold_margin": -11.869738716106806,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": null,
+              "mean_coverage68": null,
+              "mean_coverage95": null,
+              "per_fold": {
+                "rmse": [
+                  1.1564930814007446,
+                  1.0578949834277407,
+                  1.1599996573830758
+                ],
+                "margin": [
+                  -9.065923685112066,
+                  -8.290799923687294,
+                  -10.230658854333802
+                ],
+                "nlpd": [
+                  null,
+                  null,
+                  null
+                ],
+                "c68": [
+                  null,
+                  null,
+                  null
+                ],
+                "c95": [
+                  null,
+                  null,
+                  null
+                ],
+                "hyperparams": [
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ]
+                ],
+                "fold_id": [
+                  2000,
+                  2001,
+                  2002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            }
+          },
+          "selected_distribution": {
+            "k_counts": {
+              "8": 15,
+              "11": 5,
+              "3": 3,
+              "45": 1
+            },
+            "gamma_counts": {
+              "0.3": 13,
+              "0": 5,
+              "0.5": 3,
+              "0.7": 3
+            },
+            "joint": {
+              "k8_g0.3": 8,
+              "k11_g0.3": 5,
+              "k8_g0": 5,
+              "k3_g0.5": 1,
+              "k8_g0.5": 2,
+              "k3_g0.7": 2,
+              "k45_g0.7": 1
+            },
+            "tie_break": "larger gamma then smaller k"
+          },
+          "curves": {
+            "gamma_at_k45": {
+              "0": 0.44852772378192163,
+              "0.15": 0.41497730761767526,
+              "0.3": 0.4208403496396671,
+              "0.5": 0.4459960883633916,
+              "0.7": 0.49271434371670314,
+              "0.85": 0.564696935503143,
+              "1": 0.4905190574635629
+            },
+            "k_at_gamma0": {
+              "3": 0.49501007539018343,
+              "5": 0.4516707556829657,
+              "8": 0.4484149357031973,
+              "10": 0.44852137766540334,
+              "11": 0.4485231653633011,
+              "15": 0.4485273294553947,
+              "20": 0.4485276962629303,
+              "45": 0.44852772378192163
+            },
+            "k_at_gamma0p5": {
+              "3": 0.4774003328109407,
+              "5": 0.44510337672819794,
+              "8": 0.4431476491453868,
+              "10": 0.44569604905199195,
+              "11": 0.44575368495091583,
+              "15": 0.44591922116178123,
+              "20": 0.4459741729547728,
+              "45": 0.4459960883633916
+            },
+            "k_at_gamma1": {
+              "3": 0.4576223739899939,
+              "5": 0.6513199918117903,
+              "8": 0.7557093603433996,
+              "10": 0.7381350721368509,
+              "11": 0.725281665517885,
+              "15": 0.696705667675997,
+              "20": 0.6963537900331076,
+              "45": 0.4905190574635629
+            },
+            "floor_f": {
+              "0.1": 0.4516707556829657,
+              "0.01": 0.4485231653633011,
+              "0.001": 0.44852768933728465,
+              "0.0001": 0.448527722666334,
+              "1e-05": 0.4485277237813164,
+              "1e-06": 0.4485277237819208,
+              "1e-07": 0.44852772378192185,
+              "1e-08": 0.44852772378192185
+            },
+            "floor_f_effective_rank": {
+              "0.1": 5,
+              "0.01": 11,
+              "0.001": 19,
+              "0.0001": 23,
+              "1e-05": 27,
+              "1e-06": 28,
+              "1e-07": 29,
+              "1e-08": 29
+            }
+          },
+          "diagnostics": {
+            "raw": {
+              "cond_K": 320.6174320631347,
+              "cond_K_max": 456.7158249454834,
+              "min_cholesky_pivot": 0.4032671518218485,
+              "min_cholesky_pivot_min": 0.35009801446562233,
+              "jitter_sweep": {
+                "0": {
+                  "mean_rmse": 0.44852772378192163,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-08": {
+                  "mean_rmse": 0.44852772634740784,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-07": {
+                  "mean_rmse": 0.44852774943677615,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-06": {
+                  "mean_rmse": 0.44852798032970237,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-05": {
+                  "mean_rmse": 0.4485302891832168,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.0001": {
+                  "mean_rmse": 0.4485533701477669,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.001": {
+                  "mean_rmse": 0.44878342693223344,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.01": {
+                  "mean_rmse": 0.4510126497242564,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                }
+              },
+              "jitter_note": "each entry carries the fold count and how many of them exceeded the mean predictor (guard g1: such an entry is a numerical failure, not a finding)"
+            },
+            "whitened_g0p5": {
+              "cond_K": 328.4708801369554,
+              "cond_K_max": 446.2759274547444,
+              "min_cholesky_pivot": 0.42671021242746704,
+              "min_cholesky_pivot_min": 0.3565457302849579,
+              "jitter_sweep": {
+                "0": {
+                  "mean_rmse": 0.44599608836339155,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-08": {
+                  "mean_rmse": 0.4459960905684806,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-07": {
+                  "mean_rmse": 0.445996110414276,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-06": {
+                  "mean_rmse": 0.44599630887162106,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-05": {
+                  "mean_rmse": 0.44599829338420455,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.0001": {
+                  "mean_rmse": 0.44601813242683247,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.001": {
+                  "mean_rmse": 0.4462159180899685,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.01": {
+                  "mean_rmse": 0.4481366292234581,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                }
+              },
+              "jitter_note": "each entry carries the fold count and how many of them exceeded the mean predictor (guard g1: such an entry is a numerical failure, not a finding)"
+            }
+          },
+          "baselines": {
+            "folds": 24,
+            "b1a": 1.188988675041134,
+            "b1b": 1.188266913929108,
+            "b2": 0.3818105602885386,
+            "b3": 0.6720987657586418,
+            "b4": 1.0666637607636835,
+            "b5_primary": 0.1235695024353927,
+            "b5_primary_vsd_all": 0.11718525445503027,
+            "b5_p17secondary": 0.3228045399711272,
+            "b5_p17secondary_vsd_all": 0.2977309697285267,
+            "mean_predictor": 1.2262281682263978,
+            "winner_counts": {
+              "b5p_lindist_honest": 24
+            },
+            "lindist_order_chosen": {
+              "order1": 24,
+              "order2": 0
+            },
+            "rbf_median_normalisation_gain": -0.0006074065545084282,
+            "b1a_over_mean_predictor": 0.9696308614088301,
+            "b1b_over_mean_predictor": 0.969042258789246,
+            "rbf_restatement": "At n=20 the median-normalised RBF (b1a) scores 1.1890 and the raw-scale form (b1b, what the archived arms used) 1.1883, against a mean predictor of 1.2262. b1a is 0.1% worse than b1b, so the median he..."
+          },
+          "crossover": {
+            "raw_mean_margin": 160,
+            "raw_every_fold": null,
+            "selected_mean_margin": 160,
+            "selected_every_fold": null,
+            "note": "mean_margin_crossover = first n at which the mean paired margin over the best per-fold baseline is positive; every_fold_crossover = first n at which the worst fold margin is positive"
+          }
+        },
+        "40": {
+          "folds": 24,
+          "arms": {
+            "A0_raw": {
+              "description": "gamma 0, k 45 - the archived treatment",
+              "folds": 24,
+              "mean_far_end_rmse": 0.23549819722401888,
+              "worst_fold_far_end_rmse": 0.4696636098528639,
+              "mean_rmse_over_mean_predictor": 0.19704329129932732,
+              "mean_margin_vs_best_baseline": -1.2209945201158934,
+              "worst_fold_margin": -2.85082432295204,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 4.452311596653256,
+              "mean_coverage68": 0.8986878039655818,
+              "mean_coverage95": 0.9851608679386455,
+              "per_fold": {
+                "rmse": [
+                  0.2871349600394133,
+                  0.2784012709881939,
+                  0.2878710743969584
+                ],
+                "margin": [
+                  -1.8810885182323505,
+                  -1.5318008041295292,
+                  -1.8105822370743074
+                ],
+                "nlpd": [
+                  4.20741435145254,
+                  4.196468150430543,
+                  4.2724483220076825
+                ],
+                "c68": [
+                  0.9195061728395062,
+                  0.9707070707070707,
+                  0.9596296296296296
+                ],
+                "c95": [
+                  0.9923456790123457,
+                  0.9963636363636363,
+                  0.9981481481481481
+                ],
+                "hyperparams": [
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A1_sel": {
+              "description": "train-selected (k, gamma) - the candidate deliverable",
+              "folds": 24,
+              "mean_far_end_rmse": 0.21233167541679973,
+              "worst_fold_far_end_rmse": 0.3491910276106638,
+              "mean_rmse_over_mean_predictor": 0.17908448831140444,
+              "mean_margin_vs_best_baseline": -1.0181039774077731,
+              "worst_fold_margin": -1.9121167811964956,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 4.471393564201257,
+              "mean_coverage68": 0.8969673587729144,
+              "mean_coverage95": 0.9833010662177329,
+              "per_fold": {
+                "rmse": [
+                  0.1766225274667689,
+                  0.1811397450975028,
+                  0.17568254503068526
+                ],
+                "margin": [
+                  -0.7722158802113017,
+                  -0.6472976242882302,
+                  -0.7152478464938408
+                ],
+                "nlpd": [
+                  4.501171871620727,
+                  4.58091317021888,
+                  4.5657609125463035
+                ],
+                "c68": [
+                  0.8304938271604938,
+                  0.927070707070707,
+                  0.8638271604938271
+                ],
+                "c95": [
+                  0.9545679012345679,
+                  0.9933333333333333,
+                  0.975925925925926
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A2_fixed_0p5": {
+              "description": "gamma 0.5, k 45 - the pilot chosen exponent, no selection",
+              "folds": 24,
+              "mean_far_end_rmse": 0.20881398018684041,
+              "worst_fold_far_end_rmse": 0.34919984175223484,
+              "mean_rmse_over_mean_predictor": 0.17593697498678584,
+              "mean_margin_vs_best_baseline": -0.9874870307037616,
+              "worst_fold_margin": -1.6932407252822523,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 4.401517047691412,
+              "mean_coverage68": 0.8958169659558549,
+              "mean_coverage95": 0.9817639356528245,
+              "per_fold": {
+                "rmse": [
+                  0.1921401765612251,
+                  0.20457540643617475,
+                  0.19676693436693546
+                ],
+                "margin": [
+                  -0.927918691982671,
+                  -0.8604231822713082,
+                  -0.9211018395432025
+                ],
+                "nlpd": [
+                  4.396323819616011,
+                  4.442134535934325,
+                  4.438040110162805
+                ],
+                "c68": [
+                  0.8397530864197531,
+                  0.9185858585858586,
+                  0.8771604938271605
+                ],
+                "c95": [
+                  0.9612345679012345,
+                  0.9935353535353535,
+                  0.9764197530864197
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A3_fixed_0p5_k11": {
+              "description": "gamma 0.5, k 11 - the pilot chosen pair",
+              "folds": 24,
+              "mean_far_end_rmse": 0.20864690767026575,
+              "worst_fold_far_end_rmse": 0.3487521788404252,
+              "mean_rmse_over_mean_predictor": 0.17579426931378572,
+              "mean_margin_vs_best_baseline": -0.9858427481688009,
+              "worst_fold_margin": -1.6897880777116399,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 4.403597150744191,
+              "mean_coverage68": 0.8954821361765806,
+              "mean_coverage95": 0.9815951178451178,
+              "per_fold": {
+                "rmse": [
+                  0.1919141583108187,
+                  0.20454635955982664,
+                  0.1965775724989832
+                ],
+                "margin": [
+                  -0.9256508434905633,
+                  -0.8601590279280664,
+                  -0.9192530358606485
+                ],
+                "nlpd": [
+                  4.398008361672214,
+                  4.444484772204488,
+                  4.439918774358168
+                ],
+                "c68": [
+                  0.8396296296296296,
+                  0.917979797979798,
+                  0.8765432098765432
+                ],
+                "c95": [
+                  0.9611111111111111,
+                  0.9935353535353535,
+                  0.9766666666666667
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A4_gamma1": {
+              "description": "gamma 1.0, k 45 - the catastrophic arm, mechanism test",
+              "folds": 24,
+              "mean_far_end_rmse": 0.30548356422272566,
+              "worst_fold_far_end_rmse": 0.6132246963335004,
+              "mean_rmse_over_mean_predictor": 0.25810201759020024,
+              "mean_margin_vs_best_baseline": -1.926211241856424,
+              "worst_fold_margin": -4.764026111361477,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.863535805543536,
+              "mean_coverage68": 0.8949682005237559,
+              "mean_coverage95": 0.9848980546202769,
+              "per_fold": {
+                "rmse": [
+                  0.2717466326186765,
+                  0.29427645945581155,
+                  0.28925807882037835
+                ],
+                "margin": [
+                  -1.7266833094740743,
+                  -1.6761708883082278,
+                  -1.8241240283201763
+                ],
+                "nlpd": [
+                  3.9276310533907504,
+                  3.811372415036104,
+                  3.860938351702645
+                ],
+                "c68": [
+                  0.8859259259259259,
+                  0.86989898989899,
+                  0.8622222222222222
+                ],
+                "c95": [
+                  0.9818518518518519,
+                  0.9892929292929293,
+                  0.9795061728395061
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A5_trunc_inert": {
+              "description": "gamma 0, k in {8, 11, 20} - the inert family, falsification test",
+              "folds": 24,
+              "mean_far_end_rmse": 0.2364192457296497,
+              "worst_fold_far_end_rmse": 0.46961800736351983,
+              "mean_rmse_over_mean_predictor": 0.19787970544125924,
+              "mean_margin_vs_best_baseline": -1.2306232194012603,
+              "worst_fold_margin": -2.850450423055456,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 4.447330614703422,
+              "mean_coverage68": 0.9002810512532734,
+              "mean_coverage95": 0.9853535353535353,
+              "per_fold": {
+                "rmse": [
+                  0.28708670439471407,
+                  0.27840192329538677,
+                  0.2878126402084861
+                ],
+                "margin": [
+                  -1.8806043250715323,
+                  -1.5318067362571721,
+                  -1.8100117244151175
+                ],
+                "nlpd": [
+                  4.20826938903113,
+                  4.197530164527375,
+                  4.273566307410345
+                ],
+                "c68": [
+                  0.9195061728395061,
+                  0.9706397306397307,
+                  0.9595473251028807
+                ],
+                "c95": [
+                  0.9923456790123457,
+                  0.9963636363636365,
+                  0.9981481481481481
+                ],
+                "hyperparams": [
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A6_floor": {
+              "description": "gamma 0 with the singular-value-floor family - data-independent",
+              "folds": 24,
+              "mean_far_end_rmse": 0.23549820381280626,
+              "worst_fold_far_end_rmse": 0.4696635868913709,
+              "mean_rmse_over_mean_predictor": 0.1970432981073609,
+              "mean_margin_vs_best_baseline": -1.2209946062046282,
+              "worst_fold_margin": -2.8508241346881977,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 4.45231229860194,
+              "mean_coverage68": 0.8986878039655818,
+              "mean_coverage95": 0.9851608679386455,
+              "per_fold": {
+                "rmse": [
+                  0.28713493128719286,
+                  0.27840125033339674,
+                  0.2878710485916788
+                ],
+                "margin": [
+                  -1.881088229734941,
+                  -1.5318006162933466,
+                  -1.8105819851286729
+                ],
+                "nlpd": [
+                  4.2074154803277075,
+                  4.196469108632001,
+                  4.272449517456557
+                ],
+                "c68": [
+                  0.9195061728395062,
+                  0.9707070707070707,
+                  0.9596296296296296
+                ],
+                "c95": [
+                  0.9923456790123457,
+                  0.9963636363636363,
+                  0.9981481481481481
+                ],
+                "hyperparams": [
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.25,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A7_oracle": {
+              "description": "per-fold TEST-argmin variant - selection optimism gap",
+              "folds": 24,
+              "mean_far_end_rmse": 0.18586634494027957,
+              "worst_fold_far_end_rmse": 0.30301949065291384,
+              "mean_rmse_over_mean_predictor": 0.15648371839603645,
+              "mean_margin_vs_best_baseline": -0.7691994893894964,
+              "worst_fold_margin": -1.3815967993133098,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 4.563154453567111,
+              "mean_coverage68": 0.8768322109988776,
+              "mean_coverage95": 0.9760905349794239,
+              "per_fold": {
+                "rmse": [
+                  0.17372590510810465,
+                  0.17696903304212838,
+                  0.17202382793695914
+                ],
+                "margin": [
+                  -0.7431514102559291,
+                  -0.6093688745447081,
+                  -0.6795265594710018
+                ],
+                "nlpd": [
+                  4.536357924523289,
+                  4.636846376694833,
+                  4.614303160331576
+                ],
+                "c68": [
+                  0.8214814814814815,
+                  0.9042424242424243,
+                  0.8467901234567902
+                ],
+                "c95": [
+                  0.9467901234567901,
+                  0.9917171717171717,
+                  0.9729629629629629
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A8_shuffled": {
+              "description": "shuffled-phase operator at the selected (k, gamma) - consistency control",
+              "folds": 24,
+              "mean_far_end_rmse": 0.9359722505250957,
+              "worst_fold_far_end_rmse": 1.1894241876679943,
+              "mean_rmse_over_mean_predictor": 0.797253696714605,
+              "mean_margin_vs_best_baseline": -8.087065574025429,
+              "worst_fold_margin": -10.0815655790122,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 2.827317183125789,
+              "mean_coverage68": 0.7602684249906472,
+              "mean_coverage95": 0.9425336700336701,
+              "per_fold": {
+                "rmse": [
+                  0.8835491569996399,
+                  1.0367025706041575,
+                  0.9073288304708498
+                ],
+                "margin": [
+                  -7.865459403397335,
+                  -8.427846333395735,
+                  -7.858556905895648
+                ],
+                "nlpd": [
+                  2.909185957735239,
+                  2.6572308018088693,
+                  2.8879808824914495
+                ],
+                "c68": [
+                  0.7660493827160494,
+                  0.7377777777777778,
+                  0.7641975308641975
+                ],
+                "c95": [
+                  0.9465432098765432,
+                  0.9480808080808081,
+                  0.9380246913580247
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.05,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A10_tempered": {
+              "description": "tempered-noise diagnostic at the selected (k, gamma): marginal-likelihood mean, predictive variance fixed at the TRAIN empirical residual variance",
+              "folds": 24,
+              "mean_far_end_rmse": 0.21233167541679973,
+              "worst_fold_far_end_rmse": 0.3491910276106638,
+              "mean_rmse_over_mean_predictor": 0.17908448831140444,
+              "mean_margin_vs_best_baseline": -1.0181039774077731,
+              "worst_fold_margin": -1.9121167811964956,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 3.7391731741983967,
+              "mean_coverage68": 0.946996352413019,
+              "mean_coverage95": 0.9780284324728769,
+              "per_fold": {
+                "rmse": [
+                  0.1766225274667689,
+                  0.1811397450975028,
+                  0.17568254503068526
+                ],
+                "margin": [
+                  -0.7722158802113017,
+                  -0.6472976242882302,
+                  -0.7152478464938408
+                ],
+                "nlpd": [
+                  3.9790398602561283,
+                  3.9717387363836063,
+                  4.1594623927236976
+                ],
+                "c68": [
+                  0.9681481481481482,
+                  0.9622222222222222,
+                  0.9354320987654321
+                ],
+                "c95": [
+                  0.9844444444444445,
+                  0.9870707070707071,
+                  0.980246913580247
+                ],
+                "hyperparams": [
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A9_meanpred": {
+              "description": "the do-nothing reference - guard g1",
+              "folds": 24,
+              "mean_far_end_rmse": 1.1722944609699302,
+              "worst_fold_far_end_rmse": 1.4053579723981076,
+              "mean_rmse_over_mean_predictor": 1.0,
+              "mean_margin_vs_best_baseline": -10.444375570400757,
+              "worst_fold_margin": -12.769959911458894,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": null,
+              "mean_coverage68": null,
+              "mean_coverage95": null,
+              "per_fold": {
+                "rmse": [
+                  1.1993795951894741,
+                  1.0916848971107171,
+                  1.212398587586915
+                ],
+                "margin": [
+                  -11.034475983796051,
+                  -8.927859490548753,
+                  -10.83705567384288
+                ],
+                "nlpd": [
+                  null,
+                  null,
+                  null
+                ],
+                "c68": [
+                  null,
+                  null,
+                  null
+                ],
+                "c95": [
+                  null,
+                  null,
+                  null
+                ],
+                "hyperparams": [
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ]
+                ],
+                "fold_id": [
+                  4000,
+                  4001,
+                  4002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            }
+          },
+          "selected_distribution": {
+            "k_counts": {
+              "8": 19,
+              "11": 1,
+              "20": 1,
+              "3": 3
+            },
+            "gamma_counts": {
+              "0.3": 15,
+              "0.5": 5,
+              "0.7": 3,
+              "0": 1
+            },
+            "joint": {
+              "k8_g0.3": 15,
+              "k11_g0.5": 1,
+              "k8_g0.5": 3,
+              "k20_g0.5": 1,
+              "k3_g0.7": 3,
+              "k8_g0": 1
+            },
+            "tie_break": "larger gamma then smaller k"
+          },
+          "curves": {
+            "gamma_at_k45": {
+              "0": 0.23549819722401888,
+              "0.15": 0.19043413075421292,
+              "0.3": 0.19554104483422816,
+              "0.5": 0.20881398018684041,
+              "0.7": 0.24627476253805278,
+              "0.85": 0.2888220566450459,
+              "1": 0.30548356422272566
+            },
+            "k_at_gamma0": {
+              "3": 0.3065943220591392,
+              "5": 0.2639034774783183,
+              "8": 0.23826220693964162,
+              "10": 0.23550001527174436,
+              "11": 0.23549732333248685,
+              "15": 0.23549819483596388,
+              "20": 0.23549820691682066,
+              "45": 0.23549819722401888
+            },
+            "k_at_gamma0p5": {
+              "3": 0.2925762930754543,
+              "5": 0.20821599635927077,
+              "8": 0.20723760718314707,
+              "10": 0.20857050926704054,
+              "11": 0.20864690767026575,
+              "15": 0.20876848224593325,
+              "20": 0.20880716938787222,
+              "45": 0.20881398018684041
+            },
+            "k_at_gamma1": {
+              "3": 0.2818021683230927,
+              "5": 0.28959862897729743,
+              "8": 0.3420215541260216,
+              "10": 0.3491610421827403,
+              "11": 0.3667498193472593,
+              "15": 0.36871150911551465,
+              "20": 0.33984901638615833,
+              "45": 0.30548356422272566
+            },
+            "floor_f": {
+              "0.1": 0.2639034774783183,
+              "0.01": 0.23549732333248685,
+              "0.001": 0.23549820381280626,
+              "0.0001": 0.23549819762221383,
+              "1e-05": 0.23549819722450036,
+              "1e-06": 0.23549819722401735,
+              "1e-07": 0.23549819722401896,
+              "1e-08": 0.23549819722401896
+            },
+            "floor_f_effective_rank": {
+              "0.1": 5,
+              "0.01": 11,
+              "0.001": 19,
+              "0.0001": 23,
+              "1e-05": 27,
+              "1e-06": 28,
+              "1e-07": 29,
+              "1e-08": 29
+            }
+          },
+          "diagnostics": {
+            "raw": {
+              "cond_K": 790.4792768885259,
+              "cond_K_max": 944.632184093923,
+              "min_cholesky_pivot": 0.3467902636323779,
+              "min_cholesky_pivot_min": 0.33079634501403626,
+              "jitter_sweep": {
+                "0": {
+                  "mean_rmse": 0.2354981972240188,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-08": {
+                  "mean_rmse": 0.23549820053431958,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-07": {
+                  "mean_rmse": 0.23549823032701744,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-06": {
+                  "mean_rmse": 0.23549852825305062,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-05": {
+                  "mean_rmse": 0.23550150741881648,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.0001": {
+                  "mean_rmse": 0.23553128962435274,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.001": {
+                  "mean_rmse": 0.23582817089899613,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.01": {
+                  "mean_rmse": 0.23870709642274898,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                }
+              },
+              "jitter_note": "each entry carries the fold count and how many of them exceeded the mean predictor (guard g1: such an entry is a numerical failure, not a finding)"
+            },
+            "whitened_g0p5": {
+              "cond_K": 883.731000155035,
+              "cond_K_max": 924.1920952471203,
+              "min_cholesky_pivot": 0.34468058409060776,
+              "min_cholesky_pivot_min": 0.33306518346998976,
+              "jitter_sweep": {
+                "0": {
+                  "mean_rmse": 0.2088139801868405,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-08": {
+                  "mean_rmse": 0.20881398346114652,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-07": {
+                  "mean_rmse": 0.2088140129298893,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-06": {
+                  "mean_rmse": 0.2088143076162223,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-05": {
+                  "mean_rmse": 0.2088172543700263,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.0001": {
+                  "mean_rmse": 0.20884671096124174,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.001": {
+                  "mean_rmse": 0.2091401879648589,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.01": {
+                  "mean_rmse": 0.21197150567387069,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                }
+              },
+              "jitter_note": "each entry carries the fold count and how many of them exceeded the mean predictor (guard g1: such an entry is a numerical failure, not a finding)"
+            }
+          },
+          "baselines": {
+            "folds": 24,
+            "b1a": 0.8081271797487538,
+            "b1b": 0.8586316335775108,
+            "b2": 0.24630794897826638,
+            "b3": 0.33311120152158835,
+            "b4": 0.6892919113513253,
+            "b5_primary": 0.10338541464325228,
+            "b5_primary_vsd_all": 0.10063824631686086,
+            "b5_p17secondary": 0.281489020472996,
+            "b5_p17secondary_vsd_all": 0.272216956239086,
+            "mean_predictor": 1.1722944609699302,
+            "winner_counts": {
+              "b5p_lindist_honest": 24
+            },
+            "lindist_order_chosen": {
+              "order1": 24,
+              "order2": 0
+            },
+            "rbf_median_normalisation_gain": 0.05881969852232081,
+            "b1a_over_mean_predictor": 0.689355112264309,
+            "b1b_over_mean_predictor": 0.7324368255285436,
+            "rbf_restatement": "At n=40 the median-normalised RBF (b1a) scores 0.8081 and the raw-scale form (b1b, what the archived arms used) 0.8586, against a mean predictor of 1.1723. b1a is 5.9% better than b1b, so the median h..."
+          },
+          "crossover": {
+            "raw_mean_margin": 160,
+            "raw_every_fold": null,
+            "selected_mean_margin": 160,
+            "selected_every_fold": null,
+            "note": "mean_margin_crossover = first n at which the mean paired margin over the best per-fold baseline is positive; every_fold_crossover = first n at which the worst fold margin is positive"
+          }
+        },
+        "80": {
+          "folds": 24,
+          "arms": {
+            "A0_raw": {
+              "description": "gamma 0, k 45 - the archived treatment",
+              "folds": 24,
+              "mean_far_end_rmse": 0.11175735447155605,
+              "worst_fold_far_end_rmse": 0.20775986381412737,
+              "mean_rmse_over_mean_predictor": 0.09619551886191528,
+              "mean_margin_vs_best_baseline": -0.16297744868240266,
+              "worst_fold_margin": -1.025939334985638,
+              "frac_folds_clearing_20pct": 0.08333333333333333,
+              "mean_nlpd": 4.984846907691281,
+              "mean_coverage68": 0.9184132996632997,
+              "mean_coverage95": 0.9927152477152476,
+              "per_fold": {
+                "rmse": [
+                  0.09000172008973517,
+                  0.08376845680206522,
+                  0.13620363957863307
+                ],
+                "margin": [
+                  0.02850479773097947,
+                  0.01674034630518073,
+                  -0.2843938999700586
+                ],
+                "nlpd": [
+                  4.990360885957864,
+                  4.997005804632573,
+                  5.032152500745296
+                ],
+                "c68": [
+                  0.9011111111111111,
+                  0.9313131313131313,
+                  0.9052380952380953
+                ],
+                "c95": [
+                  0.9903174603174603,
+                  0.9985858585858586,
+                  0.9917460317460317
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A1_sel": {
+              "description": "train-selected (k, gamma) - the candidate deliverable",
+              "folds": 24,
+              "mean_far_end_rmse": 0.11111523215108499,
+              "worst_fold_far_end_rmse": 0.21658655322080678,
+              "mean_rmse_over_mean_predictor": 0.09546687987902107,
+              "mean_margin_vs_best_baseline": -0.15143700034637606,
+              "worst_fold_margin": -1.112011480675391,
+              "frac_folds_clearing_20pct": 0.08333333333333333,
+              "mean_nlpd": 4.907236043085731,
+              "mean_coverage68": 0.9412608225108224,
+              "mean_coverage95": 0.9956703944203943,
+              "per_fold": {
+                "rmse": [
+                  0.08733176649282913,
+                  0.07983107409524492,
+                  0.14045242648468417
+                ],
+                "margin": [
+                  0.05732477036137995,
+                  0.06295666333630279,
+                  -0.32445976018706246
+                ],
+                "nlpd": [
+                  4.9153966306992904,
+                  4.907309307030681,
+                  4.954128290760514
+                ],
+                "c68": [
+                  0.9292063492063493,
+                  0.9593939393939394,
+                  0.9273015873015873
+                ],
+                "c95": [
+                  0.9952380952380953,
+                  1.0,
+                  0.993015873015873
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A2_fixed_0p5": {
+              "description": "gamma 0.5, k 45 - the pilot chosen exponent, no selection",
+              "folds": 24,
+              "mean_far_end_rmse": 0.121870638497013,
+              "worst_fold_far_end_rmse": 0.24391517666350826,
+              "mean_rmse_over_mean_predictor": 0.10462931327733051,
+              "mean_margin_vs_best_baseline": -0.26130441321062087,
+              "worst_fold_margin": -1.3785024774788592,
+              "frac_folds_clearing_20pct": 0.125,
+              "mean_nlpd": 4.777025094538151,
+              "mean_coverage68": 0.953668831168831,
+              "mean_coverage95": 0.9969077681577682,
+              "per_fold": {
+                "rmse": [
+                  0.09338010039901383,
+                  0.09246224060382473,
+                  0.15668809919829296
+                ],
+                "margin": [
+                  -0.00796206377602271,
+                  -0.08530578390364174,
+                  -0.47756138845324836
+                ],
+                "nlpd": [
+                  4.80531123977147,
+                  4.778632660456577,
+                  4.837961489083593
+                ],
+                "c68": [
+                  0.9493650793650794,
+                  0.9703030303030303,
+                  0.9388888888888889
+                ],
+                "c95": [
+                  0.9953968253968254,
+                  1.0,
+                  0.9944444444444445
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A3_fixed_0p5_k11": {
+              "description": "gamma 0.5, k 11 - the pilot chosen pair",
+              "folds": 24,
+              "mean_far_end_rmse": 0.12179042368275293,
+              "worst_fold_far_end_rmse": 0.24382727698853274,
+              "mean_rmse_over_mean_predictor": 0.10456014409269761,
+              "mean_margin_vs_best_baseline": -0.2604562017588738,
+              "worst_fold_margin": -1.3776453369041777,
+              "frac_folds_clearing_20pct": 0.125,
+              "mean_nlpd": 4.780392352671736,
+              "mean_coverage68": 0.9526166426166426,
+              "mean_coverage95": 0.9967887205387206,
+              "per_fold": {
+                "rmse": [
+                  0.09332410809935934,
+                  0.09249733172275819,
+                  0.15658340364746554
+                ],
+                "margin": [
+                  -0.007357672544120675,
+                  -0.08571767738679159,
+                  -0.47657411434476815
+                ],
+                "nlpd": [
+                  4.808118654575016,
+                  4.781924205113388,
+                  4.84163855725874
+                ],
+                "c68": [
+                  0.947936507936508,
+                  0.9676767676767677,
+                  0.9368253968253968
+                ],
+                "c95": [
+                  0.9953968253968254,
+                  1.0,
+                  0.9941269841269841
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A4_gamma1": {
+              "description": "gamma 1.0, k 45 - the catastrophic arm, mechanism test",
+              "folds": 24,
+              "mean_far_end_rmse": 0.1971056124202629,
+              "worst_fold_far_end_rmse": 0.3110628865827632,
+              "mean_rmse_over_mean_predictor": 0.17012447912725484,
+              "mean_margin_vs_best_baseline": -1.0703536933632403,
+              "worst_fold_margin": -2.0332833590322363,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 4.145127146312775,
+              "mean_coverage68": 0.9121723184223184,
+              "mean_coverage95": 0.9922558922558923,
+              "per_fold": {
+                "rmse": [
+                  0.15756376689536028,
+                  0.17510602954888027,
+                  0.22522866407727263
+                ],
+                "margin": [
+                  -0.7007724234343269,
+                  -1.055364280864513,
+                  -1.1238956839493701
+                ],
+                "nlpd": [
+                  4.167390689255506,
+                  4.105622911938924,
+                  4.211771740752271
+                ],
+                "c68": [
+                  0.9111111111111111,
+                  0.9191919191919192,
+                  0.8971428571428571
+                ],
+                "c95": [
+                  0.9909523809523809,
+                  0.9915151515151515,
+                  0.9909523809523809
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A5_trunc_inert": {
+              "description": "gamma 0, k in {8, 11, 20} - the inert family, falsification test",
+              "folds": 24,
+              "mean_far_end_rmse": 0.11181098125670959,
+              "worst_fold_far_end_rmse": 0.20778440022736655,
+              "mean_rmse_over_mean_predictor": 0.09624296282670104,
+              "mean_margin_vs_best_baseline": -0.16357327543093206,
+              "worst_fold_margin": -1.0261785981609601,
+              "frac_folds_clearing_20pct": 0.08333333333333333,
+              "mean_nlpd": 4.985308184083249,
+              "mean_coverage68": 0.9180820105820106,
+              "mean_coverage95": 0.9927124418791086,
+              "per_fold": {
+                "rmse": [
+                  0.09004795286797955,
+                  0.0838511258279702,
+                  0.1362296178690003
+                ],
+                "margin": [
+                  0.0280057525770957,
+                  0.015769991581150333,
+                  -0.2846388740234873
+                ],
+                "nlpd": [
+                  4.9907296504558465,
+                  4.9975690539886655,
+                  5.032568314945755
+                ],
+                "c68": [
+                  0.9006878306878306,
+                  0.9309764309764309,
+                  0.9045502645502647
+                ],
+                "c95": [
+                  0.9903174603174603,
+                  0.9985858585858586,
+                  0.9917460317460317
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A6_floor": {
+              "description": "gamma 0 with the singular-value-floor family - data-independent",
+              "folds": 24,
+              "mean_far_end_rmse": 0.11175739807697521,
+              "worst_fold_far_end_rmse": 0.20775990334366395,
+              "mean_rmse_over_mean_predictor": 0.09619555722694739,
+              "mean_margin_vs_best_baseline": -0.1629779270803096,
+              "worst_fold_margin": -1.02593972045202,
+              "frac_folds_clearing_20pct": 0.08333333333333333,
+              "mean_nlpd": 4.984847527162757,
+              "mean_coverage68": 0.9184132996632997,
+              "mean_coverage95": 0.9927152477152476,
+              "per_fold": {
+                "rmse": [
+                  0.09000176715829257,
+                  0.08376849884292077,
+                  0.13620365825980205
+                ],
+                "margin": [
+                  0.028504289664270877,
+                  0.01673985283689161,
+                  -0.28439407613260115
+                ],
+                "nlpd": [
+                  4.990361553804974,
+                  4.997006346246089,
+                  5.032153082739117
+                ],
+                "c68": [
+                  0.9011111111111111,
+                  0.9313131313131313,
+                  0.9052380952380953
+                ],
+                "c95": [
+                  0.9903174603174603,
+                  0.9985858585858586,
+                  0.9917460317460317
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A7_oracle": {
+              "description": "per-fold TEST-argmin variant - selection optimism gap",
+              "folds": 24,
+              "mean_far_end_rmse": 0.10822073257735228,
+              "worst_fold_far_end_rmse": 0.20775986381412734,
+              "mean_rmse_over_mean_predictor": 0.09299257080332067,
+              "mean_margin_vs_best_baseline": -0.12198391704924537,
+              "worst_fold_margin": -1.0259393349856376,
+              "frac_folds_clearing_20pct": 0.125,
+              "mean_nlpd": 4.9387395646343135,
+              "mean_coverage68": 0.9345508658008659,
+              "mean_coverage95": 0.9945045695045694,
+              "per_fold": {
+                "rmse": [
+                  0.08733176649282913,
+                  0.07899616793910871,
+                  0.1360754991529176
+                ],
+                "margin": [
+                  0.05732477036137995,
+                  0.0727566473552268,
+                  -0.28318554179668176
+                ],
+                "nlpd": [
+                  4.9153966306992904,
+                  4.959234688817683,
+                  5.003897615317581
+                ],
+                "c68": [
+                  0.9292063492063493,
+                  0.9492929292929293,
+                  0.920952380952381
+                ],
+                "c95": [
+                  0.9952380952380953,
+                  0.9993939393939394,
+                  0.9928571428571429
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A8_shuffled": {
+              "description": "shuffled-phase operator at the selected (k, gamma) - consistency control",
+              "folds": 24,
+              "mean_far_end_rmse": 0.9320575297595045,
+              "worst_fold_far_end_rmse": 1.2264054988901105,
+              "mean_rmse_over_mean_predictor": 0.8068030271649095,
+              "mean_margin_vs_best_baseline": -8.936926807002651,
+              "worst_fold_margin": -11.977772093318112,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 2.8241111140622546,
+              "mean_coverage68": 0.7681571669071668,
+              "mean_coverage95": 0.9453439153439153,
+              "per_fold": {
+                "rmse": [
+                  0.6797172041012546,
+                  1.0467000673076376,
+                  1.1247222755238369
+                ],
+                "margin": [
+                  -6.33699313774998,
+                  -11.285984307136937,
+                  -9.60607803368772
+                ],
+                "nlpd": [
+                  3.082913092610688,
+                  2.7067955263655836,
+                  2.679416003011752
+                ],
+                "c68": [
+                  0.81,
+                  0.7660606060606061,
+                  0.7377777777777778
+                ],
+                "c95": [
+                  0.9596825396825397,
+                  0.9466666666666667,
+                  0.9336507936507936
+                ],
+                "hyperparams": [
+                  [
+                    0.1,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.05,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.05,
+                    1.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A10_tempered": {
+              "description": "tempered-noise diagnostic at the selected (k, gamma): marginal-likelihood mean, predictive variance fixed at the TRAIN empirical residual variance",
+              "folds": 24,
+              "mean_far_end_rmse": 0.11111523215108499,
+              "worst_fold_far_end_rmse": 0.21658655322080678,
+              "mean_rmse_over_mean_predictor": 0.09546687987902107,
+              "mean_margin_vs_best_baseline": -0.15143700034637606,
+              "worst_fold_margin": -1.112011480675391,
+              "frac_folds_clearing_20pct": 0.08333333333333333,
+              "mean_nlpd": 4.413302523329502,
+              "mean_coverage68": 0.9575132275132274,
+              "mean_coverage95": 0.9867003367003367,
+              "per_fold": {
+                "rmse": [
+                  0.08733176649282913,
+                  0.07983107409524492,
+                  0.14045242648468417
+                ],
+                "margin": [
+                  0.05732477036137995,
+                  0.06295666333630279,
+                  -0.32445976018706246
+                ],
+                "nlpd": [
+                  4.619172527315379,
+                  4.340892560301275,
+                  4.351288023259354
+                ],
+                "c68": [
+                  0.9661904761904762,
+                  0.971919191919192,
+                  0.9555555555555556
+                ],
+                "c95": [
+                  0.9944444444444445,
+                  0.9961616161616161,
+                  0.983015873015873
+                ],
+                "hyperparams": [
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            },
+            "A9_meanpred": {
+              "description": "the do-nothing reference - guard g1",
+              "folds": 24,
+              "mean_far_end_rmse": 1.150031654743758,
+              "worst_fold_far_end_rmse": 1.3044375647661275,
+              "mean_rmse_over_mean_predictor": 1.0,
+              "mean_margin_vs_best_baseline": -11.30835694041606,
+              "worst_fold_margin": -13.320245630310776,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": null,
+              "mean_coverage68": null,
+              "mean_coverage95": null,
+              "per_fold": {
+                "rmse": [
+                  1.1190427411294908,
+                  1.114380182228551,
+                  1.2155297120932267
+                ],
+                "margin": [
+                  -11.07915418791273,
+                  -12.08040178717248,
+                  -10.462387879463229
+                ],
+                "nlpd": [
+                  null,
+                  null,
+                  null
+                ],
+                "c68": [
+                  null,
+                  null,
+                  null
+                ],
+                "c95": [
+                  null,
+                  null,
+                  null
+                ],
+                "hyperparams": [
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ]
+                ],
+                "fold_id": [
+                  8000,
+                  8001,
+                  8002
+                ],
+                "seed": [
+                  0,
+                  0,
+                  1
+                ],
+                "scheme": [
+                  0,
+                  1,
+                  0
+                ]
+              }
+            }
+          },
+          "selected_distribution": {
+            "k_counts": {
+              "8": 20,
+              "45": 3,
+              "11": 1
+            },
+            "gamma_counts": {
+              "0.3": 20,
+              "0": 3,
+              "0.5": 1
+            },
+            "joint": {
+              "k8_g0.3": 20,
+              "k45_g0": 3,
+              "k11_g0.5": 1
+            },
+            "tie_break": "larger gamma then smaller k"
+          },
+          "curves": {
+            "gamma_at_k45": {
+              "0": 0.11175735447155605,
+              "0.15": 0.1088682669357887,
+              "0.3": 0.11051004762822829,
+              "0.5": 0.121870638497013,
+              "0.7": 0.1472149420624028,
+              "0.85": 0.17255525271433947,
+              "1": 0.1971056124202629
+            },
+            "k_at_gamma0": {
+              "3": 0.17987248368004413,
+              "5": 0.12166372281135358,
+              "8": 0.11191447110586578,
+              "10": 0.11176458793669126,
+              "11": 0.111761074497976,
+              "15": 0.11175762200750468,
+              "20": 0.11175739816628698,
+              "45": 0.11175735447155605
+            },
+            "k_at_gamma0p5": {
+              "3": 0.1723545715992505,
+              "5": 0.1230845187568765,
+              "8": 0.12062188396840216,
+              "10": 0.12170975981043008,
+              "11": 0.12179042368275293,
+              "15": 0.12183329104872344,
+              "20": 0.12185994240942122,
+              "45": 0.121870638497013
+            },
+            "k_at_gamma1": {
+              "3": 0.17472585178453648,
+              "5": 0.16396973993709588,
+              "8": 0.1963557490857807,
+              "10": 0.2036231453877189,
+              "11": 0.19709728796718848,
+              "15": 0.18953842008248148,
+              "20": 0.18806349332908567,
+              "45": 0.1971056124202629
+            },
+            "floor_f": {
+              "0.1": 0.12166372281135358,
+              "0.01": 0.111761074497976,
+              "0.001": 0.11175739807697521,
+              "0.0001": 0.11175735636578506,
+              "1e-05": 0.11175735447321644,
+              "1e-06": 0.11175735447155559,
+              "1e-07": 0.11175735447155605,
+              "1e-08": 0.11175735447155605
+            },
+            "floor_f_effective_rank": {
+              "0.1": 5,
+              "0.01": 11,
+              "0.001": 19,
+              "0.0001": 23,
+              "1e-05": 27,
+              "1e-06": 28,
+              "1e-07": 29,
+              "1e-08": 29
+            }
+          },
+          "diagnostics": {
+            "raw": {
+              "cond_K": 1811.0946979900984,
+              "cond_K_max": 1860.479933112995,
+              "min_cholesky_pivot": 0.32640723128532645,
+              "min_cholesky_pivot_min": 0.3226902576850357,
+              "jitter_sweep": {
+                "0": {
+                  "mean_rmse": 0.11175735447155614,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-08": {
+                  "mean_rmse": 0.11175735749004316,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-07": {
+                  "mean_rmse": 0.11175738465642011,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-06": {
+                  "mean_rmse": 0.11175765631950618,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-05": {
+                  "mean_rmse": 0.11176037288199259,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.0001": {
+                  "mean_rmse": 0.11178753167250631,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.001": {
+                  "mean_rmse": 0.11205843918290809,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.01": {
+                  "mean_rmse": 0.11470234246690808,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                }
+              },
+              "jitter_note": "each entry carries the fold count and how many of them exceeded the mean predictor (guard g1: such an entry is a numerical failure, not a finding)"
+            },
+            "whitened_g0p5": {
+              "cond_K": 1755.0223460314594,
+              "cond_K_max": 1800.133010733312,
+              "min_cholesky_pivot": 0.3304125176763439,
+              "min_cholesky_pivot_min": 0.3254220146516443,
+              "jitter_sweep": {
+                "0": {
+                  "mean_rmse": 0.12187063849701281,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-08": {
+                  "mean_rmse": 0.12187064141063864,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-07": {
+                  "mean_rmse": 0.12187066763326415,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-06": {
+                  "mean_rmse": 0.12187092985882753,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "1e-05": {
+                  "mean_rmse": 0.12187355204525223,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.0001": {
+                  "mean_rmse": 0.12189976699148647,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.001": {
+                  "mean_rmse": 0.12216122757018148,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                },
+                "0.01": {
+                  "mean_rmse": 0.12470970768619821,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 24
+                }
+              },
+              "jitter_note": "each entry carries the fold count and how many of them exceeded the mean predictor (guard g1: such an entry is a numerical failure, not a finding)"
+            }
+          },
+          "baselines": {
+            "folds": 24,
+            "b1a": 0.4362708703522907,
+            "b1b": 0.44022163321670454,
+            "b2": 0.16156798169033476,
+            "b3": 0.17684123839858865,
+            "b4": 0.14894105602181615,
+            "b5_primary": 0.09411521568791087,
+            "b5_primary_vsd_all": 0.09247894355482061,
+            "b5_p17secondary": 0.26134079812899874,
+            "b5_p17secondary_vsd_all": 0.25652785382639703,
+            "mean_predictor": 1.150031654743758,
+            "winner_counts": {
+              "b5p_lindist_honest": 24
+            },
+            "lindist_order_chosen": {
+              "order1": 24,
+              "order2": 0
+            },
+            "rbf_median_normalisation_gain": 0.008974485955053142,
+            "b1a_over_mean_predictor": 0.379355532130546,
+            "b1b_over_mean_predictor": 0.3827908835385854,
+            "rbf_restatement": "At n=80 the median-normalised RBF (b1a) scores 0.4363 and the raw-scale form (b1b, what the archived arms used) 0.4402, against a mean predictor of 1.1500. b1a is 0.9% better than b1b, so the median h..."
+          },
+          "crossover": {
+            "raw_mean_margin": 160,
+            "raw_every_fold": null,
+            "selected_mean_margin": 160,
+            "selected_every_fold": null,
+            "note": "mean_margin_crossover = first n at which the mean paired margin over the best per-fold baseline is positive; every_fold_crossover = first n at which the worst fold margin is positive"
+          },
+          "paired_statistics": {
+            "A1_vs_best_baseline": {
+              "mean": -0.15143700034637606,
+              "min": -1.112011480675391,
+              "max": 0.38546236470748363,
+              "n": 24,
+              "boot95_ci": [
+                -0.2790505070687186,
+                -0.017339597525943485
+              ],
+              "wilcoxon_p": 0.09509599208831787
+            },
+            "A1_vs_A0_raw": {
+              "mean": 0.0006421223204710549,
+              "min": -0.008826689406679411,
+              "max": 0.00800067039165503,
+              "n": 24,
+              "boot95_ci": [
+                -0.0012771715394019954,
+                0.0027100888688068314
+              ],
+              "wilcoxon_p": 0.6639467218840869
+            },
+            "A2_vs_A0_raw": {
+              "mean": -0.01011328402545697,
+              "min": -0.036155312849380894,
+              "max": 0.004383535484462145,
+              "n": 24,
+              "boot95_ci": [
+                -0.01441430539551036,
+                -0.0059298388865754535
+              ],
+              "wilcoxon_p": 5.328655242919922e-05
+            },
+            "A1_vs_A7_oracle": {
+              "mean": 0.0028944995737327207,
+              "min": 0.0,
+              "max": 0.010881422677544536,
+              "n": 24,
+              "boot95_ci": [
+                0.0015438277478318722,
+                0.004291000805864582
+              ],
+              "wilcoxon_p": 0.00019643672621231134
+            },
+            "A4_vs_A0_raw": {
+              "mean": -0.08534825794870686,
+              "min": -0.1271705599948569,
+              "max": -0.05444896817714434,
+              "n": 24,
+              "boot95_ci": [
+                -0.09262278276371885,
+                -0.07796048481175973
+              ],
+              "wilcoxon_p": 1.1920928955078125e-07
+            }
+          },
+          "paired_statistics_note": "paired per-fold differences at n=80 (24 folds). The folds share one 220-row draw pool, so these bootstrap intervals describe split-to-split variability, NOT variability across new injection draws. A1_..."
+        },
+        "160": {
+          "folds": 12,
+          "arms": {
+            "A0_raw": {
+              "description": "gamma 0, k 45 - the archived treatment",
+              "folds": 12,
+              "mean_far_end_rmse": 0.06367393923598276,
+              "worst_fold_far_end_rmse": 0.1097643771825285,
+              "mean_rmse_over_mean_predictor": 0.05650913311655681,
+              "mean_margin_vs_best_baseline": 0.2280682241717871,
+              "worst_fold_margin": -0.004416632642205487,
+              "frac_folds_clearing_20pct": 0.5833333333333334,
+              "mean_nlpd": 5.299659885207445,
+              "mean_coverage68": 0.9328086419753087,
+              "mean_coverage95": 0.9990740740740741,
+              "per_fold": {
+                "rmse": [
+                  0.1097643771825285,
+                  0.04685864900498717,
+                  0.04467768484625166
+                ],
+                "margin": [
+                  0.058137396686930076,
+                  0.19538604552031957,
+                  0.3971285562214768
+                ],
+                "nlpd": [
+                  5.249761881042984,
+                  5.354404209911044,
+                  5.29056017437308
+                ],
+                "c68": [
+                  0.9081481481481481,
+                  0.9385185185185185,
+                  0.9592592592592593
+                ],
+                "c95": [
+                  0.9966666666666667,
+                  0.9996296296296296,
+                  0.9996296296296296
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            "A1_sel": {
+              "description": "train-selected (k, gamma) - the candidate deliverable",
+              "folds": 12,
+              "mean_far_end_rmse": 0.06338686868956213,
+              "worst_fold_far_end_rmse": 0.11183734826588486,
+              "mean_rmse_over_mean_predictor": 0.05621209189933964,
+              "mean_margin_vs_best_baseline": 0.23522734015201988,
+              "worst_fold_margin": -0.03024392673577747,
+              "frac_folds_clearing_20pct": 0.5833333333333334,
+              "mean_nlpd": 5.255574615954807,
+              "mean_coverage68": 0.9478395061728396,
+              "mean_coverage95": 0.999537037037037,
+              "per_fold": {
+                "rmse": [
+                  0.11047027417975802,
+                  0.04685864900498717,
+                  0.04467768484625166
+                ],
+                "margin": [
+                  0.05208025865592869,
+                  0.19538604552031957,
+                  0.3971285562214768
+                ],
+                "nlpd": [
+                  5.166739244143681,
+                  5.354404209911044,
+                  5.29056017437308
+                ],
+                "c68": [
+                  0.9311111111111111,
+                  0.9385185185185185,
+                  0.9592592592592593
+                ],
+                "c95": [
+                  0.9992592592592593,
+                  0.9996296296296296,
+                  0.9996296296296296
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            "A2_fixed_0p5": {
+              "description": "gamma 0.5, k 45 - the pilot chosen exponent, no selection",
+              "folds": 12,
+              "mean_far_end_rmse": 0.06792042683642285,
+              "worst_fold_far_end_rmse": 0.1282955637761107,
+              "mean_rmse_over_mean_predictor": 0.06008382954573421,
+              "mean_margin_vs_best_baseline": 0.18776652166498384,
+              "worst_fold_margin": -0.18185675408936586,
+              "frac_folds_clearing_20pct": 0.6666666666666666,
+              "mean_nlpd": 5.08589125101037,
+              "mean_coverage68": 0.9759567901234568,
+              "mean_coverage95": 0.9999074074074074,
+              "per_fold": {
+                "rmse": [
+                  0.11989044489230267,
+                  0.042920803256289164,
+                  0.04504311575017909
+                ],
+                "margin": [
+                  -0.028752036289968474,
+                  0.26300313878422665,
+                  0.39219750714384083
+                ],
+                "nlpd": [
+                  5.045728005731102,
+                  5.149373364136134,
+                  5.049748648244196
+                ],
+                "c68": [
+                  0.9503703703703704,
+                  0.9696296296296296,
+                  0.9907407407407407
+                ],
+                "c95": [
+                  0.9996296296296296,
+                  1.0,
+                  1.0
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            "A3_fixed_0p5_k11": {
+              "description": "gamma 0.5, k 11 - the pilot chosen pair",
+              "folds": 12,
+              "mean_far_end_rmse": 0.0678600396539983,
+              "worst_fold_far_end_rmse": 0.1282612825386323,
+              "mean_rmse_over_mean_predictor": 0.06003117246786318,
+              "mean_margin_vs_best_baseline": 0.18852471092524484,
+              "worst_fold_margin": -0.18154095585862517,
+              "frac_folds_clearing_20pct": 0.6666666666666666,
+              "mean_nlpd": 5.091281856668209,
+              "mean_coverage68": 0.9742283950617284,
+              "mean_coverage95": 0.9999074074074074,
+              "per_fold": {
+                "rmse": [
+                  0.11987528759246793,
+                  0.04294578472822453,
+                  0.044971457150873514
+                ],
+                "margin": [
+                  -0.02862197502375441,
+                  0.2625741797478597,
+                  0.3931644534699803
+                ],
+                "nlpd": [
+                  5.0514742893716615,
+                  5.155030269691933,
+                  5.0559157452413075
+                ],
+                "c68": [
+                  0.95,
+                  0.9685185185185186,
+                  0.9896296296296296
+                ],
+                "c95": [
+                  0.9996296296296296,
+                  1.0,
+                  1.0
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            "A4_gamma1": {
+              "description": "gamma 1.0, k 45 - the catastrophic arm, mechanism test",
+              "folds": 12,
+              "mean_far_end_rmse": 0.13448144082067567,
+              "worst_fold_far_end_rmse": 0.20620385544834266,
+              "mean_rmse_over_mean_predictor": 0.11959760773272793,
+              "mean_margin_vs_best_baseline": -0.6509645822402309,
+              "worst_fold_margin": -0.9455514460447134,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 4.395627835487012,
+              "mean_coverage68": 0.9249074074074074,
+              "mean_coverage95": 0.9970679012345679,
+              "per_fold": {
+                "rmse": [
+                  0.20620385544834266,
+                  0.09340188840446402,
+                  0.10660690044912575
+                ],
+                "margin": [
+                  -0.7693873467054284,
+                  -0.6038119830767446,
+                  -0.4385314774409095
+                ],
+                "nlpd": [
+                  4.378778029615797,
+                  4.459182962305296,
+                  4.402429532763954
+                ],
+                "c68": [
+                  0.914074074074074,
+                  0.9474074074074074,
+                  0.9585185185185185
+                ],
+                "c95": [
+                  0.9996296296296296,
+                  1.0,
+                  1.0
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            "A5_trunc_inert": {
+              "description": "gamma 0, k in {8, 11, 20} - the inert family, falsification test",
+              "folds": 12,
+              "mean_far_end_rmse": 0.063726629603539,
+              "worst_fold_far_end_rmse": 0.10979208525400254,
+              "mean_rmse_over_mean_predictor": 0.05655706293118529,
+              "mean_margin_vs_best_baseline": 0.22734763588298276,
+              "worst_fold_margin": -0.004731061348492993,
+              "frac_folds_clearing_20pct": 0.5833333333333334,
+              "mean_nlpd": 5.300227320261968,
+              "mean_coverage68": 0.9327160493827161,
+              "mean_coverage95": 0.9990946502057613,
+              "per_fold": {
+                "rmse": [
+                  0.10979208525400254,
+                  0.04691762978270769,
+                  0.04473770807795901
+                ],
+                "margin": [
+                  0.057899640166999,
+                  0.19437328143497556,
+                  0.3963186151405057
+                ],
+                "nlpd": [
+                  5.250318927704457,
+                  5.355026736647709,
+                  5.291191700674424
+                ],
+                "c68": [
+                  0.9081481481481481,
+                  0.9385185185185185,
+                  0.9592592592592593
+                ],
+                "c95": [
+                  0.9967901234567901,
+                  0.9996296296296295,
+                  0.9996296296296295
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            "A6_floor": {
+              "description": "gamma 0 with the singular-value-floor family - data-independent",
+              "folds": 12,
+              "mean_far_end_rmse": 0.06367397041287705,
+              "worst_fold_far_end_rmse": 0.1097643885156931,
+              "mean_rmse_over_mean_predictor": 0.05650916169986012,
+              "mean_margin_vs_best_baseline": 0.22806778987453047,
+              "worst_fold_margin": -0.004416883837399022,
+              "frac_folds_clearing_20pct": 0.5833333333333334,
+              "mean_nlpd": 5.299660739636077,
+              "mean_coverage68": 0.9328086419753087,
+              "mean_coverage95": 0.9990740740740741,
+              "per_fold": {
+                "rmse": [
+                  0.1097643885156931,
+                  0.04685868944270423,
+                  0.04467772406287266
+                ],
+                "margin": [
+                  0.05813729943967927,
+                  0.1953853511607484,
+                  0.39712802704049965
+                ],
+                "nlpd": [
+                  5.249762764364185,
+                  5.35440514997233,
+                  5.2905611342044
+                ],
+                "c68": [
+                  0.9081481481481481,
+                  0.9385185185185185,
+                  0.9592592592592593
+                ],
+                "c95": [
+                  0.9966666666666667,
+                  0.9996296296296296,
+                  0.9996296296296296
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            "A7_oracle": {
+              "description": "per-fold TEST-argmin variant - selection optimism gap",
+              "folds": 12,
+              "mean_far_end_rmse": 0.0607883816441571,
+              "worst_fold_far_end_rmse": 0.10902818185354257,
+              "mean_rmse_over_mean_predictor": 0.053851378613453675,
+              "mean_margin_vs_best_baseline": 0.26878263437865185,
+              "worst_fold_margin": 0.0026304948110040804,
+              "frac_folds_clearing_20pct": 0.75,
+              "mean_nlpd": 5.23607686640958,
+              "mean_coverage68": 0.953425925925926,
+              "mean_coverage95": 0.9995679012345678,
+              "per_fold": {
+                "rmse": [
+                  0.10902818185354257,
+                  0.04187430287927859,
+                  0.03975433224679993
+                ],
+                "margin": [
+                  0.0644545176591792,
+                  0.2809726881543192,
+                  0.46356325846883883
+                ],
+                "nlpd": [
+                  5.217154386876877,
+                  5.2640459921358,
+                  5.187665176845224
+                ],
+                "c68": [
+                  0.9159259259259259,
+                  0.9588888888888889,
+                  0.9737037037037037
+                ],
+                "c95": [
+                  0.9992592592592593,
+                  1.0,
+                  1.0
+                ],
+                "hyperparams": [
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ],
+                  [
+                    0.5,
+                    3.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            "A8_shuffled": {
+              "description": "shuffled-phase operator at the selected (k, gamma) - consistency control",
+              "folds": 12,
+              "mean_far_end_rmse": 0.9247638940206969,
+              "worst_fold_far_end_rmse": 1.0788303791259382,
+              "mean_rmse_over_mean_predictor": 0.8269824275647294,
+              "mean_margin_vs_best_baseline": -10.832677773709124,
+              "worst_fold_margin": -14.147258679648314,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": 2.79827398952205,
+              "mean_coverage68": 0.7922839506172838,
+              "mean_coverage95": 0.9499382716049385,
+              "per_fold": {
+                "rmse": [
+                  1.0788303791259382,
+                  0.7466812836331984,
+                  0.9212850076728747
+                ],
+                "margin": [
+                  -8.257192683989642,
+                  -11.821329532913538,
+                  -11.431629450330655
+                ],
+                "nlpd": [
+                  2.708009202951516,
+                  2.927941309915565,
+                  2.852442255351503
+                ],
+                "c68": [
+                  0.77,
+                  0.807037037037037,
+                  0.8144444444444444
+                ],
+                "c95": [
+                  0.9348148148148148,
+                  0.9581481481481482,
+                  0.947037037037037
+                ],
+                "hyperparams": [
+                  [
+                    0.05,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.05,
+                    1.0,
+                    0.1
+                  ],
+                  [
+                    0.05,
+                    1.0,
+                    0.1
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            "A10_tempered": {
+              "description": "tempered-noise diagnostic at the selected (k, gamma): marginal-likelihood mean, predictive variance fixed at the TRAIN empirical residual variance",
+              "folds": 12,
+              "mean_far_end_rmse": 0.06338686868956213,
+              "worst_fold_far_end_rmse": 0.11183734826588486,
+              "mean_rmse_over_mean_predictor": 0.05621209189933964,
+              "mean_margin_vs_best_baseline": 0.23522734015201988,
+              "worst_fold_margin": -0.03024392673577747,
+              "frac_folds_clearing_20pct": 0.5833333333333334,
+              "mean_nlpd": 4.878812556571518,
+              "mean_coverage68": 0.9612037037037037,
+              "mean_coverage95": 0.9908024691358026,
+              "per_fold": {
+                "rmse": [
+                  0.11047027417975802,
+                  0.04685864900498717,
+                  0.04467768484625166
+                ],
+                "margin": [
+                  0.05208025865592869,
+                  0.19538604552031957,
+                  0.3971285562214768
+                ],
+                "nlpd": [
+                  4.51855761689906,
+                  5.041800012314549,
+                  5.0832944589723095
+                ],
+                "c68": [
+                  0.9,
+                  0.9614814814814815,
+                  0.9692592592592593
+                ],
+                "c95": [
+                  0.9674074074074074,
+                  0.9974074074074074,
+                  0.9937037037037038
+                ],
+                "hyperparams": [
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            },
+            "A9_meanpred": {
+              "description": "the do-nothing reference - guard g1",
+              "folds": 12,
+              "mean_far_end_rmse": 1.1156597455627477,
+              "worst_fold_far_end_rmse": 1.256219423024518,
+              "mean_rmse_over_mean_predictor": 1.0,
+              "mean_margin_vs_best_baseline": -13.398274029188036,
+              "worst_fold_margin": -17.27747796822141,
+              "frac_folds_clearing_20pct": 0.0,
+              "mean_nlpd": null,
+              "mean_coverage68": null,
+              "mean_coverage95": null,
+              "per_fold": {
+                "rmse": [
+                  1.256219423024518,
+                  1.0060553141512614,
+                  1.09862852404684
+                ],
+                "margin": [
+                  -9.77932683146173,
+                  -16.27506366345282,
+                  -13.82466620075893
+                ],
+                "nlpd": [
+                  null,
+                  null,
+                  null
+                ],
+                "c68": [
+                  null,
+                  null,
+                  null
+                ],
+                "c95": [
+                  null,
+                  null,
+                  null
+                ],
+                "hyperparams": [
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ],
+                  [
+                    NaN,
+                    NaN,
+                    NaN
+                  ]
+                ],
+                "fold_id": [
+                  16000,
+                  16002,
+                  16004
+                ],
+                "seed": [
+                  0,
+                  1,
+                  2
+                ],
+                "scheme": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            }
+          },
+          "selected_distribution": {
+            "k_counts": {
+              "8": 6,
+              "45": 6
+            },
+            "gamma_counts": {
+              "0.3": 6,
+              "0": 6
+            },
+            "joint": {
+              "k8_g0.3": 6,
+              "k45_g0": 6
+            },
+            "tie_break": "larger gamma then smaller k"
+          },
+          "curves": {
+            "gamma_at_k45": {
+              "0": 0.06367393923598276,
+              "0.15": 0.061350730075848736,
+              "0.3": 0.06179133909542268,
+              "0.5": 0.06792042683642285,
+              "0.7": 0.08524905996017651,
+              "0.85": 0.1063258250672975,
+              "1": 0.13448144082067567
+            },
+            "k_at_gamma0": {
+              "3": 0.13647575582993635,
+              "5": 0.07961788658642378,
+              "8": 0.06382784719670599,
+              "10": 0.06368024832001229,
+              "11": 0.06367807144110461,
+              "15": 0.06367416436954064,
+              "20": 0.06367397017280638,
+              "45": 0.06367393923598276
+            },
+            "k_at_gamma0p5": {
+              "3": 0.13510273614925064,
+              "5": 0.0778974779569644,
+              "8": 0.06703805337023662,
+              "10": 0.06778974620049,
+              "11": 0.0678600396539983,
+              "15": 0.06788928806955692,
+              "20": 0.06791080012460259,
+              "45": 0.06792042683642285
+            },
+            "k_at_gamma1": {
+              "3": 0.134483801913269,
+              "5": 0.1001713292451395,
+              "8": 0.12350891833438199,
+              "10": 0.12922646013521463,
+              "11": 0.12723642194449505,
+              "15": 0.1231589116687891,
+              "20": 0.12168269832996227,
+              "45": 0.13448144082067567
+            },
+            "floor_f": {
+              "0.1": 0.07961788658642378,
+              "0.01": 0.06367807144110461,
+              "0.001": 0.06367397041287705,
+              "0.0001": 0.06367394085729278,
+              "1e-05": 0.06367393923732102,
+              "1e-06": 0.06367393923598307,
+              "1e-07": 0.06367393923598284,
+              "1e-08": 0.06367393923598284
+            },
+            "floor_f_effective_rank": {
+              "0.1": 5,
+              "0.01": 11,
+              "0.001": 19,
+              "0.0001": 23,
+              "1e-05": 27,
+              "1e-06": 28,
+              "1e-07": 29,
+              "1e-08": 29
+            }
+          },
+          "diagnostics": {
+            "raw": {
+              "cond_K": 3600.7076758691055,
+              "cond_K_max": 3637.0470594995104,
+              "min_cholesky_pivot": 0.3210579559328401,
+              "min_cholesky_pivot_min": 0.3201952022674483,
+              "jitter_sweep": {
+                "0": {
+                  "mean_rmse": 0.06367393923598288,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "1e-08": {
+                  "mean_rmse": 0.06367394122049784,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "1e-07": {
+                  "mean_rmse": 0.0636739590811286,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "1e-06": {
+                  "mean_rmse": 0.0636741376870736,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "1e-05": {
+                  "mean_rmse": 0.06367592371023309,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "0.0001": {
+                  "mean_rmse": 0.06369378031462329,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "0.001": {
+                  "mean_rmse": 0.063871985476582,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "0.01": {
+                  "mean_rmse": 0.06561965728797307,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                }
+              },
+              "jitter_note": "each entry carries the fold count and how many of them exceeded the mean predictor (guard g1: such an entry is a numerical failure, not a finding)"
+            },
+            "whitened_g0p5": {
+              "cond_K": 3493.8785899964964,
+              "cond_K_max": 3531.5955637344246,
+              "min_cholesky_pivot": 0.32326694286649166,
+              "min_cholesky_pivot_min": 0.3222181113501436,
+              "jitter_sweep": {
+                "0": {
+                  "mean_rmse": 0.06792042683642345,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "1e-08": {
+                  "mean_rmse": 0.06792042859864063,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "1e-07": {
+                  "mean_rmse": 0.0679204444585929,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "1e-06": {
+                  "mean_rmse": 0.06792060305784028,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "1e-05": {
+                  "mean_rmse": 0.06792218902267996,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "0.0001": {
+                  "mean_rmse": 0.067938045909078,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "0.001": {
+                  "mean_rmse": 0.06809633988403793,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                },
+                "0.01": {
+                  "mean_rmse": 0.06965301146486554,
+                  "n_folds_numerical_failure": 0,
+                  "n_folds": 12
+                }
+              },
+              "jitter_note": "each entry carries the fold count and how many of them exceeded the mean predictor (guard g1: such an entry is a numerical failure, not a finding)"
+            }
+          },
+          "baselines": {
+            "folds": 12,
+            "b1a": 0.22197133772726654,
+            "b1b": 0.19744571589453563,
+            "b2": 0.11441206995030535,
+            "b3": 0.10859954827592432,
+            "b4": 0.10749831330229824,
+            "b5_primary": 0.0907361625896504,
+            "b5_primary_vsd_all": 0.09062031159426359,
+            "b5_p17secondary": 0.2524840436320322,
+            "b5_p17secondary_vsd_all": 0.2521214423411306,
+            "mean_predictor": 1.1156597455627477,
+            "winner_counts": {
+              "b5p_lindist_honest": 6,
+              "b3_admittance": 6
+            },
+            "lindist_order_chosen": {
+              "order1": 12,
+              "order2": 0
+            },
+            "rbf_median_normalisation_gain": -0.12421450484056648,
+            "b1a_over_mean_predictor": 0.198959708468555,
+            "b1b_over_mean_predictor": 0.17697664245736716,
+            "rbf_restatement": "At n=160 the median-normalised RBF (b1a) scores 0.2220 and the raw-scale form (b1b, what the archived arms used) 0.1974, against a mean predictor of 1.1157. b1a is 12.4% worse than b1b, so the median ..."
+          },
+          "crossover": {
+            "raw_mean_margin": 160,
+            "raw_every_fold": null,
+            "selected_mean_margin": 160,
+            "selected_every_fold": null,
+            "note": "mean_margin_crossover = first n at which the mean paired margin over the best per-fold baseline is positive; every_fold_crossover = first n at which the worst fold margin is positive"
+          }
+        }
+      },
+      "screen_metric_at_80": -0.15143700034637606,
+      "selection_optimism_at_80": 0.002894499573732709,
+      "survival": {
+        "S1_mean_ge_20pct": false,
+        "S2_worst_fold_ge_20pct": false,
+        "S3_no_candidate_beats_by_15pct": "evaluated downstream",
+        "survives": false,
+        "note": "S1 and S2 are decided here at n=80 on the 2.0x regime; S3 needs the other four screened candidates and is decided downstream. A screen where nothing clears +20% is a real result about the request and ..."
+      },
+      "ranking_report": {
+        "measure": "mean paired margin in far-end normalised test RMSE over the best per-fold baseline, n=80, 2.0x regime",
+        "ordering": [
+          {
+            "rank": 1,
+            "arm": "A7_oracle",
+            "description": "per-fold TEST-argmin variant - selection optimism gap",
+            "mean_margin": -0.12198391704924537,
+            "worst_fold_margin": -1.0259393349856376,
+            "mean_rmse": 0.10822073257735228,
+            "frac_folds_clearing_20pct": 0.125,
+            "clears_20pct": false
+          },
+          {
+            "rank": 2,
+            "arm": "A1_sel",
+            "description": "train-selected (k, gamma) - the candidate deliverable",
+            "mean_margin": -0.15143700034637606,
+            "worst_fold_margin": -1.112011480675391,
+            "mean_rmse": 0.11111523215108499,
+            "frac_folds_clearing_20pct": 0.08333333333333333,
+            "clears_20pct": false
+          },
+          {
+            "rank": 3,
+            "arm": "A10_tempered",
+            "description": "tempered-noise diagnostic at the selected (k, gamma): marginal-likelihood mean, predictive variance fixed at the TRAIN empirical residual variance",
+            "mean_margin": -0.15143700034637606,
+            "worst_fold_margin": -1.112011480675391,
+            "mean_rmse": 0.11111523215108499,
+            "frac_folds_clearing_20pct": 0.08333333333333333,
+            "clears_20pct": false
+          }
+        ],
+        "nothing_clears_20pct": true,
+        "statement": "No arm clears the pre-registered +20% mean-margin bar at n=80; this is reported as the result of the screen, not re-thresholded."
+      },
+      "corrections_to_prior_text": [
+        [
+          "whitening exponent",
+          "The direction text writes S_gamma = U diag((sigma/sigma_1)^gamma) Vt and calls gamma=0 the raw operator. That is inverted: at gamma=0 it yields U Vt, the fully whitened semi-orthogonal map, and at gam..."
+        ],
+        [
+          "gamma-0 assertion is impossible as written",
+          "STEP 3 asserts Phi_{45,0}(x) == S x / sigma_0 elementwise. The ratio form drops the left singular vector U, an orthogonal rotation that leaves every RBF kernel bit-identical, so the assertion is imple..."
+        ],
+        [
+          "LinDistFlow baseline recalibrated",
+          "The archived p17 joint-map calibration (one 46-column trace-scaled ridge penalising the intercept, CV grid floor 1e-4 reached in 20/20 seeds) is replaced as the margin reference by per-output ridge wi..."
+        ]
+      ]
+    },
+    "protocol_checks": {
+      "input_regeneration": {
+        "regenerated": false,
+        "missing_at_start": []
+      },
+      "X_shape": [
+        220,
+        110
+      ],
+      "Y_shape": [
+        220,
+        45
+      ],
+      "finite_rows": 220,
+      "mean_total_load_kW": 114.69283114609138,
+      "far_end_sd_mean": 0.021013037612169598,
+      "sheet15": [
+        681,
+        697,
+        713
+      ],
+      "phase_counts": [
+        21,
+        19,
+        15
+      ],
+      "n_loads": 55,
+      "y_min_row_p1": 0.8361971283214061,
+      "deviation_from_archive": {
+        "mean_total_load_kW": 3.114609137355728e-05,
+        "far_end_sd": 3.761216959760616e-08
+      },
+      "ensemble_source": "archived (iter_2 pilot ens_s2.0_X.npy / ens_s2.0_Y.npy)",
+      "S_vs_Physics_lin_operator_max_rel": 0.0,
+      "exponent_orientation": {
+        "gamma0_rotation_identity_rel_dev": 2.447593707889208e-15,
+        "cond_gamma0": 1.130471862983551e+16,
+        "cond_gamma05": 106323650.37862225,
+        "cond_gamma05_expected": 106323650.37862228,
+        "cond_gamma10": 1.0000000000000013,
+        "note": "STEP 3 asserts Phi_{45,0}(x) == S x / sv0 elementwise. That is impossible: the ratio form drops the left singular vector U, an orthogonal rotation that leaves every RBF kernel bit-identical. The asser..."
+      },
+      "folds_per_n": {
+        "10": 24,
+        "20": 24,
+        "40": 24,
+        "80": 24,
+        "160": 12
+      },
+      "total_fold_cells": 108,
+      "shuffled_phase_operator": {
+        "seed": 31,
+        "construction": "phase_shuffled = phase_true[perm] with perm = default_rng(31).permutation(55); the operator's load-to-phase assignment is permuted while the data stay on the real phases",
+        "permutation": [
+          32,
+          15,
+          24
+        ],
+        "n_phase_labels_changed": 33,
+        "shuffled_phase_counts": [
+          21,
+          19,
+          15
+        ],
+        "singular_values_normalised_first20": [
+          1.0,
+          0.92053740264732,
+          0.4951085927771594
+        ],
+        "cyclic_relabel_null_control": {
+          "construction": "phase_true + 1 mod 3 (global cyclic relabel, a symmetry)",
+          "max_abs_rel_dev_from_real": 1.2077482700279658,
+          "singular_values_normalised_first20": [
+            1.0,
+            0.9434430110468647,
+            0.5036565912617175
+          ]
+        }
+      },
+      "inputs_regenerated": false,
+      "reused_ensembles": "archived 220-draw runpp_3ph pools from iter_2/gen_hypo/claude_agent/pilot (ens_s2.0_X.npy, ens_s2.0_Y.npy); zero AC solves on the measurement path",
+      "T4_baseline_order": {
+        "n": 10,
+        "b5p_honest_per_output_ridge_mean": 0.18327212733100384,
+        "b5s_p17_jointmap_mean": 0.4315265435947066,
+        "honest_beats_p17": true,
+        "honest_in_expected_range": true,
+        "p17_in_expected_range": true,
+        "note": "probe8.log recorded 0.1665 honest against 0.3805 for the archived joint-map calibration at n=10 on the p17 fold family. This artifact uses the shared screen fold family (seed base 20261111, not p17's ...",
+        "passes": true
+      },
+      "T7_rbf_defect_check": {
+        "10": {
+          "b1a_median_normalised": 1.4017008135385123,
+          "b1b_raw_scale": 1.4016449240572086,
+          "mean_predictor": 1.401845056250229,
+          "median_normalisation_gain": -3.987420804254851e-05
+        },
+        "160": {
+          "b1a_median_normalised": 0.22197133772726654,
+          "b1b_raw_scale": 0.19744571589453563,
+          "mean_predictor": 1.1156597455627477,
+          "median_normalisation_gain": -0.12421450484056648
+        }
+      },
+      "baselines_per_fold_rows": 108,
+      "baselines_per_fold_nan_cells": 0
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "ieee_pes_european_lv_asymmetric_on_peak_566_2.0x",
+      "examples": [
+        {
+          "input": "fold n=10 seed=0 scheme=0: predict the 45 far-end phase voltages with the whitened pullback kernel at the train-selected (k=3, gamma=0.0), 2.0x regime",
+          "output": "far-end normalised test RMSE 1.084379; best per-fold baseline b5p_lindist_honest at 0.134412; paired margin -7.0676; NLPD 2.9117; coverage68 0.7410; coverage95 0.9112",
+          "metadata_n": 10,
+          "metadata_fold_id": 1000,
+          "metadata_seed": 0,
+          "metadata_scheme": 0,
+          "metadata_selected_k": 3,
+          "metadata_selected_gamma": 0.0,
+          "metadata_vsd_train": 0.01859056689817564,
+          "predict_whitened_kernel": "1.084379",
+          "predict_best_baseline": "0.134412",
+          "predict_mean_predictor": "1.374035"
+        },
+        {
+          "input": "fold n=10 seed=0 scheme=1: predict the 45 far-end phase voltages with the whitened pullback kernel at the train-selected (k=20, gamma=0.5), 2.0x regime",
+          "output": "far-end normalised test RMSE 0.870349; best per-fold baseline b5p_lindist_honest at 0.253419; paired margin -2.4344; NLPD 2.5673; coverage68 0.7574; coverage95 0.9303",
+          "metadata_n": 10,
+          "metadata_fold_id": 1001,
+          "metadata_seed": 0,
+          "metadata_scheme": 1,
+          "metadata_selected_k": 20,
+          "metadata_selected_gamma": 0.5,
+          "metadata_vsd_train": 0.026322370523939872,
+          "predict_whitened_kernel": "0.870349",
+          "predict_best_baseline": "0.253419",
+          "predict_mean_predictor": "1.000427"
+        },
+        {
+          "input": "fold n=10 seed=1 scheme=0: predict the 45 far-end phase voltages with the whitened pullback kernel at the train-selected (k=3, gamma=0.5), 2.0x regime",
+          "output": "far-end normalised test RMSE 0.473560; best per-fold baseline b5p_lindist_honest at 0.164507; paired margin -1.8787; NLPD 3.7014; coverage68 0.8106; coverage95 0.9704",
+          "metadata_n": 10,
+          "metadata_fold_id": 1002,
+          "metadata_seed": 1,
+          "metadata_scheme": 0,
+          "metadata_selected_k": 3,
+          "metadata_selected_gamma": 0.5,
+          "metadata_vsd_train": 0.020367695881122104,
+          "predict_whitened_kernel": "0.473560",
+          "predict_best_baseline": "0.164507",
+          "predict_mean_predictor": "1.162602"
+        }
+      ]
+    }
+  ]
+}

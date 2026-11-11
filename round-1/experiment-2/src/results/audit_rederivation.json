@@ -1,0 +1,68 @@
+{
+  "fold_counts": {
+    "10": 24,
+    "20": 24,
+    "40": 24,
+    "80": 24,
+    "160": 12
+  },
+  "n80_A1_sel_mean_margin": -0.15143700034637606,
+  "n80_A1_sel_worst_margin": -1.112011480675391,
+  "n80_A1_sel_mean_rmse": 0.11111523215108499,
+  "n80_best_baseline_mean_rmse": 0.09411521568791087,
+  "n80_frac_folds_clearing_20pct": 0.08333333333333333,
+  "n80_A1_sel_margin_boot95": [
+    -0.28961961340304554,
+    -0.023906083402293655
+  ],
+  "n80_A1_sel_margin_wilcoxon_p": 0.09509599208831787,
+  "n80_aggr_field_matches": true,
+  "n80_A0_minus_A1_mean": 0.0006421223204710549,
+  "n80_A0_minus_A1_boot95": [
+    -0.001442056013978288,
+    0.002645574831095769
+  ],
+  "n80_selection_optimism": 0.002894499573732709,
+  "n80_aggr_selection_optimism": 0.002894499573732709,
+  "n80_sel_opt_matches": true,
+  "selected_k_counts": {
+    "3": 16,
+    "8": 71,
+    "11": 9,
+    "20": 2,
+    "45": 10
+  },
+  "selected_gamma_counts": {
+    "0": 18,
+    "0.3": 64,
+    "0.5": 13,
+    "0.7": 13
+  },
+  "S_rank_1e2": 11,
+  "S_rank_1e3": 19,
+  "S_rank_1e4": 23,
+  "S_stable_rank": 2.176836541780568,
+  "S_facts_match": true,
+  "crossover_rederived": {
+    "A1_sel": {
+      "mean_margin_crossover": 160,
+      "every_fold_crossover": null
+    },
+    "A0_raw": {
+      "mean_margin_crossover": 160,
+      "every_fold_crossover": null
+    }
+  },
+  "crossover_matches": true,
+  "placebo_permuted_margin_mean": 1.0922975487067297e-17,
+  "placebo_permuted_margin_clears_20pct": false,
+  "placebo_permuted_margin_ci": [
+    -0.14034644832555082,
+    0.12940580081939856
+  ],
+  "placebo_mean_predictor_mean_margin": -11.30835694041606,
+  "placebo_mean_predictor_clears_20pct": false,
+  "placebo_random_arm_mean_margin": -0.30597513843695895,
+  "placebo_random_arm_clears_20pct": false,
+  "A10_equals_A1_mean_prediction": true
+}

@@ -1,0 +1,100 @@
+{
+  "type": "heatmap",
+  "title": "Where train-only selection lands, pooled over the 108 fold-cells",
+  "xlabel": "selected gamma",
+  "ylabel": "selected truncation rank k",
+  "cbar_label": "fold-cells selecting this pair",
+  "row_labels": [
+    "3",
+    "5",
+    "8",
+    "10",
+    "11",
+    "15",
+    "20",
+    "45"
+  ],
+  "col_labels": [
+    "0",
+    "0.15",
+    "0.3",
+    "0.5",
+    "0.7",
+    "0.85",
+    "1"
+  ],
+  "matrix": [
+    [
+      2,
+      0,
+      2,
+      2,
+      10,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      7,
+      0,
+      55,
+      7,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      7,
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      9,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ]
+  ]
+}

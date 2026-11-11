@@ -1,0 +1,14 @@
+{
+  "T6a_predictions_bit_identical": true,
+  "T6a_predictive_variance_bit_identical": true,
+  "T6a_hyperparameters_identical": true,
+  "T6a_rmse_changed_by_permutation": true,
+  "T6b_vsd_train": 0.02045297363178279,
+  "T6b_vsd_test": 0.021056667880665365,
+  "T6b_vsd_differs_from_test": true,
+  "T6b_feature_scale_ignores_test_rows": true,
+  "T6b_ridge_refit_matches": true,
+  "T6b_ridge_single_shared_coefficient_vector": true,
+  "T6b_ridge_refit_residual": 2.220446049250313e-16,
+  "T6c_selection_unchanged_by_test_permutation": true
+}
